@@ -11,6 +11,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -49,6 +50,10 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+{{--<script src="{{ asset('js/jquery.js') }}" defer></script>--}}
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" defer></script>
 
+@yield('scripts')
 </body>
 </html>

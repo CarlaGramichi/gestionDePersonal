@@ -44,4 +44,6 @@ try {
 
     require('bootstrap');
     require('@coreui/coreui');
-} catch (e) {}
+} catch (e) {
+    console.log(e.toString());
+}

@@ -53417,7 +53417,9 @@ try {
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
   __webpack_require__(/*! @coreui/coreui */ "./node_modules/@coreui/coreui/dist/js/coreui.js");
-} catch (e) {}
+} catch (e) {
+  console.log(e.toString());
+}
 
 /***/ }),
 
