@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use jeremykenedy\LaravelRoles\Models\Role;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -62,9 +63,12 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users/edit')->with([
+            'user'  => $user->load(['roles']),
+            'roles' => Role::all()
+        ]);
     }
 
     /**

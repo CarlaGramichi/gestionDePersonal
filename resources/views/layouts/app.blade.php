@@ -49,11 +49,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-{{--<script src="{{ asset('js/jquery.js') }}" defer></script>--}}
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js" defer></script>
-
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('js/global.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

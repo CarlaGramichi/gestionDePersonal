@@ -9,9 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -74,4 +71,10 @@
         </div>
     </form>
 </div>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    console.log($('body').html())
+</script>
 </body>
