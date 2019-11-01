@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,38 +12,40 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $userRole = config('roles.models.role')::where('name', '=', 'User')->first();
-        $adminRole = config('roles.models.role')::where('name', '=', 'Admin')->first();
+        $supervisorRole = config('roles.models.role')::where('slug', '=', 'supervisor')->first();
+        $administrativeRole = config('roles.models.role')::where('slug', '=', 'administrative')->first();
+        $janitorRole = config('roles.models.role')::where('slug', '=', 'janitor')->first();
         $permissions = config('roles.models.permission')::all();
 
         /*
          * Add Users
          *
          */
-        if (config('roles.models.defaultUser')::where('email', '=', 'admin@admin.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'supervisor@supervisor.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
-                'name'     => 'Admin',
-                'agent_id'     => '1',
-                'email'    => 'admin@admin.com',
-                'password' => bcrypt('password'),
+                'name'     => 'Supervisor',
+                'agent_id' => '1',
+                'email'    => 'supervisor@supervisor.com',
+                'password' => bcrypt('supervisor'),
             ]);
 
-            $newUser->attachRole($adminRole);
+            $newUser->attachRole($supervisorRole);
             foreach ($permissions as $permission) {
                 $newUser->attachPermission($permission);
             }
         }
 
-        if (config('roles.models.defaultUser')::where('email', '=', 'user@user.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'administrative@administrative.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
-                'name'     => 'User',
-                'agent_id'     => '1',
-                'email'    => 'user@user.com',
-                'password' => bcrypt('password'),
+                'name'     => 'Administrative',
+                'agent_id' => '1',
+                'email'    => 'administrative@administrative.com',
+                'password' => bcrypt('administrative'),
             ]);
 
-            $newUser;
-            $newUser->attachRole($userRole);
+            $newUser->attachRole($administrativeRole);
+
+            factory(User::class, 15)->create();
         }
     }
 }

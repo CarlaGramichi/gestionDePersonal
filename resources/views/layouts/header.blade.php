@@ -7,7 +7,8 @@
         <img class="navbar-brand-minimized" src="{{asset('images/brand/sygnet.svg')}}" width="30" height="30"
              alt="SAIT Logo">
     </a>
-    <button class="navbar-toggler  d-md-down-none sidebar-minimizer brand-minimizer" type="button" data-toggle="sidebar-lg-show">
+    <button class="navbar-toggler  d-md-down-none sidebar-minimizer brand-minimizer" type="button"
+            data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -23,7 +24,8 @@
 
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                aria-expanded="false">
-                <img class="img-avatar" src="{{asset('images/avatars/2.jpg')}}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                <img class="img-avatar" src="{{asset('images/avatars/2.jpg')}}" alt="{{Auth::user()->name}}"
+                     title="{{Auth::user()->name}}">
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
@@ -44,15 +46,20 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="#">
-                    <i class="fa fa-lock"></i> {{__('Logout')}}</a>
+
+                <form method="post" action="{{ route('logout') }}">
+                    @csrf
+                    <a class="dropdown-item" href="#" onclick="$(this).parent('form').submit()">
+                        <i class="fa fa-lock"></i> {{__('Logout')}}
+                    </a>
+                </form>
             </div>
         </li>
     </ul>
-{{--    <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">--}}
-{{--        <span class="navbar-toggler-icon"></span>--}}
-{{--    </button>--}}
-{{--    <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">--}}
-{{--        <span class="navbar-toggler-icon"></span>--}}
-{{--    </button>--}}
+    {{--    <button class="navbar-toggler aside-menu-toggler d-md-down-none" type="button" data-toggle="aside-menu-lg-show">--}}
+    {{--        <span class="navbar-toggler-icon"></span>--}}
+    {{--    </button>--}}
+    {{--    <button class="navbar-toggler aside-menu-toggler d-lg-none" type="button" data-toggle="aside-menu-show">--}}
+    {{--        <span class="navbar-toggler-icon"></span>--}}
+    {{--    </button>--}}
 </header>

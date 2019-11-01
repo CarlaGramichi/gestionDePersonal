@@ -10,67 +10,132 @@
                 </a>
             </li>
 
-            <li class="nav-item nav-dropdown">
+            <li class="nav-title"><span><i class="nav-icon fa fa-chalkboard-teacher"></i>&emsp;Agentes</span></li>
 
-                <a class="nav-link nav-dropdown-toggle" href="#">
-                    <i class="nav-icon fa fa-chalkboard-teacher"></i> Docentes
-                </a>
-
-                <ul class="nav-dropdown-items">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="base/breadcrumb.html">
-                            <i class="nav-icon fa fa-circle"></i> Listar</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="base/breadcrumb.html">
-                            <i class="nav-icon fa fa-circle"></i> Nuevo</a>
-                    </li>
-
-                </ul>
-
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="#">
-                    <i class="nav-icon fa fa-clipboard-list"></i> Informes
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="#">
-                    <i class="nav-icon fa fa-user-md"></i> Licencias
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="#">
-                    <i class="nav-icon fa fa-list-alt"></i> Códigos de licencias
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="#">
-                    <i class="nav-icon fa fa-file-pdf"></i> Bajas
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="#">
-                    <i class="nav-icon fa fa-calendar-alt"></i> Ciclos lectivos
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link " href="{{route('users.index')}}">
-                    <i class="nav-icon fa fa-user"></i> Usuarios
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('agents.index') }}">
+                    • Dar de alta un agente
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="nav-icon fa fa-user-lock"></i> Accesos
+                    • Asignar propuesta a un agente
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Reasignaciones de un agente
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Búsqueda de expediente de un agente
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Cambiar situación de revista de un agente
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Dar de baja un agente
+                </a>
+            </li>
+
+            <li class="nav-title"><span><i class="nav-icon fa fa-calendar-check"></i>&emsp;Movimientos diarios</span>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link " href="#">
+                    • Parte diario
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link " href="#">
+                    • Entrada de licencias
+                </a>
+            </li>
+
+            <li class="nav-title"><span><i class="nav-icon fa fa-calendar-check"></i>&emsp;Reportes</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Reportes de inasistencia
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Reportes de asistencia
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Reportes de licencias
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Planilla parte diario
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Planilla parte mensual
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Reporte de horarios de clases
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Historial laboral de un agente
+                </a>
+            </li>
+
+            <li class="nav-title"><span><i class="nav-icon fa fa-calendar-check"></i>&emsp;Ajustes</span></li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • P.O.F.
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Códigos de licencia
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                    • Usuarios
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Accesos
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    • Establecimiento
                 </a>
             </li>
 

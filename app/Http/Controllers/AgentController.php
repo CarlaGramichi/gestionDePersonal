@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\Status;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -12,9 +13,22 @@ class AgentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        if ($request->ajax()) {
+
+            $agents = Agent::where('name', 'like', "%{$request->search}%")
+                ->orWhere('surname', 'like', "%{$request->search}%")
+                ->orWhere('dni', 'like', "%{$request->search}%")
+                ->limit(10)
+                ->get()
+                ->toArray();
+
+            return $agents;
+        }
+
+        return view('agents.register.index');
     }
 
     /**
@@ -24,13 +38,15 @@ class AgentController extends Controller
      */
     public function create()
     {
-        //
+        $statuses = Status::All();
+
+        return view('agents.register.create', compact('statuses'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +57,7 @@ class AgentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Agent  $agent
+     * @param \App\Agent $agent
      * @return \Illuminate\Http\Response
      */
     public function show(Agent $agent)
@@ -52,7 +68,7 @@ class AgentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agent  $agent
+     * @param \App\Agent $agent
      * @return \Illuminate\Http\Response
      */
     public function edit(Agent $agent)
@@ -63,8 +79,8 @@ class AgentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agent  $agent
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Agent $agent
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Agent $agent)
@@ -75,7 +91,7 @@ class AgentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agent  $agent
+     * @param \App\Agent $agent
      * @return \Illuminate\Http\Response
      */
     public function destroy(Agent $agent)

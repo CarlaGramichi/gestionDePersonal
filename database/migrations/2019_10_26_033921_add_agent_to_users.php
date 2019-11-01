@@ -16,7 +16,7 @@ class AddAgentToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('agent_id')->after('id');
 
-            $table->foreign('agent_id')->references('id')->on('users');
+            $table->foreign('agent_id')->references('id')->on('agents');
         });
     }
 

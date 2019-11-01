@@ -14,10 +14,15 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(UsersTableSeeder::class);
+        $this->call(StatusesTableSeeder::class);
+        $this->call(AgentsTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(ConnectRelationshipsSeeder::class);
+        $this->call(RelationshipsTableSeeder::class);
+
+
         Model::reguard();
     }
 }

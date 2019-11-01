@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('welcome');
     });
 
+    Route::resource('agents', AgentController::class);
     Route::resource('users', UserController::class);
 
 
