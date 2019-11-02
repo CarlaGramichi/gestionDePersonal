@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.css">
+@endsection
+
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">P.O.F.</li>
@@ -11,11 +15,13 @@
 
     @include('partials.alerts')
 
-    <div class="alert alert-secondary col-sm-12">
-        <a href="{{ route('pof_document.create') }}" class="btn btn-primary float-right">Nuevo&emsp;<span class="fa fa-plus"></span></a>
+    <div class="col-sm-12 text-right mb-5">
+        <a href="{{ route('pof_document.create') }}" class="btn btn-success btn-lg">
+            Nuevo&emsp;<span class="fa fa-plus"></span>
+        </a>
     </div>
 
-    <div class="col-sm-12 col-lg-12">
+    <div class="col-sm-12">
 
         <table class="table table-bordered table-striped" id="table">
             <thead>
@@ -33,11 +39,11 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.js"></script>
     <script>
         let table = $('#table');
         let dataTable;
         $(document).ready(function () {
-
             $(function () {
                 dataTable = table.DataTable({
                     processing: true,
@@ -47,7 +53,7 @@
                         {
                             targets: -1,
                             data: null,
-                            defaultContent: renderActions(['delete']),
+                            defaultContent: renderButton('Borrar&emsp;<span class="fa fa-trash"></span>', 'remove', 'danger'),
                             orderable: false,
                         },
                     ],
@@ -58,10 +64,17 @@
                         {data: '', class: 'text-center'}
                     ]
                 })
-                    .on('click', '.delete', function () {
+                    .on('click', '.remove', function () {
                         let row = dataTable.row($(this).parents('tr')).data();
 
-                        // httpRedirect(`users/${row.id}/edit`);
+                        tableRemove(
+                            `pof_document/${row.id}`,
+                            {},
+                            '{{csrf_token()}}',
+                            'Eliminar documento de P.O.F.',
+                            'Está por eliminar un documento de P.O.F.<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?',
+                            dataTable,
+                        );
                     });
             });
 

@@ -61,6 +61,10 @@ function renderActions(actions) {
     return button;
 }
 
+function renderButton(name, action, btnClass) {
+    return `<button class="btn btn-${btnClass} ${action}">${name}</button>`
+}
+
 function setDateRangePicker() {
     if (daterangepicker.length) {
         if (moment) {
@@ -80,4 +84,49 @@ function setDateRangePicker() {
         }).trigger('apply.daterangepicker');
 
     }
+}
+
+function tableRemove(url, data, token, title, body, table) {
+
+    swal.fire({
+        title: title,
+        html: body,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '¡Si, borrar!',
+        cancelButtonText: 'Cancelar',
+        showLoaderOnConfirm: true,
+        allowOutsideClick: false,
+        preConfirm: () => {
+            return new Promise((resolve) => {
+                $.ajax({
+                    async: true,
+                    url: url,
+                    type: "DELETE",
+                    data: data,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-Token': token
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        if (data.response) {
+                            table.ajax.reload();
+                            swal.fire({
+                                type: 'success',
+                                html: data.message,
+                                confirmButtonText: 'Aceptar',
+                            });
+                        } else {
+                            swal.fire({
+                                type: 'error',
+                                html: data.message,
+                                confirmButtonText: 'Entendido',
+                            });
+                        }
+                    }
+                });
+            })
+        }
+    })
 }
