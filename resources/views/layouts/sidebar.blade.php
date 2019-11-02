@@ -110,7 +110,7 @@
             <li class="nav-title"><span><i class="nav-icon fa fa-calendar-check"></i>&emsp;Ajustes</span></li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('pof_document.index') }}">
                     • Cargar documento de P.O.F.
                 </a>
             </li>

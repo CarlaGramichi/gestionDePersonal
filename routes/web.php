@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('users', UserController::class);
     Route::resource('pof', PofController::class);
+    Route::resource('pof_document', PofDocumentController::class);
 
 
     Route::get('/home', 'HomeController@index')->name('home');

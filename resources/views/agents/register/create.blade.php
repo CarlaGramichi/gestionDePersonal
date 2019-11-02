@@ -10,78 +10,87 @@
 @section('content')
     {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12']) !!}
 
+    <div class="card">
 
-    <h4>Datos Personales</h4>
-    <div class="row">
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[name]','Nombre') !!}
-
-            {!! Form::text('agent[name]',null, ['class'=>'form-control']) !!}
+        <div class="card-header">
+            <strong>Datos Personales</strong>
         </div>
 
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[surname]','Apellido') !!}
+        <div class="card-body">
 
-            {!! Form::text('agent[surname]',null, ['class'=>'form-control']) !!}
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[name]','Nombre') !!}
+
+                    {!! Form::text('agent[name]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[surname]','Apellido') !!}
+
+                    {!! Form::text('agent[surname]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[dni]','DNI') !!}
+
+                    {!! Form::text('agent[dni]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
+
+                    {!! Form::text('agent[born_date]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[cuil]','CUIL/CUIT') !!}
+
+                    {!! Form::text('agent[cuil]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[email]','E-mail') !!}
+
+                    {!! Form::text('agent[email]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[phone]','Teléfono') !!}
+
+                    {!! Form::text('agent[phone]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[cellphone]','Celular') !!}
+
+                    {!! Form::text('agent[cellphone]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[address]','Dirección') !!}
+
+                    {!! Form::text('agent[address]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[city]','Localidad') !!}
+
+                    {!! Form::text('agent[city]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[state]','Provincia') !!}
+
+                    {!! Form::text('agent[state]',null, ['class'=>'form-control']) !!}
+                </div>
+
+                <div class="form-group col-sm-6">
+                    {!! Form::label('agent[country]','Nacionalidad') !!}
+
+                    {!! Form::text('agent[country]',null, ['class'=>'form-control']) !!}
+                </div>
+            </div>
+
         </div>
 
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[dni]','DNI') !!}
-
-            {!! Form::text('agent[dni]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
-
-            {!! Form::text('agent[born_date]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[cuil]','CUIL/CUIT') !!}
-
-            {!! Form::text('agent[cuil]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[email]','E-mail') !!}
-
-            {!! Form::text('agent[email]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[phone]','Teléfono') !!}
-
-            {!! Form::text('agent[phone]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[cellphone]','Celular') !!}
-
-            {!! Form::text('agent[cellphone]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[address]','Dirección') !!}
-
-            {!! Form::text('agent[address]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[city]','Localidad') !!}
-
-            {!! Form::text('agent[city]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[state]','Provincia') !!}
-
-            {!! Form::text('agent[state]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('agent[country]','Nacionalidad') !!}
-
-            {!! Form::text('agent[country]',null, ['class'=>'form-control']) !!}
-        </div>
     </div>
-
 
     <h4>Datos del Contacto</h4>
 
