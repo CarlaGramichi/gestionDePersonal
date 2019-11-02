@@ -1,8 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js": "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js",
-    "/css/plugins/typeaheadjs.css": "/css/plugins/typeaheadjs.css",
-    "/js/plugins/typeahead/typeahead.min.js": "/js/plugins/typeahead/typeahead.min.js",
-    "/js/global.js": "/js/global.js"
+    "/js/app.js": "/js/app.js?id=859f509182b11ffae347",
+    "/css/app.css": "/css/app.css?id=38109fa4e5010b9db12f",
+    "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js": "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js?id=d426be835b700974b48c",
+    "/css/plugins/typeaheadjs.css": "/css/plugins/typeaheadjs.css?id=726b02281b96b2c4afb7",
+    "/js/plugins/typeahead/typeahead.min.js": "/js/plugins/typeahead/typeahead.min.js?id=e99093ab7bafcd649a62",
+    "/js/global.js": "/js/global.js?id=474314c934d6ce44dd3b"
 }

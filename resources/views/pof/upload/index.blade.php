@@ -9,6 +9,8 @@
 
 @section('content')
 
+    @include('partials.alerts')
+
     <div class="alert alert-secondary col-sm-12">
         <a href="{{ route('pof_document.create') }}" class="btn btn-primary float-right">Nuevo&emsp;<span class="fa fa-plus"></span></a>
     </div>
@@ -50,9 +52,9 @@
                         },
                     ],
                     columns: [
-                        {data: 'year', name: 'name'},
-                        {data: 'level', name: 'email'},
-                        {data: 'shift', name: 'email'},
+                        {data: 'year', name: 'year'},
+                        {data: 'level.name', name: 'level_id'},
+                        {data: 'shift.name', name: 'shift_id'},
                         {data: '', class: 'text-center'}
                     ]
                 })

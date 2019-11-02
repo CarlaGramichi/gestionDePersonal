@@ -66,10 +66,19 @@
         let agent_table = $('.agent-table');
         let new_agent_button = $('a.new-agent');
         let new_agent_alert = $('.new-agent-alert');
+        let search_agent_button = $('form button[type=submit]');
         let agent = [];
         let xhr;
 
         $(document).ready(function () {
+
+            search_agent_button.click(event,function () {
+                event.preventDefault();
+
+                if(agent.id){
+                    agent_table.removeClass('d-none');
+                }
+            });
 
             search.typeahead({
                 minLength: 3,
@@ -90,6 +99,8 @@
                         dataType: 'JSON',
                         async: true,
                         beforeSend: function () {
+                            agent = [];
+
                             agent_table.addClass('d-none');
                         },
                         success: function (data) {
@@ -108,9 +119,8 @@
                 afterSelect: function (item) {
                     agent = item;
 
-                    agent_table.removeClass('d-none');
-
-                    agent_table.find('tbody').html(`
+                    // agent_table.removeClass('d-none');
+                    $('.agent-table').find('tbody').html(`
                     <tr>
                         <td>${item.dni}</td>
                         <td>${item.surname}, ${item.name}</td>

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Level;
 use App\Pof;
+use App\PofDocument;
 use App\Shift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class PofDocumentController extends Controller
@@ -21,7 +23,7 @@ class PofDocumentController extends Controller
     {
         if ($request->ajax()) {
             return Datatables::of(
-                Pof::query()->with(['years', 'levels', 'shifts'])
+                Pof::query()->with(['level','shift'])->orderBy('year','DESC')
             )->make(true);
         }
 
@@ -35,8 +37,8 @@ class PofDocumentController extends Controller
      */
     public function create()
     {
-        $levels = Level::where('is_deleted', '=', '0');
-        $shifts = Shift::where('is_deleted', '=', '0');
+        $levels = Level::where('is_deleted', '0')->pluck('name', 'id');
+        $shifts = Shift::where('is_deleted', '0')->pluck('name', 'id');
 
         return view('pof.upload.create', compact('levels', 'shifts'));
     }
@@ -49,7 +51,16 @@ class PofDocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($file = $request->file('tmp_file')) {
+            $path = Storage::disk('public')->put('pof/docs/pdf/', $file);
+
+            $request->request->add(['file' => $path]);
+        }
+
+        $pof = PofDocument::create($request->except(['tmp_file']));
+
+        return redirect()->route('pof_document.index')->with('success', "Documento de P.O.F. cargado correctamente. Id de la operación: <strong>{$pof->id}</strong>");
+
     }
 
     /**

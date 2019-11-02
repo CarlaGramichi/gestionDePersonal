@@ -15,11 +15,13 @@ class CreatePofsTable extends Migration
     {
         Schema::create('pofs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('year_id');
             $table->unsignedBigInteger('level_id');
             $table->unsignedBigInteger('shift_id');
+            $table->unsignedSmallInteger('year');
+            $table->date('upload_date');
             $table->string('cue', 120);
-            $table->string('institution', 120);
+            $table->string('institution', 200);
+            $table->string('department', 200);
             $table->unsignedSmallInteger('total_approved_teaching_positions');
             $table->unsignedSmallInteger('total_approved_non_teaching_positions');
             $table->unsignedSmallInteger('total_teaching_approved_hours');
@@ -27,7 +29,6 @@ class CreatePofsTable extends Migration
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
-            $table->foreign('year_id')->references('id')->on('years');
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('shift_id')->references('id')->on('shifts');
         });

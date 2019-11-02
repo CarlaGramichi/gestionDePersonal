@@ -15,12 +15,10 @@ class CreateCareersTable extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('year_id');
+            $table->unsignedSmallInteger('year');
             $table->string('name',250);
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
-
-            $table->foreign('year_id')->references('id')->on('years');
         });
     }
 

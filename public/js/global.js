@@ -1,8 +1,14 @@
+let daterangepicker = $('.date-range-picker');
+
+
 $(document).ready(function () {
+
+
+    setDateRangePicker();
 
 });
 
-$.extend( $.fn.dataTable.defaults, {
+$.extend($.fn.dataTable.defaults, {
     language: {
         url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
     }
@@ -53,4 +59,25 @@ function renderActions(actions) {
     ].join('');
 
     return button;
+}
+
+function setDateRangePicker() {
+    if (daterangepicker.length) {
+        if (moment) {
+            moment.locale('es');
+        }
+        daterangepicker.daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+        }, function (start, end, label) {
+            if (daterangepicker.parent().find(`[name=${daterangepicker.data('field')}]`).length) {
+                daterangepicker.parent().find(`[name=${daterangepicker.data('field')}]`).val(start.format('Y-MM-DD'));
+            } else {
+                daterangepicker.parent().append(`<input type="hidden" name="${daterangepicker.data('field')}" value="${start.format('Y-MM-DD')}">`)
+            }
+        }).trigger('apply.daterangepicker');
+
+    }
 }
