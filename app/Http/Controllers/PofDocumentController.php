@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PofDocumentStoreRequest;
 use App\Level;
 use App\Pof;
 use App\PofDocument;
@@ -23,7 +24,7 @@ class PofDocumentController extends Controller
     {
         if ($request->ajax()) {
             return Datatables::of(
-                Pof::query()->with(['level','shift'])->orderBy('year','DESC')
+                Pof::where('is_deleted', '0')->with(['level', 'shift'])->orderBy('year', 'DESC')
             )->make(true);
         }
 
@@ -49,7 +50,7 @@ class PofDocumentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PofDocumentStoreRequest $request)
     {
         if ($file = $request->file('tmp_file')) {
             $path = Storage::disk('public')->put('pof/docs/pdf/', $file);
@@ -103,8 +104,10 @@ class PofDocumentController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PofDocument $pof_document)
     {
-        //
+        $pof_document->update(['is_deleted' => '1']);
+
+        return response()->json(['response' => true, 'message' => 'Documento de P.O.F. eliminado con éxito.']);
     }
 }

@@ -13,6 +13,8 @@
 
 @section('content')
 
+    @include('partials.alerts')
+
     {!! Form::open(['route' => 'pof_document.store','class'=>'col-sm-12', 'files' => true]) !!}
 
     <div class="card">
@@ -28,7 +30,7 @@
                 <div class="form-group col-sm-12">
                     {!! Form::label('tmp_file') !!}
 
-                    {!! Form::file('tmp_file',['required']) !!}
+                    {!! Form::file('tmp_file',['required', 'accept' => 'application/pdf']) !!}
                 </div>
 
                 <div class="form-group col-sm-4">
