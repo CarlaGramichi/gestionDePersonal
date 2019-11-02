@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\Relationship;
 use App\Status;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,10 @@ class AgentController extends Controller
      */
     public function create()
     {
-        $statuses = Status::All();
+        $relationships = Relationship::where('is_deleted', '0')->pluck('name', 'id');
 
-        return view('agents.register.create', compact('statuses'));
+
+        return view('agents.register.create', compact('relationships'));
     }
 
     /**

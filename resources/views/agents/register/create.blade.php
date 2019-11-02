@@ -88,12 +88,14 @@
     <div class="row">
 
         <div class="form-group col-sm-12">
-        <select class="form-control" id="ccyear">
+            {!! Form::select('relationships', $relationships, null, ['class' => 'form-control']) !!}
+{{--
+<select class="form-control" id="ccyear">--}}
 
-            @foreach($relationships as $relationship)
-                <option>{{$relationship->name}}</option>
-            @endforeach
-        </select>
+{{--            @foreach($relationships as $relationship)--}}
+{{--                <option>{{$relationship->name}}</option>--}}
+{{--            @endforeach--}}
+{{--        </select>--}}
         </div>
 
         <div class="form-group col-sm-6">
@@ -157,6 +159,11 @@
 
             {!! Form::text('contact[country]',null, ['class'=>'form-control']) !!}
         </div>
+
+
+        <button type="submit" class="btn btn-block btn-primary">
+            Guardar <span class="fa fa-save"></span>
+        </button>
 
 
     </div>
