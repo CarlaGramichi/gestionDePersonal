@@ -15,7 +15,7 @@
             <div class="form-group col-sm-8">
                 {!! Form::label('search','Buscar un agente') !!}
 
-                {!! Form::text('search', null, ['class' => 'form-control typeahead', 'placeholder' => 'Buscar por nombre o dni...', 'autocomplete' => 'off','data-provide' => 'typeahead']) !!}
+                {!! Form::text('search', isset($agent) ? $agent->name : null, ['class' => 'form-control typeahead', 'placeholder' => 'Buscar por nombre o dni...', 'autocomplete' => 'off','data-provide' => 'typeahead']) !!}
             </div>
 
             <div class="form-group col-sm-2">
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <table class="table table-responsive-sm hidden agent-table d-none">
+            <table class="table table-responsive-sm hidden agent-table {{ !isset($agent) ? 'd-none' : ''}}">
                 <thead>
                 <tr>
                     <th>DNI</th>
@@ -48,7 +48,35 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(isset($agent))
+                    <tr>
+                        <td>{{$agent->dni}}</td>
+                        <td>{{$agent->surname}}, {{$agent->name}}</td>
+                        <td></td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <button class="btn btn-block btn-secondary dropdown-toggle" type="button"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Acciones
+                                </button>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
+                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="#">Asignar propuesta</a>
+                                    <a class="dropdown-item" href="#">Documentos</a>
+                                </div>
+                            </div>
 
+                        </td>
+                        <td class="text-center"><a href="agents/${item.id}/assign" class="btn btn-block btn-warning">Cargar
+                                expediente</a></td>
+                        <td class="text-center">
+                            <button class="btn btn-block btn-success">Cargar N° de expediente asignado</button>
+                        </td>
+
+                    </tr>
+
+                @endif
                 </tbody>
             </table>
 
@@ -72,10 +100,10 @@
 
         $(document).ready(function () {
 
-            search_agent_button.click(event,function () {
+            search_agent_button.click(event, function () {
                 event.preventDefault();
 
-                if(agent.id){
+                if (agent.id) {
                     agent_table.removeClass('d-none');
                 }
             });
@@ -125,9 +153,21 @@
                         <td>${item.dni}</td>
                         <td>${item.surname}, ${item.name}</td>
                         <td></td>
-                        <td class="text-center"><a href="" class="btn btn-block btn-primary">Acciones</a></td>
-                        <td class="text-center"><a href="agents/${item.id}/assign" class="btn btn-block btn-warning">Asignar propuesta</a></td>
-                        <td class="text-center"><button class="btn btn-block btn-success">Documentos</button></td>
+                        <td class="text-center">
+                             <div class="btn-group">
+                                <button class="btn btn-block btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Acciones
+                                </button>
+                                <div class="dropdown-menu" x-placement="bottom-start"
+                                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
+                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="#">Asignar propuesta</a>
+                                    <a class="dropdown-item" href="#">Documentos</a>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-center"><a href="agents/${item.id}/assign" class="btn btn-block btn-warning">Cargar expediente</a></td>
+                        <td class="text-center"><button class="btn btn-block btn-success">Cargar N° de expediente asignado</button></td>
                     </tr>
                     `);
                 }
