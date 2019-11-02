@@ -25,7 +25,7 @@ class CreateLicenceCodesTable extends Migration
             $table->unsignedSmallInteger('old_article');
             $table->unsignedSmallInteger('new_aticle');
             $table->unsignedTinyInteger('number_days');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('granting_officer_id')->references('id')->on('licence_officers');

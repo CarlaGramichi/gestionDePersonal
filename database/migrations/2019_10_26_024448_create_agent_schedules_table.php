@@ -19,7 +19,7 @@ class CreateAgentSchedulesTable extends Migration
             $table->unsignedTinyInteger('day');
             $table->time('start_time');
             $table->time('end_time');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('agent_id')->references('id')->on('agents');

@@ -18,7 +18,7 @@ class CreateRegimensTable extends Migration
             $table->string('name', 120);
             $table->time('start_time');
             $table->time('end_time');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
         });
     }

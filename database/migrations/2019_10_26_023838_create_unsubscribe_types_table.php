@@ -16,7 +16,7 @@ class CreateUnsubscribeTypesTable extends Migration
         Schema::create('unsubscribe_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 120);
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
         });
     }

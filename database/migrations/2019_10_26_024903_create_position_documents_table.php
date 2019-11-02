@@ -17,7 +17,7 @@ class CreatePositionDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('position_id');
             $table->unsignedBigInteger('document_id');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('position_id')->references('id')->on('positions');

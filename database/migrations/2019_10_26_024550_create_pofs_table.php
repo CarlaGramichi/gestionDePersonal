@@ -24,7 +24,7 @@ class CreatePofsTable extends Migration
             $table->unsignedSmallInteger('total_approved_non_teaching_positions');
             $table->unsignedSmallInteger('total_teaching_approved_hours');
             $table->string('file');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('year_id')->references('id')->on('years');
