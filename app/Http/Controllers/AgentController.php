@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentContact;
+use App\Http\Requests\AgentStoreRequest;
 use App\Relationship;
 use App\Status;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -51,9 +54,44 @@ class AgentController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgentStoreRequest $request)
     {
-        //
+
+        $agent = Agent::create([
+
+            'name' => $request->agent['name'],
+            'surname' => $request->agent['surname'],
+            'dni' => $request->agent['dni'],
+            'cuil' => $request->agent['cuil'],
+            'born_date' => Carbon::createFromFormat('d/m/Y', $request->agent['born_date'])->format('Y-m-d'),
+            'email' => $request->agent['email'],
+            'phone' => $request->agent['phone'],
+            'cellphone' => $request->agent['cellphone'],
+            'address' => $request->agent['address'],
+            'city' => $request->agent['city'],
+            'state' => $request->agent['state'],
+            'country' => $request->agent['country'],
+        ]);
+//        return($request->agent);
+
+
+        AgentContact::create([
+            'agent_id' => $agent->id,
+            'relationship_id' => $request->contact['relationship_id'],
+            'name' => $request->contact['name'],
+            'surname' => $request->contact['surname'],
+            'dni' => $request->contact['dni'],
+            'born_date' => $request->contact['born_date'] ? Carbon::createFromFormat('d/m/Y', $request->contact['born_date'])->format('Y-m-d') : null,
+            'email' => $request->contact['email'],
+            'phone' => $request->contact['phone'],
+            'cellphone' => $request->contact['cellphone'],
+            'address' => $request->contact['address'],
+            'city' => $request->contact['city'],
+            'state' => $request->contact['state'],
+            'country' => $request->contact['country'],
+        ]);
+
+
     }
 
     /**

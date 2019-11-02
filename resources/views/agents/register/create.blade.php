@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+@endsection
+
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Agentes</li>
@@ -8,7 +12,11 @@
 @endsection
 
 @section('content')
-    {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12']) !!}
+
+
+    @include('partials.alerts')
+
+    {!! Form::open(['route' => 'agents.store','class'=>'col-sm-12']) !!}
 
     <div class="card">
 
@@ -22,7 +30,7 @@
                 <div class="form-group col-sm-6">
                     {!! Form::label('agent[name]','Nombre') !!}
 
-                    {!! Form::text('agent[name]',null, ['class'=>'form-control']) !!}
+                    {!! Form::text('agent[name]',null, ['class'=>'form-control', 'required']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
@@ -34,25 +42,25 @@
                 <div class="form-group col-sm-6">
                     {!! Form::label('agent[dni]','DNI') !!}
 
-                    {!! Form::text('agent[dni]',null, ['class'=>'form-control']) !!}
+                    {!! Form::text('agent[dni]',null, ['class'=>'form-control', 'maxlenght'=>'8']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
                     {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
 
-                    {!! Form::text('agent[born_date]',null, ['class'=>'form-control']) !!}
+                    {!! Form::text('agent[born_date]',null, ['class'=>'form-control date-range-picker','readonly']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
                     {!! Form::label('agent[cuil]','CUIL/CUIT') !!}
 
-                    {!! Form::text('agent[cuil]',null, ['class'=>'form-control']) !!}
+                    {!! Form::text('agent[cuil]',null, ['class'=>'form-control', 'maxlenght'=>'8']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
                     {!! Form::label('agent[email]','E-mail') !!}
 
-                    {!! Form::text('agent[email]',null, ['class'=>'form-control']) !!}
+                    {!! Form::email('agent[email]',null, ['class'=>'form-control']) !!}
                 </div>
 
                 <div class="form-group col-sm-6">
@@ -105,7 +113,9 @@
             <div class="row">
 
                 <div class="form-group col-sm-12">
-                    {!! Form::select('relationships', $relationships, null, ['class' => 'form-control']) !!}
+                    {!! Form::label('contact[relationship_id]', 'Relación') !!}
+
+                    {!! Form::select('contact[relationship_id]', $relationships, null, ['class' => 'form-control']) !!}
 
                 </div>
                 <div class="form-group col-sm-6">
@@ -176,4 +186,9 @@
 
 
     {!! Form::close() !!}
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 @endsection

@@ -20,9 +20,9 @@ class CreateAgentContactsTable extends Migration
             $table->string('name', 250);
             $table->string('surname', 250);
             $table->unsignedBigInteger('dni');
-            $table->date('born_date');
-            $table->string('email', 120);
-            $table->string('phone', 120);
+            $table->date('born_date')->nullable();
+            $table->string('email', 120)->nullable();
+            $table->string('phone', 120)->nullable();
             $table->string('cellphone', 120);
             $table->string('address', 250);
             $table->string('city', 250);
