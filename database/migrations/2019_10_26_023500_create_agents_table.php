@@ -20,8 +20,8 @@ class CreateAgentsTable extends Migration
             $table->unsignedBigInteger('dni');
             $table->unsignedBigInteger('cuil');
             $table->date('born_date');
-            $table->string('email',120);
-            $table->string('phone',120);
+            $table->string('email',120)->nullable();
+            $table->string('phone',120)->nullable();
             $table->string('cellphone',120);
             $table->string('address',250);
             $table->string('city',250);
