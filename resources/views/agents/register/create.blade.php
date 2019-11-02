@@ -92,90 +92,88 @@
 
     </div>
 
-    <h4>Datos del Contacto</h4>
 
-    <div class="row">
 
-        <div class="form-group col-sm-12">
-            {!! Form::select('relationships', $relationships, null, ['class' => 'form-control']) !!}
-{{--
-<select class="form-control" id="ccyear">--}}
 
-{{--            @foreach($relationships as $relationship)--}}
-{{--                <option>{{$relationship->name}}</option>--}}
-{{--            @endforeach--}}
-{{--        </select>--}}
+    <div class="card">
+
+        <div class="card-header">
+            <strong>Datos de Contacto</strong>
         </div>
 
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[name]','Nombre') !!}
+        <div class="card-body">
+            <div class="row">
 
-            {!! Form::text('contact[name]',null, ['class'=>'form-control']) !!}
+                <div class="form-group col-sm-12">
+                    {!! Form::select('relationships', $relationships, null, ['class' => 'form-control']) !!}
+
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[name]','Nombre') !!}
+
+                    {!! Form::text('contact[name]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[surname]','Apellido') !!}
+
+                    {!! Form::text('contact[surname]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[dni]','DNI') !!}
+
+                    {!! Form::text('contact[dni]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[born_date]','Fecha de Nacimiento') !!}
+
+                    {!! Form::text('contact[born_date]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[email]','E-mail') !!}
+
+                    {!! Form::text('contact[email]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[phone]','Teléfono') !!}
+
+                    {!! Form::text('contact[phone]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[cellphone]','Celular') !!}
+
+                    {!! Form::text('contact[cellphone]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[address]','Dirección') !!}
+
+                    {!! Form::text('contact[address]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[city]','Localidad') !!}
+
+                    {!! Form::text('contact[city]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[state]','Provincia') !!}
+
+                    {!! Form::text('contact[state]',null, ['class'=>'form-control']) !!}
+                </div>
+                <div class="form-group col-sm-6">
+                    {!! Form::label('contact[country]','Nacionalidad') !!}
+
+                    {!! Form::text('contact[country]',null, ['class'=>'form-control']) !!}
+                </div>
+            </div>
         </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[surname]','Apellido') !!}
-
-            {!! Form::text('contact[surname]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[dni]','DNI') !!}
-
-            {!! Form::text('contact[dni]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[born_date]','Fecha de Nacimiento') !!}
-
-            {!! Form::text('contact[born_date]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[email]','E-mail') !!}
-
-            {!! Form::text('contact[email]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[phone]','Teléfono') !!}
-
-            {!! Form::text('contact[phone]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[cellphone]','Celular') !!}
-
-            {!! Form::text('contact[cellphone]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[address]','Dirección') !!}
-
-            {!! Form::text('contact[address]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[city]','Localidad') !!}
-
-            {!! Form::text('contact[city]',null, ['class'=>'form-control']) !!}
-        </div>
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[state]','Provincia') !!}
-
-            {!! Form::text('contact[state]',null, ['class'=>'form-control']) !!}
-        </div>
-
-        <div class="form-group col-sm-6">
-            {!! Form::label('contact[country]','Nacionalidad') !!}
-
-            {!! Form::text('contact[country]',null, ['class'=>'form-control']) !!}
-        </div>
-
-
-        <button type="submit" class="btn btn-block btn-primary">
-            Guardar <span class="fa fa-save"></span>
-        </button>
-
-
     </div>
+
+
+
+    <button type="submit" class="btn btn-success float-right mb-2">
+        Guardar <span class="fa fa-save"></span>
+    </button>
+
+
 
     {!! Form::close() !!}
 @endsection
