@@ -28,7 +28,7 @@ class CreateAgentContactsTable extends Migration
             $table->string('city', 250);
             $table->string('state', 250);
             $table->string('country', 120);
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('agent_id')->references('id')->on('agents');

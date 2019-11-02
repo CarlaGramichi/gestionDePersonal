@@ -17,7 +17,7 @@ class CreateUnsubscribeTypeDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('unsubscribe_type_id');
             $table->unsignedBigInteger('document_id');
-            $table->enum('is_deleted', [0, 1, 2, 3]);
+            $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('unsubscribe_type_id')->references('id')->on('unsubscribe_types');

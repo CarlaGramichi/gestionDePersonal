@@ -111,7 +111,13 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    • P.O.F.
+                    • Cargar documento de P.O.F.
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('pof.index') }}">
+                    • Cargar P.O.F.
                 </a>
             </li>
 

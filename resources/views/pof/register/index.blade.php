@@ -2,59 +2,14 @@
 
 @section('breadcrumbs')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Agentes</li>
-        <li class="breadcrumb-item">Buscar un agente</li>
+        <li class="breadcrumb-item">P.O.F.</li>
+        <li class="breadcrumb-item">Registrar P.O.F.</li>
     </ol>
 @endsection
 
 @section('content')
     <div class="vh-100 container-fluid">
-        {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12']) !!}
 
-        <div class="row">
-            <div class="form-group col-sm-8">
-                {!! Form::label('search','Buscar un agente') !!}
-
-                {!! Form::text('search', null, ['class' => 'form-control typeahead', 'placeholder' => 'Buscar por nombre o dni...', 'autocomplete' => 'off','data-provide' => 'typeahead']) !!}
-            </div>
-
-            <div class="form-group col-sm-2">
-                <label>&nbsp;</label>
-                <button type="submit" class="btn btn-block btn-primary">
-                    Buscar&emsp;<span class="fa fa-search"></span>
-                </button>
-            </div>
-
-            <div class="col-sm-12 d-none new-agent-alert">
-                <div class="alert alert-warning" role="alert">
-                    <p>
-                        <span class="fas fa-exclamation-triangle"></span>&emsp;
-                        Parece que el agente que estás buscando no se encuentra cargado en el sistema.
-                        Para darlo de alta tenés que presionar el botón
-                        <a href="{{ route('agents.create') }}" class="btn btn-success disabled new-agent">
-                            Nuevo&emsp;<span class="fa fa-user-plus"></span>
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-            <table class="table table-responsive-sm hidden agent-table d-none">
-                <thead>
-                <tr>
-                    <th>DNI</th>
-                    <th>Nombre</th>
-                    <th>Propuesta</th>
-                    <th colspan="3">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-
-        </div>
-
-        {!! Form::close() !!}
     </div>
 @endsection
 

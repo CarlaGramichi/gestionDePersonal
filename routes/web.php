@@ -20,7 +20,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::resource('agents', AgentController::class);
+    Route::get('agents/{agent}/assign', 'AgentAssignController@index');
+
     Route::resource('users', UserController::class);
+    Route::resource('pof', PofController::class);
 
 
     Route::get('/home', 'HomeController@index')->name('home');
