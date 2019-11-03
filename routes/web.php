@@ -32,15 +32,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('pof_document', PofDocumentController::class);
 
     Route::group(['prefix' => 'pof', 'as' => 'pof.'], function () {
-        Route::resource('careers', PofCareerController::class);
+        Route::resource('careers', CareerController::class);
     });
 
     Route::group(['prefix' => 'pof/careers/{career}', 'as' => 'pof.careers.{career}.'], function () {
-        Route::resource('courses', PofCareerCourseController::class);
+        Route::resource('courses', CareerCourseController::class);
     });
 
     Route::group(['prefix' => 'pof/careers/{career}/courses/{course}', 'as' => 'pof.careers.{career}.courses.{course}.'], function () {
-        Route::resource('divisions', PofCareerCourseController::class);
+        Route::resource('divisions', CareerCourseDivisionController::class);
     });
 
     /* ./POF */

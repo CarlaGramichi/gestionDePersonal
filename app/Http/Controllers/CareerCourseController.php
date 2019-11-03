@@ -2,84 +2,108 @@
 
 namespace App\Http\Controllers;
 
+use App\Career;
 use App\CareerCourse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Yajra\DataTables\DataTables;
 
 class CareerCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
+     * @throws \Exception
      */
-    public function index()
+    public function index(Career $career, Request $request)
     {
-        //
+
+        if ($request->ajax()) {
+            return Datatables::of(
+                CareerCourse::where(
+                    [
+                        ['is_deleted', '0'],
+                        ['career_id', $career->id]
+                    ])
+                    ->with(['career'])
+                    ->orderBy('name')
+                    ->get()
+            )->make(true);
+        }
+
+        return view("pof.careers.courses.index", compact('career'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create(Career $career)
     {
-        //
+        return view('pof.careers.courses.create', compact('career'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Career $career, Request $request)
     {
-        //
-    }
+        $request->validate([
+            'career_id' => 'exists:careers,id',
+            'name'      => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CareerCourse  $careerCourse
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CareerCourse $careerCourse)
-    {
-        //
+        $request->request->add(['career_id' => $career->id]);
+
+        $course = CareerCourse::create($request->all());
+
+        return redirect("pof/careers/{$career->id}/courses")->with('success', "Curso <strong>{$course->name}</strong> cargado con éxito. Id de operación <strong>{$course->id}</strong>");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CareerCourse  $careerCourse
-     * @return \Illuminate\Http\Response
+     * @param Career $career
+     * @param CareerCourse $course
+     * @return Response
      */
-    public function edit(CareerCourse $careerCourse)
+    public function edit(Career $career, CareerCourse $course)
     {
-        //
+        return view('pof.careers.courses.edit', compact('career', 'course'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CareerCourse  $careerCourse
-     * @return \Illuminate\Http\Response
+     * @param Career $career
+     * @param CareerCourse $course
+     * @param Request $request
+     * @return Response
      */
-    public function update(Request $request, CareerCourse $careerCourse)
+    public function update(Career $career, CareerCourse $course, Request $request)
     {
-        //
+        $request->request->add(['career_id' => $career->id]);
+
+        $course->update($request->all());
+
+        return redirect("pof/careers/{$career->id}/courses")->with('success', "Curso <strong>{$course->name}</strong> modificado con éxito. Id de operación <strong>{$course->id}</strong>");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CareerCourse  $careerCourse
-     * @return \Illuminate\Http\Response
+     * @param CareerCourse $course
+     * @return Response
      */
-    public function destroy(CareerCourse $careerCourse)
+    public function destroy(Career $career, CareerCourse $course)
     {
-        //
+        $course->update(['is_deleted' => '1']);
+
+        return response()->json(['response' => true, 'message' => 'Curso eliminado con éxito.']);
     }
 }

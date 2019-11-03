@@ -11,4 +11,8 @@ class CareerCourse extends Model
     public function career(){
         return $this->belongsTo(Career::class);
     }
+
+    public function divisions(){
+        return $this->hasMany(CareerCourseDivision::class);
+    }
 }
