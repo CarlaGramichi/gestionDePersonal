@@ -38,6 +38,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'pof/careers/{career}', 'as' => 'pof.careers.{career}.'], function () {
         Route::resource('courses', PofCareerCourseController::class);
     });
+
+    Route::group(['prefix' => 'pof/careers/{career}/courses/{course}', 'as' => 'pof.careers.{career}.courses.{course}.'], function () {
+        Route::resource('divisions', PofCareerCourseController::class);
+    });
+
     /* ./POF */
 
     Route::get('/home', 'HomeController@index')->name('home');
