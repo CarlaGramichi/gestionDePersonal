@@ -116,7 +116,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('pof.index') }}">
+                <a class="nav-link" href="{{ route('pof.careers.index') }}">
                     • Cargar P.O.F.
                 </a>
             </li>

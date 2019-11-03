@@ -13,7 +13,6 @@
 
 @section('content')
 
-
     @include('partials.alerts')
 
     {!! Form::open(['route' => 'agents.store','class'=>'col-sm-12']) !!}

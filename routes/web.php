@@ -19,13 +19,26 @@ Route::group(['middleware' => 'auth'], function () {
         return view('welcome');
     });
 
+    /* Agents */
     Route::resource('agents', AgentController::class);
     Route::get('agents/{agent}/assign', 'AgentAssignController@index');
+    /* ./Agents */
 
+    /* Users */
     Route::resource('users', UserController::class);
-    Route::resource('pof', PofController::class);
+    /* ./Users */
+
+    /* POF */
     Route::resource('pof_document', PofDocumentController::class);
 
+    Route::group(['prefix' => 'pof', 'as' => 'pof.'], function () {
+        Route::resource('careers', PofCareerController::class);
+    });
+
+    Route::group(['prefix' => 'pof/careers/{career}', 'as' => 'pof.careers.{career}.'], function () {
+        Route::resource('courses', PofCareerCourseController::class);
+    });
+    /* ./POF */
 
     Route::get('/home', 'HomeController@index')->name('home');
 });

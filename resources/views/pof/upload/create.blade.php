@@ -15,7 +15,7 @@
 
     @include('partials.alerts')
 
-    {!! Form::open(['route' => 'pof_document.store','class'=>'col-sm-12', 'files' => true]) !!}
+    {!! Form::open(['route' => 'pof_document.store', 'files' => true]) !!}
 
     <div class="card">
 
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="form-group col-sm-4">
-                    {!! Form::label('year_id', 'Ciclo lectivo') !!}
+                    {!! Form::label('year', 'Ciclo lectivo') !!}
 
                     {!! Form::selectRange('year', 2018, 2040, now()->year,['class' => 'form-control','required']); !!}
                 </div>
