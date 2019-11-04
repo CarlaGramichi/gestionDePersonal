@@ -10,69 +10,69 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[name]','Nombre') !!}
 
-                {!! Form::text('agent[name]',null, ['class'=>'form-control', 'required']) !!}
+                {!! Form::text('agent[name]',isset($agent) ? $agent->name : '', ['class'=>'form-control', 'required']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[surname]','Apellido') !!}
 
-                {!! Form::text('agent[surname]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[surname]',isset($agent) ? $agent->surname : '', ['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[dni]','DNI') !!}
 
-                {!! Form::text('agent[dni]',null, ['class'=>'form-control', 'maxlenght'=>'8']) !!}
+                {!! Form::text('agent[dni]',isset($agent) ? $agent->dni : '', ['class'=>'form-control', 'maxlenght'=>'8']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('agent[born_date]',null, ['class'=>'form-control date-range-picker','readonly']) !!}
+                {!! Form::text('agent[born_date]',isset($agent) ? $agent->born_date : '', ['class'=>'form-control date-range-picker','readonly']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[cuil]','CUIL/CUIT') !!}
 
-                {!! Form::text('agent[cuil]',null, ['class'=>'form-control', 'maxlenght'=>'8']) !!}
+                {!! Form::text('agent[cuil]',isset($agent) ? $agent->cuil : '', ['class'=>'form-control', 'maxlenght'=>'8']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[email]','E-mail') !!}
 
-                {!! Form::email('agent[email]',null, ['class'=>'form-control']) !!}
+                {!! Form::email('agent[email]',isset($agent) ? $agent->email : '', ['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[phone]','Teléfono') !!}
 
-                {!! Form::text('agent[phone]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[phone]',isset($agent) ? $agent->phone : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[cellphone]','Celular') !!}
 
-                {!! Form::text('agent[cellphone]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[cellphone]',isset($agent) ? $agent->cellphone : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[address]','Dirección') !!}
 
-                {!! Form::text('agent[address]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[address]',isset($agent) ? $agent->address : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[city]','Localidad') !!}
 
-                {!! Form::text('agent[city]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[city]',isset($agent) ? $agent->city : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[state]','Provincia') !!}
 
-                {!! Form::text('agent[state]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[state]',isset($agent) ? $agent->state : '', ['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[country]','Nacionalidad') !!}
 
-                {!! Form::text('agent[country]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('agent[country]',isset($agent) ? $agent->country : '', ['class'=>'form-control']) !!}
             </div>
         </div>
 
@@ -95,63 +95,63 @@
             <div class="form-group col-sm-12">
                 {!! Form::label('contact[relationship_id]', 'Relación') !!}
 
-                {!! Form::select('contact[relationship_id]', $relationships, null, ['class' => 'form-control']) !!}
+                {!! Form::select('contact[relationship_id]', $relationships ?? '', isset($agent->contact) ? $agent->contact->relationship_id : '', ['class' => 'form-control']) !!}
 
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[name]','Nombre') !!}
 
-                {!! Form::text('contact[name]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[name]',isset($agent->contact) ? $agent->contact->name : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[surname]','Apellido') !!}
 
-                {!! Form::text('contact[surname]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[surname]',isset($agent->contact) ? $agent->contact->surname : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[dni]','DNI') !!}
 
-                {!! Form::text('contact[dni]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[dni]',isset($agent->contact) ? $agent->contact->dni : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('contact[born_date]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[born_date]',isset($agent->contact) ? $agent->contact->born_date : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[email]','E-mail') !!}
 
-                {!! Form::text('contact[email]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[email]',isset($agent->contact) ? $agent->contact->email : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[phone]','Teléfono') !!}
 
-                {!! Form::text('contact[phone]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[phone]',isset($agent->contact) ? $agent->contact->phone : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[cellphone]','Celular') !!}
 
-                {!! Form::text('contact[cellphone]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[cellphone]',isset($agent->contact) ? $agent->contact->cellphone : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[address]','Dirección') !!}
 
-                {!! Form::text('contact[address]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[address]',isset($agent->contact) ? $agent->contact->address : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[city]','Localidad') !!}
 
-                {!! Form::text('contact[city]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[city]',isset($agent->contact) ? $agent->contact->city : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[state]','Provincia') !!}
 
-                {!! Form::text('contact[state]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[state]',isset($agent->contact) ? $agent->contact->state : '', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[country]','Nacionalidad') !!}
 
-                {!! Form::text('contact[country]',null, ['class'=>'form-control']) !!}
+                {!! Form::text('contact[country]',isset($agent->contact) ? $agent->contact->country : '', ['class'=>'form-control']) !!}
             </div>
         </div>
     </div>

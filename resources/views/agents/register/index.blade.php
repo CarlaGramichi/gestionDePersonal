@@ -61,7 +61,7 @@
                                 </button>
                                 <div class="dropdown-menu" x-placement="bottom-start"
                                      style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="agents/{{$agent->id}}/edit">Editar</a>
                                     <a class="dropdown-item" href="#">Asignar propuesta</a>
                                     <a class="dropdown-item" href="#">Documentos</a>
                                 </div>
@@ -160,7 +160,7 @@
                                 </button>
                                 <div class="dropdown-menu" x-placement="bottom-start"
                                      style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-                                    <a class="dropdown-item" href="#">Editar</a>
+                                    <a class="dropdown-item" href="agents/${item.id}/edit">Editar</a>
                                     <a class="dropdown-item" href="#">Asignar propuesta</a>
                                     <a class="dropdown-item" href="#">Documentos</a>
                                 </div>
