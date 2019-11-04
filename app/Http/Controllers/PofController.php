@@ -82,4 +82,16 @@ class PofController extends Controller
     {
         //
     }
+
+    public function yearsIndex(Request $request){
+        return view('pof.years.index');
+    }
+
+    public function yearsCreate(){
+        return view('pof.years.create');
+    }
+
+    public function yearsStore(){
+
+    }
 }

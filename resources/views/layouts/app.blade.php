@@ -36,7 +36,11 @@
 
                     <div class="row">
 
-                        @yield('content')
+                        <div class="col-sm-12">
+
+                            @yield('content')
+
+                        </div>
 
                     </div>
 
