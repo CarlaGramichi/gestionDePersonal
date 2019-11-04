@@ -87,7 +87,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/plugins/typeahead /typeahead.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/typeahead/typeahead.min.js') }}"></script>
 
     <script>
         let search = $('[name=search]');
