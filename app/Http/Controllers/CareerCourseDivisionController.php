@@ -89,6 +89,11 @@ class CareerCourseDivisionController extends Controller
      */
     public function update(Career $career, CareerCourse $course, CareerCourseDivision $division, Request $request)
     {
+        $request->validate([
+            'career_course_id' => 'exists:careers_courses,id',
+            'name'             => 'required',
+        ]);
+
         $request->request->add(['career_course_id' => $course->id]);
 
         $division->update($request->all());

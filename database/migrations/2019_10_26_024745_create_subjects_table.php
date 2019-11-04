@@ -16,14 +16,15 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('career_course_id');
-            $table->unsignedBigInteger('career_course_division');
+            $table->unsignedBigInteger('career_course_division_id');
             $table->unsignedBigInteger('regimen_id');
+            $table->string('name', '250');
             $table->unsignedSmallInteger('hours');
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
 
             $table->foreign('career_course_id')->references('id')->on('career_courses');
-            $table->foreign('career_course_division')->references('id')->on('career_course_divisions');
+            $table->foreign('career_course_division_id')->references('id')->on('career_course_divisions');
             $table->foreign('regimen_id')->references('id')->on('regimens');
         });
     }

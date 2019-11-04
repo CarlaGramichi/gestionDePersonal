@@ -55,13 +55,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.js"></script>
     <script>
         let table = $('#table');
-        let year_selector = $('select#year');
         let dataTable;
         $(document).ready(function () {
-
-            year_selector.change(function () {
-                dataTable.ajax.reload();
-            });
 
             dataTable = table.DataTable({
                 processing: true,

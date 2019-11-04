@@ -16,8 +16,9 @@ class CreateRegimensTable extends Migration
         Schema::create('regimens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 120);
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->string('abbreviation', 10);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();
         });

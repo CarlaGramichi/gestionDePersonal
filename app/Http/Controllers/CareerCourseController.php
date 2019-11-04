@@ -87,6 +87,11 @@ class CareerCourseController extends Controller
      */
     public function update(Career $career, CareerCourse $course, Request $request)
     {
+        $request->validate([
+            'career_id' => 'exists:careers,id',
+            'name'      => 'required',
+        ]);
+
         $request->request->add(['career_id' => $career->id]);
 
         $course->update($request->all());

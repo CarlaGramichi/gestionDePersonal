@@ -82,6 +82,11 @@ class CareerController extends Controller
      */
     public function update(Request $request, Career $career)
     {
+        $request->validate([
+            'year' => 'required|numeric',
+            'name' => 'required',
+        ]);
+
         $career->update($request->all());
 
         return redirect()->route('pof.careers.index')->with('success', "Carrera <strong>{$career->year} - {$career->name}</strong> editada con éxito. Id de operación <strong>{$career->id}</strong>");

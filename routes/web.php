@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('divisions', CareerCourseDivisionController::class);
     });
 
+    Route::group(['prefix' => 'pof/careers/{career}/courses/{course}', 'as' => 'pof.careers.{career}.courses.{course}.'], function () {
+        Route::resource('subjects', SubjectController::class);
+    });
+
     /* ./POF */
 
     Route::get('/home', 'HomeController@index')->name('home');

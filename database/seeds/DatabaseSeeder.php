@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionsTableSeeder::class);
         $this->call(LevelsTableSeeder::class);
         $this->call(ShiftsTableSeeder::class);
+        $this->call(RegimensTrableSeeder::class);
 
 
         Model::reguard();
