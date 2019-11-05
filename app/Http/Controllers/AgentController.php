@@ -116,6 +116,7 @@ class AgentController extends Controller
             'state' => $request->agent['state'],
             'country' => $request->agent['country'],
         ]);
+
         $agent->contact->update([
             'agent_id' => $agent->id,
             'relationship_id' => $request->contact['relationship_id'],
@@ -131,6 +132,7 @@ class AgentController extends Controller
             'state' => $request->contact['state'],
             'country' => $request->contact['country'],
         ]);
+
 
         return view('agents.register.index', compact('agent'));
 

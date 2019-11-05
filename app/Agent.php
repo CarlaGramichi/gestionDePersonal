@@ -8,6 +8,7 @@ class Agent extends Model
 {
 
     protected $guarded = [];
+    protected $dates = ['born_date'];
 
     public function contact(){
         return $this->hasOne(AgentContact::class);

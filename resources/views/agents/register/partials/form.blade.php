@@ -28,7 +28,7 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('agent[born_date]',isset($agent) ? $agent->born_date : '', ['class'=>'form-control date-range-picker','readonly']) !!}
+                {!! Form::text('agent[born_date]',isset($agent) ? $agent->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker','readonly']) !!}
             </div>
 
             <div class="form-group col-sm-6">
@@ -116,7 +116,7 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('contact[born_date]',isset($agent->contact) ? $agent->contact->born_date : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[born_date]',isset($agent->contact->born_date) ? $agent->contact->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker','readonly']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[email]','E-mail') !!}
