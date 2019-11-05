@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'pof', 'as' => 'pof.'], function () {
         Route::resource('careers', CareerController::class);
+
+        Route::resource('positions', PositionController::class);
     });
 
     Route::group(['prefix' => 'pof/careers/{career}', 'as' => 'pof.careers.{career}.'], function () {
@@ -50,4 +52,5 @@ Route::group(['middleware' => 'auth'], function () {
     /* ./POF */
 
     Route::get('/home', 'HomeController@index')->name('home');
+
 });

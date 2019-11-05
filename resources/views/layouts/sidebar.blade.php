@@ -116,8 +116,14 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('pof.positions.index') }}">
+                    • Cargar cargos de P.O.F
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('pof.careers.index') }}">
-                    • Cargar P.O.F.
+                    • Cargar  asignaturas de P.O.F.
                 </a>
             </li>
 
