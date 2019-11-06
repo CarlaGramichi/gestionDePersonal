@@ -15,6 +15,7 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedSmallInteger('year');
             $table->string('name', 120);
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();

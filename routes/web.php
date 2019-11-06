@@ -35,6 +35,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('careers', CareerController::class);
 
         Route::resource('positions', PositionController::class);
+
+        Route::group(['prefix' => 'positions/{position}', 'as' => 'positions.{position}.'], function () {
+            Route::resource('types', PositionTypeController::class);
+        });
     });
 
     Route::group(['prefix' => 'pof/careers/{career}', 'as' => 'pof.careers.{career}.'], function () {

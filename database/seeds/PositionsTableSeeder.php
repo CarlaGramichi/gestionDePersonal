@@ -23,6 +23,7 @@ class PositionsTableSeeder extends Seeder
 
         foreach ($positions as $position) {
             Position::create([
+                'year'       => now()->format('Y'),
                 'name'       => $position,
                 'is_deleted' => '0'
             ]);
