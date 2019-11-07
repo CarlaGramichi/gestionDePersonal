@@ -21,7 +21,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     /* Agents */
     Route::resource('agents', AgentController::class);
-    Route::get('agents/{agent}/assign', 'AgentAssignController@index');
+
+    Route::resource('agents_assign', AgentAssignController::class)->parameters([
+        'agents_assign' => 'agent'
+    ]);
+
+
     /* ./Agents */
 
     /* Users */

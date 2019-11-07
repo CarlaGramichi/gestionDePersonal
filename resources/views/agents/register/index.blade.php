@@ -3,12 +3,21 @@
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Agentes</li>
-        <li class="breadcrumb-item">Buscar un agente</li>
+        <li class="breadcrumb-item">Dar de alta un agente</li>
     </ol>
 @endsection
 
 @section('content')
     <div class="vh-100 container-fluid">
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <p><span class="fa fa-info-circle"></span>&emsp;Primero debe buscar un agente antes de poder darlo de alta.
+                En el caso de que no exista se habilitará la opción para poder darlo de alta.</p>
+            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
         {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12']) !!}
 
         <div class="row">
@@ -44,7 +53,7 @@
                     <th>DNI</th>
                     <th>Nombre</th>
                     <th>Propuesta</th>
-                    <th colspan="3">Acciones</th>
+                    <th colspan="2" class="text-center">Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,26 +63,11 @@
                         <td>{{$agent->surname}}, {{$agent->name}}</td>
                         <td></td>
                         <td class="text-center">
-                            <div class="btn-group">
-                                <button class="btn btn-block btn-secondary dropdown-toggle" type="button"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Acciones
-                                </button>
-                                <div class="dropdown-menu" x-placement="bottom-start"
-                                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-                                    <a class="dropdown-item" href="agents/{{$agent->id}}/edit">Editar</a>
-                                    <a class="dropdown-item" href="#">Asignar propuesta</a>
-                                    <a class="dropdown-item" href="#">Documentos</a>
-                                </div>
-                            </div>
-
+                            <a class="btn btn-info" href="agents/{{$agent->id}}/edit">Editar&emsp;<span class="fa fa-edit"></span></a>
                         </td>
-                        <td class="text-center"><a href="agents/${item.id}/assign" class="btn btn-block btn-warning">Cargar
-                                expediente</a></td>
                         <td class="text-center">
-                            <button class="btn btn-block btn-success">Cargar N° de expediente asignado</button>
+                            <a class="btn btn-info" href="agents/{{$agent->id}}/edit">Borrar&emsp;<span class="fa fa-trash"></span></a>
                         </td>
-
                     </tr>
 
                 @endif
@@ -98,6 +92,10 @@
         let agent = [];
         let xhr;
 
+        window.setTimeout(function () {
+            $('.alert-info').slideUp('slow')
+        }, 10000);
+
         $(document).ready(function () {
 
             search_agent_button.click(event, function () {
@@ -105,7 +103,12 @@
 
                 if (agent.id) {
                     agent_table.removeClass('d-none');
+
+                    return true;
                 }
+
+                new_agent_button.removeClass('disabled');
+                new_agent_alert.removeClass('d-none');
             });
 
             search.typeahead({
@@ -153,21 +156,8 @@
                         <td>${item.dni}</td>
                         <td>${item.surname}, ${item.name}</td>
                         <td></td>
-                        <td class="text-center">
-                             <div class="btn-group">
-                                <button class="btn btn-block btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Acciones
-                                </button>
-                                <div class="dropdown-menu" x-placement="bottom-start"
-                                     style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 35px, 0px);">
-                                    <a class="dropdown-item" href="agents/${item.id}/edit">Editar</a>
-                                    <a class="dropdown-item" href="#">Asignar propuesta</a>
-                                    <a class="dropdown-item" href="#">Documentos</a>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="text-center"><a href="agents/${item.id}/assign" class="btn btn-block btn-warning">Cargar expediente</a></td>
-                        <td class="text-center"><button class="btn btn-block btn-success">Cargar N° de expediente asignado</button></td>
+                        <td class="text-center"><a class="btn btn-info" href="agents/${item.id}/edit">Editar&emsp;<span class="fa fa-edit"></span></a></td>
+                        <td class="text-center"><a class="btn btn-danger" href="agents/${item.id}/edit">Borrar&emsp;<span class="fa fa-trash"></span></a></td>
                     </tr>
                     `);
                 }

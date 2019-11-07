@@ -13,13 +13,13 @@
 <div class="form-group col-sm-2">
     {!! Form::label('quota', 'Cantidad') !!}
 
-    {!! Form::text('quota', null, ['class' => 'form-control']) !!}
+    {!! Form::text('quota', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <div class="form-group col-sm-2">
     {!! Form::label('points', 'Puntaje') !!}
 
-    {!! Form::text('points', null, ['class' => 'form-control']) !!}
+    {!! Form::text('points', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
 <div class="form-group col-sm-2">

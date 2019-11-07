@@ -3,8 +3,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="{{asset('images/brand/logo.svg')}}" width="89" height="25" alt="SAIT Logo">
-        <img class="navbar-brand-minimized" src="{{asset('images/brand/sygnet.svg')}}" width="30" height="30"
+        <img class="navbar-brand-full" src="{{asset('images/brand/ecs_logo_2.png')}}" width="89" height="25" alt="SAIT Logo">
+        <img class="navbar-brand-minimized" src="{{asset('images/brand/ecs_icon.png')}}" width="30" height="30"
              alt="SAIT Logo">
     </a>
     <button class="navbar-toggler  d-md-down-none sidebar-minimizer brand-minimizer" type="button"
@@ -31,17 +31,17 @@
             <div class="dropdown-menu dropdown-menu-right">
 
                 <div class="dropdown-header text-center">
-                    <strong>{{__('Settings')}}</strong>
+                    <strong>{{__('Panel de control')}}</strong>
                 </div>
 
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-user"></i>
-                    {{__('Profile')}}
+                    {{__('Perfil')}}
                 </a>
 
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-wrench"></i>
-                    {{__('Settings')}}
+                    {{__('Configuración')}}
                 </a>
 
                 <div class="dropdown-divider"></div>
@@ -50,7 +50,7 @@
                 <form method="post" action="{{ route('logout') }}">
                     @csrf
                     <a class="dropdown-item" href="#" onclick="$(this).parent('form').submit()">
-                        <i class="fa fa-lock"></i> {{__('Logout')}}
+                        <i class="fa fa-lock"></i> {{__('Salir')}}
                     </a>
                 </form>
             </div>

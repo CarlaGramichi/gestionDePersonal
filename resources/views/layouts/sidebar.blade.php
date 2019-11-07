@@ -19,7 +19,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('agents_assign.index') }}">
                     • Asignar propuesta a un agente
                 </a>
             </li>
