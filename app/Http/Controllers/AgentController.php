@@ -133,7 +133,6 @@ class AgentController extends Controller
             'country' => $request->contact['country'],
         ]);
 
-
         return view('agents.register.index', compact('agent'));
 
 

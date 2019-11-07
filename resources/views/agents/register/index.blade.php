@@ -70,7 +70,7 @@
                     <td>{{$agent->surname}}, {{$agent->name}}</td>
                     <td></td>
                     <td class="text-center">
-                        <a class="btn btn-info" href="agents/{{$agent->id}}/edit">Editar&emsp;<span
+                        <a class="btn btn-info" href="{{ url("agents/{$agent->id}/edit") }}">Editar&emsp;<span
                                     class="fa fa-edit"></span></a>
                     </td>
                     <td class="text-center">
