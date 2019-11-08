@@ -10,16 +10,21 @@
 @section('content')
     <div class="vh-100 container-fluid">
 
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <p><span class="fa fa-info-circle"></span>&emsp;Primero debe buscar un agente antes de poder darlo de alta.
-                En el caso de que no exista se habilitará la opción para poder darlo de alta.</p>
-            <button class="close" type="button" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+        @include('partials.alerts')
+
+        <div class="col-12">
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <p><span class="fa fa-info-circle"></span>&emsp;Primero debe buscar un agente antes de poder darlo de
+                    alta.
+                    En el caso de que no exista se habilitará la opción para poder darlo de alta.</p>
+                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
         </div>
 
-        {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12']) !!}
 
+        {!! Form::open(['route' => 'agents.index','class'=>'col-sm-12 search-agent']) !!}
         <div class="row">
             <div class="form-group col-sm-8">
                 {!! Form::label('search','Buscar un agente') !!}
@@ -33,51 +38,56 @@
                     Buscar&emsp;<span class="fa fa-search"></span>
                 </button>
             </div>
+        </div>
+        {!! Form::close() !!}
 
-            <div class="col-sm-12 d-none new-agent-alert">
-                <div class="alert alert-warning" role="alert">
-                    <p>
-                        <span class="fas fa-exclamation-triangle"></span>&emsp;
-                        Parece que el agente que estás buscando no se encuentra cargado en el sistema.
-                        Para darlo de alta tenés que presionar el botón
-                        <a href="{{ route('agents.create') }}" class="btn btn-success disabled new-agent">
-                            Nuevo&emsp;<span class="fa fa-user-plus"></span>
-                        </a>
-                    </p>
-                </div>
+        <div class="col-sm-12 d-none new-agent-alert">
+            <div class="alert alert-warning" role="alert">
+                <p>
+                    <span class="fas fa-exclamation-triangle"></span>&emsp;
+                    Parece que el agente que estás buscando no se encuentra cargado en el sistema.
+                    Para darlo de alta tenés que presionar el botón
+                    <a href="{{ route('agents.create') }}" class="btn btn-success disabled new-agent">
+                        Nuevo&emsp;<span class="fa fa-user-plus"></span>
+                    </a>
+                </p>
             </div>
-
-            <table class="table table-responsive-sm hidden agent-table {{ !isset($agent) ? 'd-none' : ''}}">
-                <thead>
-                <tr>
-                    <th>DNI</th>
-                    <th>Nombre</th>
-                    <th>Propuesta</th>
-                    <th colspan="2" class="text-center">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if(isset($agent))
-                    <tr>
-                        <td>{{$agent->dni}}</td>
-                        <td>{{$agent->surname}}, {{$agent->name}}</td>
-                        <td></td>
-                        <td class="text-center">
-                            <a class="btn btn-info" href="agents/{{$agent->id}}/edit">Editar&emsp;<span class="fa fa-edit"></span></a>
-                        </td>
-                        <td class="text-center">
-                            <a class="btn btn-info" href="agents/{{$agent->id}}/edit">Borrar&emsp;<span class="fa fa-trash"></span></a>
-                        </td>
-                    </tr>
-
-                @endif
-                </tbody>
-            </table>
-
         </div>
 
-        {!! Form::close() !!}
+        <table class="table table-responsive-sm hidden agent-table {{ !isset($agent) ? 'd-none' : ''}}">
+            <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Propuesta</th>
+                <th colspan="2" class="text-center">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if(isset($agent))
+                <tr>
+                    <td>{{$agent->dni}}</td>
+                    <td>{{$agent->surname}}, {{$agent->name}}</td>
+                    <td></td>
+                    <td class="text-center">
+                        <a class="btn btn-info" href="{{ url("agents/{$agent->id}/edit") }}">Editar&emsp;<span
+                                    class="fa fa-edit"></span></a>
+                    </td>
+                    <td class="text-center">
+                        <form action="agents/{{$agent->id}}" method="post">
+                            {{ method_field('delete') }}
+                            {{ @csrf_field() }}
+                            <button type="submit" class="btn btn-danger">Borrar&emsp;<span
+                                        class="fa fa-trash"></span></button>
+                        </form>
+                    </td>
+                </tr>
+
+            @endif
+            </tbody>
+        </table>
     </div>
+
 @endsection
 
 @section('scripts')
@@ -88,7 +98,7 @@
         let agent_table = $('.agent-table');
         let new_agent_button = $('a.new-agent');
         let new_agent_alert = $('.new-agent-alert');
-        let search_agent_button = $('form button[type=submit]');
+        let search_agent_button = $('form.search-agent button[type=submit]');
         let agent = [];
         let xhr;
 
@@ -157,9 +167,15 @@
                         <td>${item.surname}, ${item.name}</td>
                         <td></td>
                         <td class="text-center"><a class="btn btn-info" href="agents/${item.id}/edit">Editar&emsp;<span class="fa fa-edit"></span></a></td>
-                        <td class="text-center"><a class="btn btn-danger" href="agents/${item.id}/edit">Borrar&emsp;<span class="fa fa-trash"></span></a></td>
-                    </tr>
-                    `);
+                        <td class="text-center">
+                            <form action="agents/${item.id}" method="post">
+                                {{ method_field('delete') }}
+                            {{ @csrf_field() }}
+                        <button type="submit" class="btn btn-danger">Borrar&emsp;<span class="fa fa-trash"></span></button>
+                    </form>
+        </td>
+    </tr>
+`);
                 }
             })
         });
