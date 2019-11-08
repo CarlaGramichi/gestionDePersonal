@@ -26,9 +26,10 @@
         <table class="table table-bordered table-striped" id="table">
             <thead>
             <tr>
-                <th>Year</th>
-                <th>Level</th>
-                <th>Shift</th>
+                <th>Año</th>
+                <th>Nivel</th>
+                <th>Turno</th>
+                <th>Archivo</th>
                 <th></th>
             </tr>
             </thead>
@@ -61,6 +62,12 @@
                         {data: 'year', name: 'year'},
                         {data: 'level.name', name: 'level_id'},
                         {data: 'shift.name', name: 'shift_id'},
+                        {
+                            data: 'file', name: 'file', class: 'text-center',
+                            fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                                $(nTd).html(`<a href="{{ asset('uploads/${oData.file}') }}" class="btn btn-danger" target="_blank" download>Descargar <span class="fa fa-download"></span></a>`);
+                            }
+                        },
                         {data: '', class: 'text-center'}
                     ]
                 })

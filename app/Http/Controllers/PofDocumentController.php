@@ -55,7 +55,7 @@ class PofDocumentController extends Controller
     public function store(PofDocumentStoreRequest $request)
     {
         if ($file = $request->file('tmp_file')) {
-            $path = Storage::disk('public')->put('pof/docs/pdf/', $file);
+            $path = Storage::disk('public_uploads')->put('pof/docs/pdf', $file);
 
             $request->request->add(['file' => $path]);
         }

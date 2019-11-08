@@ -22,8 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
     /* Agents */
     Route::resource('agents', AgentController::class);
 
-    Route::get('agents_assign/{agent}/positions','AgentAssignController@positions');
-    Route::get('agents_assign/{agent}/positions/position_types','AgentAssignController@position_types')->name('agents_assign.{agent}.positions');
+    Route::get('agents_assign/{agent}/positions', 'AgentAssignController@positions');
+    Route::get('agents_assign/{agent}/positions/position_types', 'AgentAssignController@position_types')->name('agents_assign.{agent}.positions');
     Route::resource('agents_assign', AgentAssignController::class)->parameters([
         'agents_assign' => 'agent'
     ]);

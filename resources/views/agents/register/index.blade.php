@@ -170,9 +170,9 @@
                         <td class="text-center">
                             <form action="agents/${item.id}" method="post">
                                 {{ method_field('delete') }}
-                            {{ @csrf_field() }}
-                        <button type="submit" class="btn btn-danger">Borrar&emsp;<span class="fa fa-trash"></span></button>
-                    </form>
+                                {{ @csrf_field() }}
+                            <button type="submit" class="btn btn-danger">Borrar&emsp;<span class="fa fa-trash"></span></button>
+                        </form>
         </td>
     </tr>
 `);

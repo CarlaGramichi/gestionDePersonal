@@ -28,7 +28,7 @@
             <div class="row">
 
                 <div class="form-group col-sm-12">
-                    {!! Form::label('tmp_file') !!}
+                    {!! Form::label('tmp_file', 'Documento PDF') !!}
 
                     {!! Form::file('tmp_file',['required', 'accept' => 'application/pdf']) !!}
                 </div>

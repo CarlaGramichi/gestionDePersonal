@@ -57,12 +57,26 @@
                                     <button class="btn btn-primary px-4 btn-block" type="submit">{{__('Login')}}</button>
                                 </div>
                             </div>
+
+                            <div class="form-group row text-right mt-2">
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
                         <div class="card-body text-center">
                             <div>
                                 <h2>SAIT</h2>
+                                <img src="{{ asset('images/brand/ecs_logo_2.png') }}" class="img-fluid mt-5" alt="EndlessCodeStudio" title="EndlessCodeStudio">
                             </div>
                         </div>
                     </div>
