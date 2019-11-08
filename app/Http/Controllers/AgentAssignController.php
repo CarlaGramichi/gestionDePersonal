@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\Position;
 use Illuminate\Http\Request;
 
 class AgentAssignController extends Controller
@@ -81,5 +82,12 @@ class AgentAssignController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function positions(Agent $agent)
+    {
+        $positions = Position::where('is_deleted', '0')->get()->pluck('name', 'id');
+
+        return view('agents.assign.positions', compact('agent', 'positions'));
     }
 }
