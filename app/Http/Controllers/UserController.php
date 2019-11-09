@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             return Datatables::of(
-                User::where('id', '!=', '1')->with(['roles'])
+                User::query()->with(['roles'])
             )->make(true);
         }
 
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.index');
     }
 
     /**

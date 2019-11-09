@@ -23,7 +23,7 @@ class CreateLicenceCodesTable extends Migration
             $table->string('code', 120);
             $table->string('description', 250);
             $table->unsignedSmallInteger('old_article');
-            $table->unsignedSmallInteger('new_aticle');
+            $table->unsignedSmallInteger('new_article');
             $table->unsignedTinyInteger('number_days');
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
             $table->timestamps();

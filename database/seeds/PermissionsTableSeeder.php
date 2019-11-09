@@ -45,27 +45,27 @@ class PermissionsTableSeeder extends Seeder
 
             /* Pof */
             [
-                'name'        => 'Can View Users',
-                'slug'        => 'view.users',
-                'description' => 'Can view users',
+                'name'        => 'Puede listar documentos de P.O.F.',
+                'slug'        => 'pof.documents.index',
+                'description' => 'Puede listar documentos de P.O.F.',
                 'model'       => 'Permission',
             ],
             [
-                'name'        => 'Can Create Users',
-                'slug'        => 'create.users',
-                'description' => 'Can create new users',
+                'name'        => 'Puede crear documentos de P.O.F.',
+                'slug'        => 'pof.documents.create',
+                'description' => 'Puede crear documentos de P.O.F.',
                 'model'       => 'Permission',
             ],
             [
-                'name'        => 'Can Edit Users',
-                'slug'        => 'edit.users',
-                'description' => 'Can edit users',
+                'name'        => 'Puede guardar documentos de P.O.F.',
+                'slug'        => 'pof.documents.store',
+                'description' => 'Puede guardar documentos de P.O.F.',
                 'model'       => 'Permission',
             ],
             [
-                'name'        => 'Can Delete Users',
-                'slug'        => 'delete.users',
-                'description' => 'Can delete users',
+                'name'        => 'Puede eliminar documentos de P.O.F.',
+                'slug'        => 'pof.documents.destroy',
+                'description' => 'Puede eliminar documentos de P.O.F.',
                 'model'       => 'Permission',
             ],
             /* ./Pof */
