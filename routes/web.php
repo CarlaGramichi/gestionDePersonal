@@ -36,9 +36,11 @@ Route::group(['middleware' => 'auth'], function () {
     /* ./Users */
 
     /* POF */
-    Route::resource('pof_document', PofDocumentController::class);
+//    Route::resource('pof_document', PofDocumentController::class);
 
     Route::group(['prefix' => 'pof', 'as' => 'pof.'], function () {
+        Route::resource('documents', PofDocumentController::class);
+
         Route::resource('careers', CareerController::class);
 
         Route::resource('positions', PositionController::class);

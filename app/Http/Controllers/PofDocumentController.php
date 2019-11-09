@@ -62,7 +62,7 @@ class PofDocumentController extends Controller
 
         $pof = PofDocument::create($request->except(['tmp_file']));
 
-        return redirect()->route('pof_document.index')->with('success', "Documento de P.O.F. cargado correctamente. Id de la operación: <strong>{$pof->id}</strong>");
+        return redirect()->route('pof.documents.index')->with('success', "Documento de P.O.F. cargado correctamente. Id de la operación: <strong>{$pof->id}</strong>");
 
     }
 

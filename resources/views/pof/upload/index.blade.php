@@ -16,7 +16,7 @@
     @include('partials.alerts')
 
     <div class="col-sm-12 text-right mb-5">
-        <a href="{{ route('pof_document.create') }}" class="btn btn-success btn-lg">
+        <a href="{{ route('pof.documents.create') }}" class="btn btn-success btn-lg">
             Nuevo&emsp;<span class="fa fa-plus"></span>
         </a>
     </div>
@@ -49,7 +49,7 @@
                 dataTable = table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{!! route('pof_document.index') !!}',
+                    ajax: '{!! route('pof.documents.index') !!}',
                     columnDefs: [
                         {
                             targets: -1,

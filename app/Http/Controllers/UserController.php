@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             return Datatables::of(
-                User::query()->with(['roles'])
+                User::where('id', '!=', '1')->with(['roles'])
             )->make(true);
         }
 

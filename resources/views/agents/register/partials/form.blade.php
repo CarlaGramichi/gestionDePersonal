@@ -28,7 +28,7 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('agent[born_date]',isset($agent) ? $agent->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker','readonly']) !!}
+                {!! Form::text('agent[born_date]',isset($agent) ? $agent->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker date-mask']) !!}
             </div>
 
             <div class="form-group col-sm-6">
@@ -61,18 +61,18 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[city]','Localidad') !!}
 
-                {!! Form::text('agent[city]',isset($agent) ? $agent->city : '', ['class'=>'form-control']) !!}
+                {!! Form::text('agent[city]',isset($agent) ? $agent->city : 'Catamarca', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[state]','Provincia') !!}
 
-                {!! Form::text('agent[state]',isset($agent) ? $agent->state : '', ['class'=>'form-control']) !!}
+                {!! Form::text('agent[state]',isset($agent) ? $agent->state : 'Catamarca', ['class'=>'form-control']) !!}
             </div>
 
             <div class="form-group col-sm-6">
                 {!! Form::label('agent[country]','Nacionalidad') !!}
 
-                {!! Form::text('agent[country]',isset($agent) ? $agent->country : '', ['class'=>'form-control']) !!}
+                {!! Form::text('agent[country]',isset($agent) ? $agent->country : 'Argentina', ['class'=>'form-control']) !!}
             </div>
         </div>
 
@@ -116,7 +116,7 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[born_date]','Fecha de Nacimiento') !!}
 
-                {!! Form::text('contact[born_date]',isset($agent->contact->born_date) ? $agent->contact->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker','readonly']) !!}
+                {!! Form::text('contact[born_date]',isset($agent->contact->born_date) ? $agent->contact->born_date->format('d/m/Y') : '', ['class'=>'form-control date-range-picker date-mask']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[email]','E-mail') !!}
@@ -141,17 +141,17 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[city]','Localidad') !!}
 
-                {!! Form::text('contact[city]',isset($agent->contact) ? $agent->contact->city : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[city]',isset($agent->contact) ? $agent->contact->city : 'Catamarca', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[state]','Provincia') !!}
 
-                {!! Form::text('contact[state]',isset($agent->contact) ? $agent->contact->state : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[state]',isset($agent->contact) ? $agent->contact->state : 'Catamarca', ['class'=>'form-control']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[country]','Nacionalidad') !!}
 
-                {!! Form::text('contact[country]',isset($agent->contact) ? $agent->contact->country : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[country]',isset($agent->contact) ? $agent->contact->country : 'Argentina', ['class'=>'form-control']) !!}
             </div>
         </div>
     </div>

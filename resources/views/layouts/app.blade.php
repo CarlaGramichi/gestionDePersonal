@@ -57,7 +57,7 @@
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-<script src="{{ mix('js/global.js') }}"></script>
 @yield('scripts')
+<script src="{{ mix('js/global.js') }}"></script>
 </body>
 </html>

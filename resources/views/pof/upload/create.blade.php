@@ -15,7 +15,7 @@
 
     @include('partials.alerts')
 
-    {!! Form::open(['route' => 'pof_document.store', 'files' => true]) !!}
+    {!! Form::open(['route' => 'pof.documents.store', 'files' => true]) !!}
 
     <div class="card">
 
@@ -48,7 +48,7 @@
                 <div class="form-group col-sm-4">
                     {!! Form::label('date', 'Fecha') !!}
 
-                    {!! Form::text(null, now()->format('d/m/Y'), ['id'=>'date', 'class' => 'form-control date-range-picker','readonly','autocomplete'=>'off','data-field'=>'upload_date','required']) !!}
+                    {!! Form::text(null, now()->format('d/m/Y'), ['id'=>'date', 'class' => 'form-control date-range-picker date-mask','autocomplete'=>'off','data-field'=>'upload_date','required']) !!}
 
                     {!! Form::hidden('upload_date',now()->format('Y-d-m')) !!}
                 </div>
@@ -113,10 +113,5 @@
 @section('scripts')
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-    <script>
-        $(function () {
-
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/plugins/inputmask/inputmask.min.js') }}"></script>
 @endsection

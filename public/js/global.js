@@ -1,10 +1,11 @@
-let daterangepicker = $('.date-range-picker');
+let dateRangePicker = $('.date-range-picker');
+let dateMask = $('.date-mask');
 
 
 $(document).ready(function () {
 
-
     setDateRangePicker();
+    setMasks();
 
 });
 
@@ -66,23 +67,29 @@ function renderButton(name, action, btnClass) {
 }
 
 function setDateRangePicker() {
-    if (daterangepicker.length) {
+    if (dateRangePicker.length) {
         if (moment) {
             moment.locale('es');
         }
-        daterangepicker.daterangepicker({
+        dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'), 10),
         }, function (start, end, label) {
-            if (daterangepicker.parent().find(`[name=${daterangepicker.data('field')}]`).length) {
-                daterangepicker.parent().find(`[name=${daterangepicker.data('field')}]`).val(start.format('Y-MM-DD'));
+            if (dateRangePicker.parent().find(`[name=${dateRangePicker.data('field')}]`).length) {
+                dateRangePicker.parent().find(`[name=${dateRangePicker.data('field')}]`).val(start.format('Y-MM-DD'));
             } else {
-                daterangepicker.parent().append(`<input type="hidden" name="${daterangepicker.data('field')}" value="${start.format('Y-MM-DD')}">`)
+                dateRangePicker.parent().append(`<input type="hidden" name="${dateRangePicker.data('field')}" value="${start.format('Y-MM-DD')}">`)
             }
-        }).trigger('apply.daterangepicker');
+        });
+        dateRangePicker.val('');
+    }
+}
 
+function setMasks() {
+    if (dateMask.length) {
+        dateMask.inputmask("99/99/9999");
     }
 }
 
