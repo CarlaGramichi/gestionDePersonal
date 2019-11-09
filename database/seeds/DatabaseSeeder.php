@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(LevelsTableSeeder::class);
         $this->call(ShiftsTableSeeder::class);
         $this->call(RegimensTrableSeeder::class);
-
+        $this->call(LicenseOfficersTableSeeder::class);
+        $this->call(LicenseTypesTableSeeder::class);
 
         Model::reguard();
     }

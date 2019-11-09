@@ -14,7 +14,7 @@ class LicenseCodeController extends Controller
      */
     public function index()
     {
-        //
+        return view('license_codes.index');
     }
 
     /**
