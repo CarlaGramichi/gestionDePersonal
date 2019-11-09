@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\AgentLicence;
+use App\LicenseType;
 use Illuminate\Http\Request;
 
-class AgentLicenceController extends Controller
+class LicenseTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AgentLicenceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AgentLicence  $agentLicence
+     * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function show(AgentLicence $agentLicence)
+    public function show(LicenseType $licenceType)
     {
         //
     }
@@ -52,10 +52,10 @@ class AgentLicenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AgentLicence  $agentLicence
+     * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(AgentLicence $agentLicence)
+    public function edit(LicenseType $licenceType)
     {
         //
     }
@@ -64,10 +64,10 @@ class AgentLicenceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AgentLicence  $agentLicence
+     * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AgentLicence $agentLicence)
+    public function update(Request $request, LicenseType $licenceType)
     {
         //
     }
@@ -75,10 +75,10 @@ class AgentLicenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AgentLicence  $agentLicence
+     * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AgentLicence $agentLicence)
+    public function destroy(LicenseType $licenceType)
     {
         //
     }

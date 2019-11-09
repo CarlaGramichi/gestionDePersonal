@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Agent;
 use App\User;
 use Illuminate\Http\Request;
 use jeremykenedy\LaravelRoles\Models\Role;
@@ -32,7 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.index');
+        $agents = Agent::where('is_deleted', '0')->orderBy('name')->get()->pluck('name', 'id');
+
+        return view('users.create', compact('agents'));
     }
 
     /**

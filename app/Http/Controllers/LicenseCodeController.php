@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\LicenceOfficer;
+use App\LicenseCode;
 use Illuminate\Http\Request;
 
-class LicenceOfficerController extends Controller
+class LicenseCodeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LicenceOfficerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\LicenceOfficer  $licenceOfficer
+     * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function show(LicenceOfficer $licenceOfficer)
+    public function show(LicenseCode $licenceCode)
     {
         //
     }
@@ -52,10 +52,10 @@ class LicenceOfficerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LicenceOfficer  $licenceOfficer
+     * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenceOfficer $licenceOfficer)
+    public function edit(LicenseCode $licenceCode)
     {
         //
     }
@@ -64,10 +64,10 @@ class LicenceOfficerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LicenceOfficer  $licenceOfficer
+     * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenceOfficer $licenceOfficer)
+    public function update(Request $request, LicenseCode $licenceCode)
     {
         //
     }
@@ -75,10 +75,10 @@ class LicenceOfficerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LicenceOfficer  $licenceOfficer
+     * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenceOfficer $licenceOfficer)
+    public function destroy(LicenseCode $licenceCode)
     {
         //
     }

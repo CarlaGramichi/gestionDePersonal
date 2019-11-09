@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AgentLicence extends Model
+class LicenseOfficer extends Model
 {
     //
 }

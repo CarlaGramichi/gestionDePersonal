@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLicenceOfficersTable extends Migration
+class CreateLicenseOfficersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLicenceOfficersTable extends Migration
      */
     public function up()
     {
-        Schema::create('licence_officers', function (Blueprint $table) {
+        Schema::create('license_officers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 120);
             $table->enum('is_deleted', [0, 1, 2, 3])->default('0');
@@ -28,6 +28,6 @@ class CreateLicenceOfficersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('licence_officers');
+        Schema::dropIfExists('license_officers');
     }
 }

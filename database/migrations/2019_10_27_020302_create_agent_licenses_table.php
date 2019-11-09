@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAgentLicencesTable extends Migration
+class CreateAgentLicensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAgentLicencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('agent_licences', function (Blueprint $table) {
+        Schema::create('agent_licenses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('agent_id');
             $table->unsignedBigInteger('license_code_id');
@@ -25,7 +25,7 @@ class CreateAgentLicencesTable extends Migration
             $table->timestamps();
 
             $table->foreign('agent_id')->references('id')->on('agents');
-            $table->foreign('license_code_id')->references('id')->on('licence_codes');
+            $table->foreign('license_code_id')->references('id')->on('license_codes');
         });
     }
 
@@ -36,6 +36,6 @@ class CreateAgentLicencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agent_licences');
+        Schema::dropIfExists('agent_licenses');
     }
 }

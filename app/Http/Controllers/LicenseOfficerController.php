@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\LicenceCode;
+use App\LicenseOfficer;
 use Illuminate\Http\Request;
 
-class LicenceCodeController extends Controller
+class LicenseOfficerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class LicenceCodeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\LicenceCode  $licenceCode
+     * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function show(LicenceCode $licenceCode)
+    public function show(LicenseOfficer $licenceOfficer)
     {
         //
     }
@@ -52,10 +52,10 @@ class LicenceCodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LicenceCode  $licenceCode
+     * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenceCode $licenceCode)
+    public function edit(LicenseOfficer $licenceOfficer)
     {
         //
     }
@@ -64,10 +64,10 @@ class LicenceCodeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LicenceCode  $licenceCode
+     * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenceCode $licenceCode)
+    public function update(Request $request, LicenseOfficer $licenceOfficer)
     {
         //
     }
@@ -75,10 +75,10 @@ class LicenceCodeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LicenceCode  $licenceCode
+     * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenceCode $licenceCode)
+    public function destroy(LicenseOfficer $licenceOfficer)
     {
         //
     }
