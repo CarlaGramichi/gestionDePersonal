@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\LicenseCode;
+use App\LicenseOfficer;
+use App\LicenseType;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LicenseCodeController extends Controller
 {
@@ -12,9 +15,17 @@ class LicenseCodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+
     {
-        //
+        if ($request->ajax()) {
+            return Datatables::of(
+                LicenseCode::where('is_deleted', '0')->with('licenseType','grantingOfficer','interveningOfficer')->get()
+            )->make(true);
+        }
+
+        return view('license_codes.index');
+
     }
 
     /**
@@ -24,7 +35,10 @@ class LicenseCodeController extends Controller
      */
     public function create()
     {
-        //
+        $officers = LicenseOfficer::where('is_deleted', '0')->get()->pluck('name','id');
+        $types = LicenseType::where('is_deleted', '0')->get()->pluck('name','id');
+
+        return view('license_codes.create', compact('officers','types'));
     }
 
     /**
@@ -35,7 +49,21 @@ class LicenseCodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//
+        $request->validate([
+            'code' => 'required',
+            'granting_officer_id' => 'required',
+            'intervening_officer_id' => 'required',
+            'license_type_id' => 'required',
+            'license_type_id' => 'required',
+            'kind_days' => 'required',
+            'description' => 'required',
+        ]);
+
+
+        $license_codes= LicenseCode::create($request->all());
+
+        return redirect()->route('license_codes.index')->with('success', "El código de licencia <strong>{$license_codes->code} - {$license_codes->description}</strong> fue cargado con éxito.");
     }
 
     /**
