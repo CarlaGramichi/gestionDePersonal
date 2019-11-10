@@ -32,6 +32,7 @@
         "@coreui/coreui": "^2.1.12",
         "@fortawesome/fontawesome-free": "^5.11.2",
         "bootstrap-3-typeahead": "^4.0.2",
+        "chart.js": "^2.9.2",
         "devbridge-autocomplete": "^1.4.10",
         "perfect-scrollbar": "^1.4.0",
         "simple-line-icons": "^2.4.1"

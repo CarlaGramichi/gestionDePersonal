@@ -18,28 +18,28 @@ class PermissionsTableSeeder extends Seeder
         $Permissionitems = [
             /* Users */
             [
-                'name'        => 'Can View Users',
+                'name'        => 'Puede ver usuarios',
                 'slug'        => 'view.users',
-                'description' => 'Can view users',
-                'model'       => 'Permission',
+                'description' => 'Puede ver usuarios',
+                'model'       => 'User',
             ],
             [
-                'name'        => 'Can Create Users',
+                'name'        => 'Puede crear usuarios',
                 'slug'        => 'create.users',
-                'description' => 'Can create new users',
-                'model'       => 'Permission',
+                'description' => 'Puede crear usuarios',
+                'model'       => 'User',
             ],
             [
-                'name'        => 'Can Edit Users',
+                'name'        => 'Puede editar usuarios',
                 'slug'        => 'edit.users',
-                'description' => 'Can edit users',
-                'model'       => 'Permission',
+                'description' => 'Puede editar usuarios',
+                'model'       => 'User',
             ],
             [
-                'name'        => 'Can Delete Users',
+                'name'        => 'Puede borrar usuarios',
                 'slug'        => 'delete.users',
-                'description' => 'Can delete users',
-                'model'       => 'Permission',
+                'description' => 'Puede borrar usuarios',
+                'model'       => 'User',
             ],
             /* ./Users */
 
@@ -48,25 +48,25 @@ class PermissionsTableSeeder extends Seeder
                 'name'        => 'Puede listar documentos de P.O.F.',
                 'slug'        => 'pof.documents.index',
                 'description' => 'Puede listar documentos de P.O.F.',
-                'model'       => 'Permission',
+                'model'       => 'PofDocument',
             ],
             [
                 'name'        => 'Puede crear documentos de P.O.F.',
                 'slug'        => 'pof.documents.create',
                 'description' => 'Puede crear documentos de P.O.F.',
-                'model'       => 'Permission',
+                'model'       => 'PofDocument',
             ],
             [
                 'name'        => 'Puede guardar documentos de P.O.F.',
                 'slug'        => 'pof.documents.store',
                 'description' => 'Puede guardar documentos de P.O.F.',
-                'model'       => 'Permission',
+                'model'       => 'PofDocument',
             ],
             [
                 'name'        => 'Puede eliminar documentos de P.O.F.',
                 'slug'        => 'pof.documents.destroy',
                 'description' => 'Puede eliminar documentos de P.O.F.',
-                'model'       => 'Permission',
+                'model'       => 'PofDocument',
             ],
             /* ./Pof */
         ];
@@ -79,10 +79,10 @@ class PermissionsTableSeeder extends Seeder
             $newPermissionitem = config('roles.models.permission')::where('slug', '=', $Permissionitem['slug'])->first();
             if ($newPermissionitem === null) {
                 $newPermissionitem = config('roles.models.permission')::create([
-                    'name'          => $Permissionitem['name'],
-                    'slug'          => $Permissionitem['slug'],
-                    'description'   => $Permissionitem['description'],
-                    'model'         => $Permissionitem['model'],
+                    'name'        => $Permissionitem['name'],
+                    'slug'        => $Permissionitem['slug'],
+                    'description' => $Permissionitem['description'],
+                    'model'       => $Permissionitem['model'],
                 ]);
             }
         }

@@ -23,12 +23,12 @@ class UsersTableSeeder extends Seeder
          *
          */
 
-        if (config('roles.models.defaultUser')::where('email', '=', 'superuser@superuser.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'superusuario@sait.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
-                'name'     => 'Superuser',
+                'name'     => 'Superusuario',
                 'agent_id' => '1',
-                'email'    => 'superuser@superuser.com',
-                'password' => 'superuser',
+                'email'    => 'superusuario@sait.com',
+                'password' => 'superusuario',
             ]);
 
             $newUser->attachRole($superuserRole);
@@ -37,11 +37,11 @@ class UsersTableSeeder extends Seeder
             }
         }
 
-        if (config('roles.models.defaultUser')::where('email', '=', 'supervisor@supervisor.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'supervisor@sait.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
                 'name'     => 'Supervisor',
                 'agent_id' => '2',
-                'email'    => 'supervisor@supervisor.com',
+                'email'    => 'supervisor@sait.com',
                 'password' => 'supervisor',
             ]);
 
@@ -49,24 +49,24 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        if (config('roles.models.defaultUser')::where('email', '=', 'administrative@administrative.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'administrativo@sait.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
-                'name'     => 'Administrative',
+                'name'     => 'Administrativo',
                 'agent_id' => '3',
-                'email'    => 'administrative@administrative.com',
-                'password' => 'administrative',
+                'email'    => 'administrativo@sait.com',
+                'password' => 'administrativo',
             ]);
 
             $newUser->attachRole($administrativeRole);
 
         }
 
-        if (config('roles.models.defaultUser')::where('email', '=', 'janitor@janitor.com')->first() === null) {
+        if (config('roles.models.defaultUser')::where('email', '=', 'bedel@sait.com')->first() === null) {
             $newUser = config('roles.models.defaultUser')::create([
-                'name'     => 'Janitor',
+                'name'     => 'Bedel',
                 'agent_id' => '4',
-                'email'    => 'janitor@janitor.com',
-                'password' => 'janitor',
+                'email'    => 'bedel@sait.com',
+                'password' => 'bedel',
             ]);
 
             $newUser->attachRole($janitorRole);
