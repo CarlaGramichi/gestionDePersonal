@@ -1,12 +1,6 @@
-<div class="card">
 
-    <div class="card-header">
-        <strong>Datos</strong>
-    </div>
 
-    <div class="card-body">
 
-        <div class="row">
 
             <div class="form-group col-sm-6">
                 {!! Form::label('code', 'Código') !!}
@@ -15,7 +9,7 @@
 
             <div class="form-group col-sm-6">
                 {!! Form::label('licence_type_id', 'Tipo de Licencia') !!}
-                {!! Form::select('license_type_id',$types,null, ['class'=>'form-control', 'placeholder'=>'Seleccionar tipo de licencia']) !!}
+                {!! Form::select('license_type_id',$types, null,['class'=>'form-control', 'placeholder'=>'Seleccionar tipo de licencia']) !!}
             </div>
 
             <div class="form-group col-sm-12">
@@ -54,11 +48,6 @@
                 {!! Form::label('intervening_officer_id', 'Funcionario Interviniente') !!}
                 {!! Form::select('intervening_officer_id',$officers,null, ['class'=>'form-control', 'placeholder'=>'Seleccionar funcionario']) !!}
             </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary float-right mb-2">
-            Guardar <span class="fa fa-save"></span>
-        </button>
-    </div>
 
-</div>
+

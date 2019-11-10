@@ -6,7 +6,7 @@
 
 @section('breadcrumbs')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Códigos de licencia</li>
+        <li class="breadcrumb-item">Códigos de Licencias</li>
         <li class="breadcrumb-item">Listado</li>
     </ol>
 @endsection
@@ -99,10 +99,10 @@
                     let row = dataTable.row($(this).parents('tr')).data();
 
                     tableRemove(
-                        `license_code/${row.id}`,
+                        `license_codes/${row.id}`,
                         {},
                         '{{csrf_token()}}',
-                        `Eliminar cargo ${row.name}`,
+                        `Eliminar código ${row.code}`,
                         `Está por eliminar el código de licencia ${row.code}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
                         dataTable,
                     );
