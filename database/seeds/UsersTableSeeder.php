@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'Superuser',
                 'agent_id' => '1',
                 'email'    => 'superuser@superuser.com',
-                'password' => bcrypt('superuser'),
+                'password' => 'superuser',
             ]);
 
             $newUser->attachRole($superuserRole);
@@ -42,10 +42,11 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'Supervisor',
                 'agent_id' => '2',
                 'email'    => 'supervisor@supervisor.com',
-                'password' => bcrypt('supervisor'),
+                'password' => 'supervisor',
             ]);
 
             $newUser->attachRole($supervisorRole);
+
         }
 
         if (config('roles.models.defaultUser')::where('email', '=', 'administrative@administrative.com')->first() === null) {
@@ -53,10 +54,11 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'Administrative',
                 'agent_id' => '3',
                 'email'    => 'administrative@administrative.com',
-                'password' => bcrypt('administrative'),
+                'password' => 'administrative',
             ]);
 
             $newUser->attachRole($administrativeRole);
+
         }
 
         if (config('roles.models.defaultUser')::where('email', '=', 'janitor@janitor.com')->first() === null) {
@@ -64,7 +66,7 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'Janitor',
                 'agent_id' => '4',
                 'email'    => 'janitor@janitor.com',
-                'password' => bcrypt('janitor'),
+                'password' => 'janitor',
             ]);
 
             $newUser->attachRole($janitorRole);
