@@ -13,8 +13,10 @@
 
 @section('content')
 
+    @include('partials.alerts')
+
     <div class="col-sm-12">
-        {!! Form::model($user,['url' => 'user.update',$user->id]) !!}
+        {!! Form::model($user,['route' => ['users.update',$user->id],'method' => 'PUT']) !!}
 
         @include('users.partials.form')
 

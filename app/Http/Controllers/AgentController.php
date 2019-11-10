@@ -8,7 +8,9 @@ use App\Http\Requests\AgentStoreRequest;
 use App\Relationship;
 use App\Status;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class AgentController extends Controller
 {
@@ -49,34 +51,34 @@ class AgentController extends Controller
 
         $agent = Agent::create([
 
-            'name' => $request->agent['name'],
-            'surname' => $request->agent['surname'],
-            'dni' => $request->agent['dni'],
-            'cuil' => $request->agent['cuil'],
+            'name'      => $request->agent['name'],
+            'surname'   => $request->agent['surname'],
+            'dni'       => $request->agent['dni'],
+            'cuil'      => $request->agent['cuil'],
             'born_date' => Carbon::createFromFormat('d/m/Y', $request->agent['born_date'])->format('Y-m-d'),
-            'email' => $request->agent['email'],
-            'phone' => $request->agent['phone'],
+            'email'     => $request->agent['email'],
+            'phone'     => $request->agent['phone'],
             'cellphone' => $request->agent['cellphone'],
-            'address' => $request->agent['address'],
-            'city' => $request->agent['city'],
-            'state' => $request->agent['state'],
-            'country' => $request->agent['country'],
+            'address'   => $request->agent['address'],
+            'city'      => $request->agent['city'],
+            'state'     => $request->agent['state'],
+            'country'   => $request->agent['country'],
         ]);
 
         AgentContact::create([
-            'agent_id' => $agent->id,
+            'agent_id'        => $agent->id,
             'relationship_id' => $request->contact['relationship_id'],
-            'name' => $request->contact['name'],
-            'surname' => $request->contact['surname'],
-            'dni' => $request->contact['dni'],
-            'born_date' => $request->contact['born_date'] ? Carbon::createFromFormat('d/m/Y', $request->contact['born_date'])->format('Y-m-d') : null,
-            'email' => $request->contact['email'],
-            'phone' => $request->contact['phone'],
-            'cellphone' => $request->contact['cellphone'],
-            'address' => $request->contact['address'],
-            'city' => $request->contact['city'],
-            'state' => $request->contact['state'],
-            'country' => $request->contact['country'],
+            'name'            => $request->contact['name'],
+            'surname'         => $request->contact['surname'],
+            'dni'             => $request->contact['dni'],
+            'born_date'       => $request->contact['born_date'] ? Carbon::createFromFormat('d/m/Y', $request->contact['born_date'])->format('Y-m-d') : null,
+            'email'           => $request->contact['email'],
+            'phone'           => $request->contact['phone'],
+            'cellphone'       => $request->contact['cellphone'],
+            'address'         => $request->contact['address'],
+            'city'            => $request->contact['city'],
+            'state'           => $request->contact['state'],
+            'country'         => $request->contact['country'],
         ]);
 
         return view('agents.register.index', compact('agent'));
@@ -85,9 +87,13 @@ class AgentController extends Controller
     }
 
 
-    public function show(Agent $agent)
+    public function show(Agent $agent, Request $request)
     {
-        //
+        if ($request->ajax()) {
+            return Response::json(['agent' => $agent->setHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id'])]);
+        }
+
+        return $agent->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);
     }
 
 
@@ -103,34 +109,34 @@ class AgentController extends Controller
     {
 
         $agent->update([
-            'name' => $request->agent['name'],
-            'surname' => $request->agent['surname'],
-            'dni' => $request->agent['dni'],
-            'cuil' => $request->agent['cuil'],
+            'name'      => $request->agent['name'],
+            'surname'   => $request->agent['surname'],
+            'dni'       => $request->agent['dni'],
+            'cuil'      => $request->agent['cuil'],
             'born_date' => Carbon::createFromFormat('d/m/Y', $request->agent['born_date'])->format('Y-m-d'),
-            'email' => $request->agent['email'],
-            'phone' => $request->agent['phone'],
+            'email'     => $request->agent['email'],
+            'phone'     => $request->agent['phone'],
             'cellphone' => $request->agent['cellphone'],
-            'address' => $request->agent['address'],
-            'city' => $request->agent['city'],
-            'state' => $request->agent['state'],
-            'country' => $request->agent['country'],
+            'address'   => $request->agent['address'],
+            'city'      => $request->agent['city'],
+            'state'     => $request->agent['state'],
+            'country'   => $request->agent['country'],
         ]);
 
         $agent->contact->update([
-            'agent_id' => $agent->id,
+            'agent_id'        => $agent->id,
             'relationship_id' => $request->contact['relationship_id'],
-            'name' => $request->contact['name'],
-            'surname' => $request->contact['surname'],
-            'dni' => $request->contact['dni'],
-            'born_date' => $request->contact['born_date'] ? Carbon::createFromFormat('d/m/Y', $request->contact['born_date'])->format('Y-m-d') : null,
-            'email' => $request->contact['email'],
-            'phone' => $request->contact['phone'],
-            'cellphone' => $request->contact['cellphone'],
-            'address' => $request->contact['address'],
-            'city' => $request->contact['city'],
-            'state' => $request->contact['state'],
-            'country' => $request->contact['country'],
+            'name'            => $request->contact['name'],
+            'surname'         => $request->contact['surname'],
+            'dni'             => $request->contact['dni'],
+            'born_date'       => $request->contact['born_date'] ? Carbon::createFromFormat('d/m/Y', $request->contact['born_date'])->format('Y-m-d') : null,
+            'email'           => $request->contact['email'],
+            'phone'           => $request->contact['phone'],
+            'cellphone'       => $request->contact['cellphone'],
+            'address'         => $request->contact['address'],
+            'city'            => $request->contact['city'],
+            'state'           => $request->contact['state'],
+            'country'         => $request->contact['country'],
         ]);
 
         return view('agents.register.index', compact('agent'));
@@ -141,8 +147,9 @@ class AgentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Agent $agent
+     * @param Agent $agent
      * @return \Illuminate\Http\Response
+     * @throws Exception
      */
     public function destroy(Agent $agent)
     {
@@ -151,7 +158,7 @@ class AgentController extends Controller
         $agent->contact()->delete();
         $agent->delete();
 
-        return redirect()->route('agents.index')->with('success',"El agente <strong>{$deleted_agent->name}</strong> se eliminó con éxito.");
+        return redirect()->route('agents.index')->with('success', "El agente <strong>{$deleted_agent->name}</strong> se eliminó con éxito.");
 
     }
 }

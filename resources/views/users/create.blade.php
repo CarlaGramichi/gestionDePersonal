@@ -13,25 +13,7 @@
 
     {!! Form::open(['route' => 'users.store']) !!}
 
-    <div class="card">
-
-        <div class="card-header">
-            <strong>Ingresar los datos del usuario</strong>
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-
                 @include('users.partials.form')
-
-            </div>
-
-            <button type="submit" class="btn btn-primary float-right">Guardar&emsp;<span class="fa fa-save"></span></button>
-
-        </div>
-
-    </div>
 
     {!! Form::close() !!}
 

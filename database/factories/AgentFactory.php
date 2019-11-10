@@ -21,7 +21,6 @@ $factory->define(Agent::class, function (Faker $faker) {
         'city'       => $faker->city,
         'state'      => $faker->city,
         'country'    => $faker->country,
-        'is_deleted' => $faker->randomElement(['0', '1', '2', '3']),
 
     ];
 });
