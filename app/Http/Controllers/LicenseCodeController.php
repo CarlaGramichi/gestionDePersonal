@@ -83,9 +83,15 @@ class LicenseCodeController extends Controller
      * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenseCode $licenceCode)
+    public function edit(LicenseCode $licenseCode)
     {
-        //
+//        return($licenseCode);
+        $types = LicenseType::where('is_deleted', '0')->get()->pluck('name','id');
+        $officers = LicenseOfficer::where('is_deleted', '0')->get()->pluck('name','id');
+
+
+        return view('license_codes.edit', compact('licenseCode', 'types', 'officers'));
+
     }
 
     /**
@@ -95,9 +101,22 @@ class LicenseCodeController extends Controller
      * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenseCode $licenceCode)
+    public function update(Request $request, LicenseCode $licenseCode)
     {
-        //
+        $request->validate([
+            'code' => 'required',
+            'granting_officer_id' => 'required',
+            'intervening_officer_id' => 'required',
+            'license_type_id' => 'required',
+            'license_type_id' => 'required',
+            'kind_days' => 'required',
+            'description' => 'required',
+        ]);
+
+        $licenseCode->update($request->all());
+        return redirect()->route('license_codes.index')->with("success", "El código de licencia <strong>{$licenseCode->code}</strong> fue actualizado correctamente.");
+
+
     }
 
     /**
@@ -106,8 +125,10 @@ class LicenseCodeController extends Controller
      * @param  \App\LicenseCode  $licenceCode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenseCode $licenceCode)
+    public function destroy(LicenseCode $licenseCode)
     {
-        //
+        $licenseCode->update(['is_deleted' => '1']);
+
+        return response()->json(['response' => true, 'message' => 'Código de licencia eliminado con éxito.']);
     }
 }
