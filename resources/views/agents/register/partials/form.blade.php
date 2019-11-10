@@ -153,12 +153,15 @@
 
                 {!! Form::text('contact[country]',isset($agent->contact) ? $agent->contact->country : 'Argentina', ['class'=>'form-control']) !!}
             </div>
+
+
         </div>
+        <button type="submit" class="btn btn-primary float-right mb-2">
+            Guardar <span class="fa fa-save"></span>
+        </button>
+
     </div>
 </div>
 
 
 
-<button type="submit" class="btn btn-success float-right mb-2">
-    Guardar <span class="fa fa-save"></span>
-</button>

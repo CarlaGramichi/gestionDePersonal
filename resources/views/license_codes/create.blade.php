@@ -6,20 +6,18 @@
 
 @section('breadcrumbs')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Agentes</li>
-        <li class="breadcrumb-item">Dar de alta un agente</li>
+        <li class="breadcrumb-item">Códigos de Licencia</li>
+        <li class="breadcrumb-item">Dar de alta un código</li>
     </ol>
 @endsection
 
-@section('content')
 
+@section('content')
     @include('partials.alerts')
 
-    {!! Form::open(['route' => 'agents.store','class'=>'col-sm-12']) !!}
+    {!! Form::open(['route' => 'license_codes.store','class'=>'col-sm-12']) !!}
 
-    @include('agents.register.partials.form')
-
-
+    @include('license_codes.partials.form')
 
     {!! Form::close() !!}
 @endsection
