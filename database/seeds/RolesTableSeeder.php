@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
          */
         $RoleItems = [
             [
-                'name'        => 'Superuser',
+                'name'        => 'Superusuario',
                 'slug'        => 'superuser',
                 'description' => 'Superuser Role',
                 'level'       => 1,
@@ -29,19 +29,19 @@ class RolesTableSeeder extends Seeder
                 'level'       => 2,
             ],
             [
-                'name'        => 'Administrative',
+                'name'        => 'Administrativo',
                 'slug'        => 'administrative',
                 'description' => 'Administrative Role',
                 'level'       => 3,
             ],
             [
-                'name'        => 'Janitor',
+                'name'        => 'Bedel',
                 'slug'        => 'janitor',
                 'description' => 'Janitor Role',
                 'level'       => 4,
             ],
             [
-                'name'        => 'Unverified',
+                'name'        => 'Ninguno',
                 'slug'        => 'unverified',
                 'description' => 'Unverified Role',
                 'level'       => 0,

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use jeremykenedy\LaravelRoles\Models\Permission;
 
 class ConnectRelationshipsSeeder extends Seeder
 {
@@ -14,12 +15,13 @@ class ConnectRelationshipsSeeder extends Seeder
         /**
          * Get Available Permissions.
          */
-        $permissions = config('roles.models.permission')::all();
+//        $permissions = config('roles.models.permission')::all();
+        $permissions = Permission::where('model','User')->get();
 
         /**
          * Attach Permissions to Roles.
          */
-        $roleAdmin = config('roles.models.role')::where('name', '=', 'Supervisor')->first();
+        $roleAdmin = config('roles.models.role')::where('id', '=', '1')->first();
         foreach ($permissions as $permission) {
             $roleAdmin->attachPermission($permission);
         }

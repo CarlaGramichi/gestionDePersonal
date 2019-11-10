@@ -15,8 +15,10 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('dashboard', 'DashboardController@index');
+
     Route::get('/', function () {
-        return view('welcome');
+        return redirect('dashboard');
     });
 
     /* Agents */
@@ -32,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     /* ./Agents */
 
     /* Users */
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->middleware('role:superuser');
     /* ./Users */
 
     /* POF */

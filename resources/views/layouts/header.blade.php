@@ -3,7 +3,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="{{asset('images/brand/ecs_logo_2.png')}}" width="89" height="25" alt="SAIT Logo">
+        <img class="navbar-brand-full" src="{{asset('images/brand/ecs_logo_2.png')}}" width="89" height="25"
+             alt="SAIT Logo">
         <img class="navbar-brand-minimized" src="{{asset('images/brand/ecs_icon.png')}}" width="30" height="30"
              alt="SAIT Logo">
     </a>
@@ -24,11 +25,14 @@
 
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                aria-expanded="false">
-                <img class="img-avatar" src="{{asset('images/avatars/2.jpg')}}" alt="{{Auth::user()->name}}"
-                     title="{{Auth::user()->name}}">
+                <img class="img-avatar" src="{{asset('images/avatars/2.jpg')}}" alt="{{auth()->user()->name}}"
+                     title="{{auth()->user()->name}}">
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">
+                    <p><strong>{{ auth()->user()->name }}</strong></p>
+                </a>
 
                 <div class="dropdown-header text-center">
                     <strong>{{__('Panel de control')}}</strong>
