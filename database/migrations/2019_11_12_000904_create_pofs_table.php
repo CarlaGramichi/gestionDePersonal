@@ -17,10 +17,11 @@ class CreatePofsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('level_id');
             $table->unsignedBigInteger('shift_id');
+            $table->unsignedBigInteger('institution_id');
             $table->unsignedSmallInteger('year');
+            $table->enum('type', ['original', 'rectificado'])->default('original');
             $table->date('upload_date');
             $table->string('cue', 120);
-            $table->string('institution', 200);
             $table->string('department', 200);
             $table->unsignedSmallInteger('total_approved_teaching_positions');
             $table->unsignedSmallInteger('total_approved_non_teaching_positions');
@@ -31,6 +32,7 @@ class CreatePofsTable extends Migration
 
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('shift_id')->references('id')->on('shifts');
+            $table->foreign('institution_id')->references('id')->on('institutions');
         });
     }
 

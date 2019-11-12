@@ -11474,3 +11474,16 @@ a.text-dark:focus {
   border-bottom: 1px solid #000;
 }
 
+.sidebar .nav-dropdown.open > .nav-dropdown-items {
+  background-color: #e9ecef;
+}
+
+.sidebar .nav-dropdown.open > .nav-dropdown-items .nav-link {
+  color: #000 !important;
+}
+
+.sidebar .nav-dropdown.open > .nav-dropdown-items .nav-link.active {
+  color: #fff !important;
+  background: #007bff;
+}
+

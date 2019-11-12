@@ -27,6 +27,7 @@
             <thead>
             <tr>
                 <th>Año</th>
+                <th>Tipo</th>
                 <th>Nivel</th>
                 <th>Turno</th>
                 <th>Archivo</th>
@@ -60,6 +61,7 @@
                     ],
                     columns: [
                         {data: 'year', name: 'year'},
+                        {data: 'type', name: 'type', class: 'text-capitalize'},
                         {data: 'level.name', name: 'level_id'},
                         {data: 'shift.name', name: 'shift_id'},
                         {
@@ -75,7 +77,7 @@
                         let row = dataTable.row($(this).parents('tr')).data();
 
                         tableRemove(
-                            `pof_document/${row.id}`,
+                            `documents/${row.id}`,
                             {},
                             '{{csrf_token()}}',
                             'Eliminar documento de P.O.F.',

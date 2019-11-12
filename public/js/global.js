@@ -116,7 +116,6 @@ function tableRemove(url, data, token, title, body, table) {
                         'X-CSRF-Token': token
                     },
                     success: function (data) {
-                        console.log(data)
                         if (data.response) {
                             table.ajax.reload();
                             swal.fire({

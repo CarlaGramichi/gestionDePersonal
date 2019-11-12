@@ -90,7 +90,7 @@ class AgentController extends Controller
     public function show(Agent $agent, Request $request)
     {
         if ($request->ajax()) {
-            return Response::json(['agent' => $agent->setHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id'])]);
+            return response()->json(['agent' => $agent->setHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id'])]);
         }
 
         return $agent->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);

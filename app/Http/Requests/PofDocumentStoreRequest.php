@@ -25,10 +25,11 @@ class PofDocumentStoreRequest extends FormRequest
     {
         return [
             'year'                                  => 'required|numeric',
+            'type'                                  => 'required|in:original,rectificado',
             'level_id'                              => 'required|exists:levels,id',
             'shift_id'                              => 'required|exists:shifts,id',
             'cue'                                   => 'required',
-            'institution'                           => 'required',
+            'institution_id'                        => 'required|exists:institutions,id',
             'total_approved_teaching_positions'     => 'required',
             'total_approved_non_teaching_positions' => 'required',
             'total_teaching_approved_hours'         => 'required',

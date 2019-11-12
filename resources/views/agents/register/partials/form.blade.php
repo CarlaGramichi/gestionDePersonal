@@ -95,18 +95,18 @@
             <div class="form-group col-sm-12">
                 {!! Form::label('contact[relationship_id]', 'Relación') !!}
 
-                {!! Form::select('contact[relationship_id]', $relationships ?? '', isset($agent->contact) ? $agent->contact->relationship_id : '', ['class' => 'form-control']) !!}
+                {!! Form::select('contact[relationship_id]', $relationships ?? '', isset($agent->contact) ? $agent->contact->relationship_id : '', ['class' => 'form-control','required']) !!}
 
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[name]','Nombre') !!}
 
-                {!! Form::text('contact[name]',isset($agent->contact) ? $agent->contact->name : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[name]',isset($agent->contact) ? $agent->contact->name : '', ['class'=>'form-control','required']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[surname]','Apellido') !!}
 
-                {!! Form::text('contact[surname]',isset($agent->contact) ? $agent->contact->surname : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[surname]',isset($agent->contact) ? $agent->contact->surname : '', ['class'=>'form-control','required']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[dni]','DNI') !!}
@@ -126,7 +126,7 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[phone]','Teléfono') !!}
 
-                {!! Form::text('contact[phone]',isset($agent->contact) ? $agent->contact->phone : '', ['class'=>'form-control']) !!}
+                {!! Form::text('contact[phone]',isset($agent->contact) ? $agent->contact->phone : '', ['class'=>'form-control','required']) !!}
             </div>
             <div class="form-group col-sm-6">
                 {!! Form::label('contact[cellphone]','Celular') !!}

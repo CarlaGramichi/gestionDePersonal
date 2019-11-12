@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(StatusesTableSeeder::class);
         $this->call(AgentsTableSeeder::class);
+
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RegimensTrableSeeder::class);
         $this->call(LicenseOfficersTableSeeder::class);
         $this->call(LicenseTypesTableSeeder::class);
+        $this->call(InstitutionsTableSeeder::class);
 
         Model::reguard();
     }

@@ -39,12 +39,7 @@ class AgentStoreRequest extends FormRequest
             'contact.name' => 'required',
             'contact.surname' => 'required',
             'contact.relationship_id' => 'required|exists:relationships,id',
-            'contact.dni' => 'required',
             'contact.cellphone' => 'required',
-            'contact.address' => 'required',
-            'contact.city' => 'required',
-            'contact.state' => 'required',
-            'contact.country' => 'required'
         ];
     }
 }

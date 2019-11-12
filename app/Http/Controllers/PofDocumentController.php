@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PofDocumentStoreRequest;
+use App\Institution;
 use App\Level;
 use App\Pof;
 use App\PofDocument;
@@ -42,8 +43,9 @@ class PofDocumentController extends Controller
     {
         $levels = Level::where('is_deleted', '0')->pluck('name', 'id');
         $shifts = Shift::where('is_deleted', '0')->pluck('name', 'id');
+        $institutions = Institution::where('is_deleted', '0')->pluck('name', 'id');
 
-        return view('pof.upload.create', compact('levels', 'shifts'));
+        return view('pof.upload.create', compact('levels', 'shifts','institutions'));
     }
 
     /**
@@ -69,12 +71,12 @@ class PofDocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param PofDocument $pof_document
+     * @param PofDocument $document
      * @return Response
      */
-    public function destroy(PofDocument $pof_document)
+    public function destroy(PofDocument $document)
     {
-        $pof_document->update(['is_deleted' => '1']);
+        $document->update(['is_deleted' => '1']);
 
         return response()->json(['response' => true, 'message' => 'Documento de P.O.F. eliminado con éxito.']);
     }

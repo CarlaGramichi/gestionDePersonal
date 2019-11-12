@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('subjects', SubjectController::class);
     });
 
+    Route::resource('institutions', InstitutionController::class);
     /* ./POF */
 
     Route::get('/home', 'HomeController@index')->name('home');
