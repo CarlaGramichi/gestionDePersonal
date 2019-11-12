@@ -157,8 +157,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            • Establecimiento
+                        <a class="nav-link" href="{{ route('institutions.index') }}">
+                            • Establecimientos
                         </a>
                     </li>
 

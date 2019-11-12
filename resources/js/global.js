@@ -63,7 +63,7 @@ function renderActions(actions) {
 }
 
 function renderButton(name, action, btnClass) {
-    return `<button class="btn btn-${btnClass} ${action}">${name}</button>`
+    return `<button class="btn btn-sm btn-${btnClass} ${action}">${name}</button>`
 }
 
 function setDateRangePicker() {
