@@ -28,7 +28,15 @@
                     <div class="card p-4">
 
                         <div class="card-body">
+
                             <h1 class="mb-5">{{ __('Login') }}</h1>
+
+                            @error('email')
+                            <div class="alert alert-danger">
+                                <p>Ups... <strong>{{ $message }}</strong></p>
+                            </div>
+                            @enderror
+
 {{--                            <p class="text-muted">{{ __('Sign In to your account') }}</p>--}}
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -37,11 +45,7 @@
                                     </span>
                                 </div>
                                 <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" name="email">
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
                             </div>
 
                             <div class="input-group mb-4">
@@ -52,11 +56,6 @@
                                 </div>
                                 <input class="form-control" type="password" placeholder="{{ __('Password') }}" name="password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
 
                             <div class="row">
