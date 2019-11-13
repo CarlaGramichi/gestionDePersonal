@@ -22,16 +22,26 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     /* Agents */
+    Route::group(['prefix' => 'agents', 'as' => 'agents.'], function () {
+        Route::get('assign/positions', 'AgentAssignController@selectPosition')->name('assign.positions');
+        Route::get('assign/positions/types', 'AgentAssignController@selectPositionTypes')->name('assign.positions.types');
+        Route::get('assign/positions/{position}/types/agents', 'AgentAssignController@selectAgent')->name('assign.positions.{position}.types.agents');
+        Route::get('assign/positions/{position}/types/{positionType}/agents/proposal', 'AgentAssignController@createProposal')->name('assign.positions.{position}.types.{positionType}.agents.proposal');
+        Route::get('proposals', 'AgentProposalsController@index')->name('proposals.index');
+        Route::get('proposals/pending', 'AgentProposalController@pending')->name('proposals.pending');
+
+        Route::resource('assign', AgentAssignController::class)->parameters([
+            'assign' => 'agent'
+        ]);
+    });
+
     Route::resource('agents', AgentController::class);
 
-    Route::get('agents_assign/{agent}/positions', 'AgentAssignController@positions');
-    Route::get('agents_assign/{agent}/positions/position_types', 'AgentAssignController@position_types')->name('agents_assign.{agent}.positions');
-    Route::resource('agents_assign', AgentAssignController::class)->parameters([
-        'agents_assign' => 'agent'
-    ]);
-    Route::resource('agents/assign', AgentAssignController::class)->parameters([
-        'assign' => 'agent'
-    ]);
+    //    Route::get('agents_assign/{agent}/positions', 'AgentAssignController@positions');
+//    Route::get('agents_assign/{agent}/positions/position_types', 'AgentAssignController@position_types')->name('agents_assign.{agent}.positions');
+//    Route::resource('agents_assign', AgentAssignController::class)->parameters([
+//        'agents_assign' => 'agent'
+//    ]);
 
 
     /* ./Agents */

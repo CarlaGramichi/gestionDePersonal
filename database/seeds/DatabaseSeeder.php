@@ -14,15 +14,18 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call(RelationshipsTableSeeder::class);
+
         $this->call(StatusesTableSeeder::class);
         $this->call(AgentsTableSeeder::class);
+        $this->call(AgentContactsTableSeeder::class);
 
         $this->call(PermissionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
 
         $this->call(UsersTableSeeder::class);
         $this->call(ConnectRelationshipsSeeder::class);
-        $this->call(RelationshipsTableSeeder::class);
+
         $this->call(PositionsTableSeeder::class);
         $this->call(LevelsTableSeeder::class);
         $this->call(ShiftsTableSeeder::class);

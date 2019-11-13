@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AgentPositionType extends Model
+class AgentProposal extends Model
 {
-    protected $guarded = [];
+    //
 }

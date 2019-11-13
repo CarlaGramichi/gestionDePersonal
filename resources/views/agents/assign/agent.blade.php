@@ -11,12 +11,12 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['agents.assign.positions.{position}.types.agents','position'=>$position->id],'class'=>'col-sm-12','method'=>'GET']) !!}
+    {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.proposal', 'position'=>$position->id, 'positionType'=>$positionType->id],'class'=>'col-sm-12','method'=>'GET']) !!}
 
     <div class="card">
 
         <div class="card-header">
-            <strong>Seleccionar un subcargo</strong>
+            <strong>Seleccionar un agente</strong>
         </div>
 
         <div class="card-body">
@@ -30,9 +30,15 @@
                 </div>
 
                 <div class="form-group col-sm-4">
-                    {!! Form::label('position_type_id', 'Subcargo') !!}
+                    {!! Form::label(null, 'Subcargo') !!}
 
-                    {!! Form::select('position_type_id',$positionTypes, null, ['class' => 'form-control','placeholder'=>'Seleccionar', 'required']) !!}
+                    <p><strong>{{ $positionType->name }}</strong></p>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    {!! Form::label('agent_id', 'Agente') !!}
+
+                    {!! Form::select('agent_id',$agents, null, ['class' => 'form-control','placeholder'=>'Seleccionar', 'required']) !!}
                 </div>
 
             </div>

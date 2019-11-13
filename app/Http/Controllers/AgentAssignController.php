@@ -3,19 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Agent;
+use App\AgentPositionType;
+use App\Career;
 use App\Position;
+use App\PositionType;
 use Illuminate\Http\Request;
 
 class AgentAssignController extends Controller
 {
+
+    public function selectPosition()
+    {
+        $positions = Position::where('is_deleted', '0')->get()->pluck('name', 'id');
+
+        return view('agents.assign.positions', compact('positions'));
+    }
+
+    public function selectPositionTypes(Request $request)
+    {
+        $position = Position::where([['is_deleted', '0'], ['id', $request->position_id]])->first();
+
+        $positionTypes = PositionType::where(
+            [
+                ['is_deleted', '0'],
+                ['position_id', $request->position_id]
+            ])
+            ->get()
+            ->pluck('name', 'id');
+
+        return view('agents.assign.position_types', compact('position', 'positionTypes'));
+    }
+
+    public function selectAgent(Position $position, Request $request)
+    {
+        $positionType = PositionType::where([['is_deleted', '0'], ['id', $request->position_type_id]])->first();
+
+        $agents = Agent::where('is_deleted', '0')->get()->pluck('name', 'id');
+
+        return view('agents.assign.agent', compact('position', 'positionType', 'agents'));
+    }
+
+    public function createProposal(Position $position, PositionType $positionType, Request $request)
+    {
+        if (str_is('docente', strtolower($position->name))) {
+            $agent = Agent::where([['is_deleted', '0'], ['id', $request->agent_id]])->first();
+
+            $years = Career::select('year')->where('is_deleted', '0')->groupBy('year')->get()->pluck('year','year');
+
+            return view('agents.assign.create_proposal', compact('position', 'positionType', 'agent', 'years'));
+        }
+
+        $agentPositionType = AgentPositionType::create([
+            'agent_id'         => $request->agent_id,
+            'position_type_id' => $positionType->id
+        ]);
+
+        return redirect()->route('agents.proposals.pending')->with('success', "Propuesta asignada con éxito. Id de la operación <strong>{$agentPositionType->id}</strong>");
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Agent $agent
      * @return \Illuminate\Http\Response
      */
-    public function index(Agent $agent)
+    public function index()
     {
-        return view('agents.assign.index', compact('agent'));
+        return view('agents.assign.index');
     }
 
     /**

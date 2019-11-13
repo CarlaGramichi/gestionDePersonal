@@ -19,7 +19,7 @@
         </li>
 
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('agents_assign.index') }}">Asignar propuestas</a>
+            <a class="nav-link" href="{{ route('agents.assign.positions') }}">Asignar propuestas</a>
         </li>
     </ul>
 
