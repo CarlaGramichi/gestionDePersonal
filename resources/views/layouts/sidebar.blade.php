@@ -184,7 +184,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('license_codes.index') }}">
+                                <a class="nav-link" href="{{ route('license_codes_types.index') }}">
                                     • Tipos
                                 </a>
                             </li>

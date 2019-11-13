@@ -14,7 +14,7 @@ class LicenseTypeController extends Controller
      */
     public function index()
     {
-        //
+        return view('license_codes.types.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class LicenseTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('license_codes.types.create');
     }
 
     /**

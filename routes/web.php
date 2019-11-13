@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('assign/positions/types', 'AgentAssignController@selectPositionTypes')->name('assign.positions.types');
         Route::get('assign/positions/{position}/types/agents', 'AgentAssignController@selectAgent')->name('assign.positions.{position}.types.agents');
         Route::get('assign/positions/{position}/types/{positionType}/agents/proposal', 'AgentAssignController@createProposal')->name('assign.positions.{position}.types.{positionType}.agents.proposal');
-        Route::get('proposals', 'AgentProposalsController@index')->name('proposals.index');
+        Route::get('proposals', 'AgentProposalController@index')->name('proposals.index');
         Route::get('proposals/pending', 'AgentProposalController@pending')->name('proposals.pending');
 
         Route::resource('assign', AgentAssignController::class)->parameters([
@@ -82,6 +82,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    /* Licencias */
     Route::resource('license_codes', LicenseCodeController::class);
+    Route::resource('license_codes_types', LicenseTypeController::class);
+
+
+
+
 
 });
