@@ -78,22 +78,23 @@
                 <a class="nav-link nav-dropdown-toggle" href="#">
                     <i class="nav-icon fa fa-calendar-check"></i>&emsp;Reportes
                 </a>
+
                 <ul class="nav-dropdown-items">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            • Reportes de inasistencia
+                            • Inasistencia
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            • Reportes de asistencia
+                            • Asistencia
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            • Reportes de licencias
+                            • Licencias
                         </a>
                     </li>
 
@@ -105,13 +106,13 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            • Planilla parte mensual
+                            • Horarios de clases
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            • Reporte de horarios de clases
+                            • Planilla parte mensual
                         </a>
                     </li>
 
@@ -127,45 +128,80 @@
 
             @role('superuser|supervisor')
             <li class="nav-item nav-dropdown">
+
                 <a class="nav-link nav-dropdown-toggle" href="#">
-                    <i class="nav-icon fa fa-cogs"></i>&emsp;Ajustes
+                    <i class="nav-icon fa fa-cogs"></i>&emsp;Panel de control
                 </a>
+
                 <ul class="nav-dropdown-items">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pof.documents.index') }}">
-                            • Cargar documento de P.O.F.
+                    <li class="nav-item nav-dropdown">
+
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon fa fa-list-ul"></i>&emsp;P.O.F.
                         </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pof.documents.index') }}">
+                                    • Documentos
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pof.positions.index') }}">
+                                    • Cargos
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pof.careers.index') }}">
+                                    • Asignaturas
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('institutions.index') }}">
+                                    • Establecimientos
+                                </a>
+                            </li>
+
+                        </ul>
+
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pof.positions.index') }}">
-                            • Cargar cargos de P.O.F
-                        </a>
-                    </li>
+                    <li class="nav-item nav-dropdown">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pof.careers.index') }}">
-                            • Cargar asignaturas de P.O.F.
+                        <a class="nav-link nav-dropdown-toggle" href="#">
+                            <i class="nav-icon fa fa-list-alt"></i>&emsp;Licencias
                         </a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('license_codes.index') }}">
-                            • Códigos de licencia
-                        </a>
-                    </li>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('license_codes.index') }}">
+                                    • Códigos
+                                </a>
+                            </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('institutions.index') }}">
-                            • Establecimientos
-                        </a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('license_codes.index') }}">
+                                    • Tipos
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('license_codes.index') }}">
+                                    • Funcionarios
+                                </a>
+                            </li>
+                        </ul>
+
                     </li>
 
                     @role('superuser')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">
-                            • Usuarios
+                            <i class="nav-icon fa fa-user-shield"></i> Usuarios
                         </a>
                     </li>
                     @endrole

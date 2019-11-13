@@ -29,7 +29,8 @@
             <div class="card">
                 <div class="card-header">Licencias registradas</div>
                 <div class="card-body">
-                    <canvas id="chart-area" style="display: block; width: 570px; height: 80px;" width="570" height="150" class="chartjs-render-monitor"></canvas>
+                    <canvas id="chart-area" style="display: block; width: 570px; height: 80px;" width="570" height="150"
+                            class="chartjs-render-monitor"></canvas>
                 </div>
             </div>
         </div>
@@ -90,7 +91,7 @@
         });
 
 
-        var randomScalingFactor = function() {
+        var randomScalingFactor = function () {
             return Math.round(Math.random() * 100);
         };
 
@@ -138,7 +139,7 @@
             }
         };
 
-        window.onload = function() {
+        window.onload = function () {
             var ctx = document.getElementById('chart-area').getContext('2d');
             window.myDoughnut = new Chart(ctx, config);
         };
