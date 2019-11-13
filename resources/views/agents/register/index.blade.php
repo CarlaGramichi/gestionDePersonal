@@ -74,7 +74,7 @@
                                     class="fa fa-edit"></span></a>
                     </td>
                     <td class="text-center">
-                        <form action="agents/{{$agent->id}}" method="post">
+                        <form action="{{ url("agents/{$agent->id}") }}" method="post">
                             {{ method_field('delete') }}
                             {{ @csrf_field() }}
                             <button type="submit" class="btn btn-danger">Borrar&emsp;<span
