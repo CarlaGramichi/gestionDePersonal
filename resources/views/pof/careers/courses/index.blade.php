@@ -61,6 +61,9 @@
                 serverSide: true,
                 ajax: {
                     url: '{!! url("pof/careers/{$career->id}/courses") !!}',
+                    data: {
+                        table: true,
+                    }
                 },
                 columnDefs: [
                     {

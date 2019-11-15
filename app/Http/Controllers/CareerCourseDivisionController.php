@@ -20,16 +20,12 @@ class CareerCourseDivisionController extends Controller
     public function index(Career $career, CareerCourse $course, Request $request)
     {
         if ($request->ajax()) {
-            return Datatables::of(
-                CareerCourseDivision::where(
-                    [
-                        ['is_deleted', '0'],
-                        ['career_course_id', $course->id]
-                    ])
-                    ->with(['course'])
-                    ->orderBy('name')
-                    ->get()
-            )->make(true);
+            $divisions = CareerCourseDivision::where([['is_deleted', '0'], ['career_course_id', $course->id]]);
+            if ($request->table == 'true') {
+                return Datatables::of($divisions->with(['course'])->orderBy('name')->get())->make(true);
+            }
+
+            return response()->json($divisions->groupBy('name')->orderBy('name')->get()->pluck('name', 'id'));
         }
 
         return view('pof.careers.courses.divisions.index', compact('career', 'course'));

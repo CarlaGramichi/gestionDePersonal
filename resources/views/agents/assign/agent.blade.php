@@ -37,13 +37,35 @@
 
                 <div class="form-group col-sm-4">
                     {!! Form::label('agent_id', 'Agente') !!}
+                    <select name="agent_id" id="agent_id" class="form-control" required>
+                        <option value="">Seleccionar</option>
 
-                    {!! Form::select('agent_id',$agents, null, ['class' => 'form-control','placeholder'=>'Seleccionar', 'required']) !!}
+                        @foreach($agents as $agent)
+                            <option value="{{ $agent->id }}">{{ $agent->dni }} - {{ $agent->surname }}, {{ $agent->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="user-data-container col-sm-12 d-none">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <strong>Datos del agente seleccionado</strong>
+                        </div>
+
+                        <div class="card-body user-data row">
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
 
-            <a href="{{ url()->previous()  }}" class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
+            <a href="{{ route('agents.assign.positions.types',['position_id'=>$position->id])  }}"
+               class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
 
             <button type="submit" class="btn btn-primary float-right">Continuar&emsp;<span
                         class="fa fa-arrow-right"></span></button>
@@ -53,4 +75,46 @@
         {!! Form::close() !!}
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        let agent_id = $('select#agent_id');
+        let user_data_container = $('div.user-data-container');
+
+        $(document).ready(function () {
+            agent_id.change(function () {
+                user_data_container.addClass('d-none');
+                if ($(this).val()) {
+                    findAgent($(this).val());
+                }
+            })
+        });
+
+        function findAgent(agent_id) {
+            $.ajax({
+                async: true,
+                url: `${baseUri}/agents/${agent_id}`,
+                type: 'GET',
+                data: {},
+                dataType: 'json',
+                beforeSend: function () {
+
+                },
+                success: function (response) {
+                    user_data_container.find('.user-data').empty();
+
+                    if (response.agent) {
+                        user_data_container.removeClass('d-none');
+
+                        $.each(response.agent, function (field, value) {
+                            user_data_container.find('.user-data').append(`
+                                <div class="col-sm-6"><p><span>${field}: </span><strong>${value}</strong></p></div>
+                            `);
+                        })
+                    }
+                }
+            });
+        }
+    </script>
 @endsection

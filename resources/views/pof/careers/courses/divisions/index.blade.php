@@ -28,7 +28,8 @@
         </div>
 
         <div class="form-group col-sm-4 float-right text-right">
-            <a href="{{ url("pof/careers/{$career->id}/courses/{$course->id}/divisions/create") }}" class="btn btn-success btn-lg">
+            <a href="{{ url("pof/careers/{$career->id}/courses/{$course->id}/divisions/create") }}"
+               class="btn btn-success btn-lg">
                 Nueva&emsp;<span class="fa fa-plus"></span>
             </a>
         </div>
@@ -63,6 +64,9 @@
                 serverSide: true,
                 ajax: {
                     url: '{!! url("pof/careers/{$career->id}/courses/{$course->id}/divisions") !!}',
+                    data: {
+                        table: true,
+                    }
                 },
                 columnDefs: [
                     {

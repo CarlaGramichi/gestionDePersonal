@@ -17,8 +17,8 @@ class PositionsTableSeeder extends Seeder
             'Cargos de conducción',
             'Cargos de apoyo',
             'Cargos no docentes',
-            'Docente',
             'Horas institucionales',
+            'Docente',
         ];
 
         foreach ($positions as $position) {

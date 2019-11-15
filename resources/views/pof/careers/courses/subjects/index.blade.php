@@ -28,7 +28,8 @@
         </div>
 
         <div class="form-group col-sm-4 float-right text-right">
-            <a href="{{ url("pof/careers/{$career->id}/courses/{$course->id}/subjects/create") }}" class="btn btn-success btn-lg">
+            <a href="{{ url("pof/careers/{$career->id}/courses/{$course->id}/subjects/create") }}"
+               class="btn btn-success btn-lg">
                 Nueva&emsp;<span class="fa fa-plus"></span>
             </a>
         </div>
@@ -87,6 +88,7 @@
                     url: '{!! url("pof/careers/{$career->id}/courses/{$course->id}/subjects") !!}',
                     data: function (d) {
                         d.career_course_division_id = division_selector.val();
+                        d.table = true;
                     }
                 },
                 columnDefs: [

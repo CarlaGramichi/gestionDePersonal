@@ -37,7 +37,7 @@
 
             </div>
 
-            <a href="{{ url()->previous()  }}" class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
+            <a href="{{ route('agents.assign.positions')  }}" class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
 
             <button type="submit" class="btn btn-primary float-right">Continuar&emsp;<span
                         class="fa fa-arrow-right"></span></button>

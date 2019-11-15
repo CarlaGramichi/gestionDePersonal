@@ -27,12 +27,18 @@ class DatabaseSeeder extends Seeder
         $this->call(ConnectRelationshipsSeeder::class);
 
         $this->call(PositionsTableSeeder::class);
+        $this->call(PositionTypesTableSeeder::class);
         $this->call(LevelsTableSeeder::class);
         $this->call(ShiftsTableSeeder::class);
         $this->call(RegimensTrableSeeder::class);
         $this->call(LicenseOfficersTableSeeder::class);
         $this->call(LicenseTypesTableSeeder::class);
         $this->call(InstitutionsTableSeeder::class);
+
+        $this->call(CareersTableSeeder::class);
+        $this->call(CareerCoursesTableSeeder::class);
+        $this->call(CareerCourseDivisionsTableSeeder::class);
+        $this->call(SubjectsTableSeeder::class);
 
         Model::reguard();
     }

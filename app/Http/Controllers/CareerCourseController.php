@@ -20,16 +20,12 @@ class CareerCourseController extends Controller
     {
 
         if ($request->ajax()) {
-            return Datatables::of(
-                CareerCourse::where(
-                    [
-                        ['is_deleted', '0'],
-                        ['career_id', $career->id]
-                    ])
-                    ->with(['career'])
-                    ->orderBy('name')
-                    ->get()
-            )->make(true);
+            $courses = CareerCourse::where([['is_deleted', '0'], ['career_id', $career->id]]);
+            if ($request->table == 'true') {
+                return Datatables::of($courses->with(['career'])->orderBy('name')->get())->make(true);
+            }
+
+            return $courses->get()->pluck('name', 'id');
         }
 
         return view("pof.careers.courses.index", compact('career'));

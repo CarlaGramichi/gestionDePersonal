@@ -38,7 +38,7 @@ class AgentAssignController extends Controller
     {
         $positionType = PositionType::where([['is_deleted', '0'], ['id', $request->position_type_id]])->first();
 
-        $agents = Agent::where('is_deleted', '0')->get()->pluck('name', 'id');
+        $agents = Agent::where('is_deleted', '0')->get();
 
         return view('agents.assign.agent', compact('position', 'positionType', 'agents'));
     }

@@ -27,21 +27,22 @@ class SubjectController extends Controller
     public function index(Career $career, CareerCourse $course, Request $request)
     {
         if ($request->ajax()) {
-            return Datatables::of(
-                Subject::where(
-                    [
-                        ['is_deleted', '0'],
-                        ['career_course_id', $course->id],
-                    ])
-                    ->when(request('career_course_division_id'), function ($query, $career_course_division_id) {
-                        if ($career_course_division_id) {
-                            return $query->where('career_course_division_id', $career_course_division_id);
-                        }
-                    })
-                    ->with(['course', 'division', 'regimen'])
-                    ->orderBy('name')
-                    ->get()
-            )->make(true);
+            $subjects = Subject::where(
+                [
+                    ['is_deleted', '0'],
+                    ['career_course_id', $course->id],
+                ])
+                ->when(request('career_course_division_id'), function ($query, $career_course_division_id) {
+                    if ($career_course_division_id) {
+                        return $query->where('career_course_division_id', $career_course_division_id);
+                    }
+                });
+
+            if ($request->table == 'true') {
+                return Datatables::of($subjects->with(['course', 'division', 'regimen'])->orderBy('name')->get())->make(true);
+            }
+
+            return $subjects->orderBy('name')->get()->pluck('name', 'id');
         }
 
         return view('pof.careers.courses.subjects.index', compact('career', 'course'));
@@ -116,7 +117,7 @@ class SubjectController extends Controller
             'regimen_id'                => 'exists:regimens,id',
             'name'                      => 'required',
             'hours'                     => 'required|numeric'
-            ]);
+        ]);
 
         $request->request->add(['career_course_id' => $course->id]);
 

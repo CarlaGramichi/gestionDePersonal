@@ -70,6 +70,7 @@
                     url: '{!! route('pof.careers.index') !!}',
                     data: function (d) {
                         d.year = year_selector.val();
+                        d.table = true;
                     }
 
                 },

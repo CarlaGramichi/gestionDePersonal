@@ -3,7 +3,6 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Agent;
-use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(Agent::class, function (Faker $faker) {

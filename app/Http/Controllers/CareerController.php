@@ -18,15 +18,13 @@ class CareerController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return Datatables::of(
-                Career::where(
-                    [
-                        ['is_deleted', '0'],
-                        ['year', $request->year]
-                    ])
-                    ->orderBy('year', 'DESC')
-                    ->get()
-            )->make(true);
+            $careers = Career::where([['is_deleted', '0'], ['year', $request->year]])->orderBy('name', 'DESC')->get();
+            if ($request->table == 'true') {
+                return Datatables::of($careers)->make(true);
+            }
+
+            return response()->json($careers->pluck('name', 'id'));
+
         }
 
         $years = Career::select('year')->where('is_deleted', '0')->groupBy('year')->get()->pluck('year');
