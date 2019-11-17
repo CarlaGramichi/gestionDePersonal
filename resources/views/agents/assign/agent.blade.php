@@ -11,7 +11,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.proposal', 'position'=>$position->id, 'positionType'=>$positionType->id],'class'=>'col-sm-12','method'=>'GET']) !!}
+    {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.proposal', 'position'=>$position->id, 'positionType'=>$positionType->id],'method'=>'GET']) !!}
 
     <div class="card">
 
@@ -40,40 +40,32 @@
                     <select name="agent_id" id="agent_id" class="form-control" required>
                         <option value="">Seleccionar</option>
 
-                        @foreach($agents as $agent)
-                            <option value="{{ $agent->id }}">{{ $agent->dni }} - {{ $agent->surname }}, {{ $agent->name }}</option>
+                        @foreach($agents as $a)
+                            <option value="{{ $a->id }}">{{ $a->dni }} - {{ $a->surname }}, {{ $a->name }}</option>
                         @endforeach
+
                     </select>
-                </div>
-
-                <div class="user-data-container col-sm-12 d-none">
-
-                    <div class="card">
-
-                        <div class="card-header">
-                            <strong>Datos del agente seleccionado</strong>
-                        </div>
-
-                        <div class="card-body user-data row">
-
-                        </div>
-
-                    </div>
-
                 </div>
 
             </div>
 
-            <a href="{{ route('agents.assign.positions.types',['position_id'=>$position->id])  }}"
-               class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
-
-            <button type="submit" class="btn btn-primary float-right">Continuar&emsp;<span
-                        class="fa fa-arrow-right"></span></button>
-
         </div>
 
-        {!! Form::close() !!}
     </div>
+
+    @include('agents.assign.partials.agent')
+
+    <div class="mb-5 mt-5 overflow-hidden">
+
+        <a href="{{ route('agents.assign.positions.types',['position_id'=>$position->id])  }}"
+           class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
+
+        <button type="submit" class="btn btn-primary float-right">Continuar&emsp;<span
+                    class="fa fa-arrow-right"></span></button>
+
+    </div>
+
+    {!! Form::close() !!}
 
 @endsection
 
@@ -99,11 +91,10 @@
                 data: {},
                 dataType: 'json',
                 beforeSend: function () {
-
+                    user_data_container.addClass('d-none');
+                    user_data_container.find('.user-data').empty();
                 },
                 success: function (response) {
-                    user_data_container.find('.user-data').empty();
-
                     if (response.agent) {
                         user_data_container.removeClass('d-none');
 

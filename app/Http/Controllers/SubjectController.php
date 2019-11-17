@@ -87,6 +87,19 @@ class SubjectController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Career $career
+     * @param CareerCourse $course
+     * @param Subject $subject
+     * @return Subject
+     */
+    public function show(Career $career, CareerCourse $course, Subject $subject)
+    {
+        return $subject->load('regimen');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param Career $career

@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 class AgentProposalController extends Controller
 {
 
-    public function pending(Request $request){
+    public function pending(Request $request)
+    {
+        if($request->ajax()){
 
+        }
+
+        return view('agents.proposals.pending');
     }
 
     /**
@@ -35,7 +40,7 @@ class AgentProposalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,7 +51,7 @@ class AgentProposalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AgentProposal  $agentProposal
+     * @param \App\AgentProposal $agentProposal
      * @return \Illuminate\Http\Response
      */
     public function show(AgentProposal $agentProposal)
@@ -57,7 +62,7 @@ class AgentProposalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AgentProposal  $agentProposal
+     * @param \App\AgentProposal $agentProposal
      * @return \Illuminate\Http\Response
      */
     public function edit(AgentProposal $agentProposal)
@@ -68,8 +73,8 @@ class AgentProposalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AgentProposal  $agentProposal
+     * @param \Illuminate\Http\Request $request
+     * @param \App\AgentProposal $agentProposal
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AgentProposal $agentProposal)
@@ -80,7 +85,7 @@ class AgentProposalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AgentProposal  $agentProposal
+     * @param \App\AgentProposal $agentProposal
      * @return \Illuminate\Http\Response
      */
     public function destroy(AgentProposal $agentProposal)

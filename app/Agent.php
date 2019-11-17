@@ -19,4 +19,5 @@ class Agent extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
 }

@@ -1,5 +1,15 @@
 let dateRangePicker = $('.date-range-picker');
 let dateMask = $('.date-mask');
+let timeMask = $('.time-mask');
+let week_days = {
+    1: 'Lunes',
+    2: 'Martes',
+    3: 'Miércoles',
+    4: 'Jueves',
+    5: 'Viernes',
+    6: 'Sábado',
+    7: 'Domingo',
+};
 
 
 $(document).ready(function () {
@@ -91,6 +101,10 @@ function setMasks() {
     if (dateMask.length) {
         dateMask.inputmask("99/99/9999");
     }
+
+    if (timeMask.length) {
+        timeMask.inputmask("99:99");
+    }
 }
 
 function tableRemove(url, data, token, title, body, table) {
@@ -137,3 +151,19 @@ function tableRemove(url, data, token, title, body, table) {
         }
     })
 }
+
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};

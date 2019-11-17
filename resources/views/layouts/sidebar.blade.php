@@ -26,6 +26,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('agents.proposals.pending') }}">
+                            • Propuestas pendientes
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="#">
                             • Reasignaciones
                         </a>

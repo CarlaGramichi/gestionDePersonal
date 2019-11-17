@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('assign/positions/types', 'AgentAssignController@selectPositionTypes')->name('assign.positions.types');
         Route::get('assign/positions/{position}/types/agents', 'AgentAssignController@selectAgent')->name('assign.positions.{position}.types.agents');
         Route::get('assign/positions/{position}/types/{positionType}/agents/proposal', 'AgentAssignController@createProposal')->name('assign.positions.{position}.types.{positionType}.agents.proposal');
+        Route::get('assign/positions/{position}/types/{positionType}/agents/{agent}/proposal/subject_schedule', 'AgentAssignController@setSubjectSchedule')->name('assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule');
+        Route::post('assign/positions/{position}/types/{positionType}/agents/{agent}/proposal/subject_schedule/{subject}', 'AgentAssignController@store')->name('assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule.{subject}.store');
         Route::get('proposals', 'AgentProposalController@index')->name('proposals.index');
         Route::get('proposals/pending', 'AgentProposalController@pending')->name('proposals.pending');
 
