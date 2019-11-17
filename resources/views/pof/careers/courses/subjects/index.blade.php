@@ -61,7 +61,7 @@
                 <th>Asignatura</th>
                 <th>Régimen</th>
                 <th>Horas cátedra</th>
-                <th class="text-center">Acciones</th>
+                <th class="text-center" width="200">Acciones</th>
             </tr>
             </thead>
         </table>

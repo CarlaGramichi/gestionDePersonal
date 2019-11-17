@@ -2,27 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\AgentPositionType;
-use App\AgentPositionTypeTransaction;
-use App\AgentProposal;
+use App\Document;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
-class AgentProposalController extends Controller
+class DocumentController extends Controller
 {
-
-    public function pending(Request $request)
-    {
-        return AgentPositionTypeTransaction::with('status', 'agentPositionType')->get();
-        if ($request->ajax()) {
-            return Datatables::of(
-                AgentPositionTypeTransaction::with('agentPositionType')->get()
-            )->make(true);
-        }
-
-        return view('agents.proposals.pending');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +30,7 @@ class AgentProposalController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,10 +41,10 @@ class AgentProposalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\AgentProposal $agentProposal
+     * @param  \App\Document  $documents
      * @return \Illuminate\Http\Response
      */
-    public function show(AgentProposal $agentProposal)
+    public function show(Document $documents)
     {
         //
     }
@@ -68,10 +52,10 @@ class AgentProposalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\AgentProposal $agentProposal
+     * @param  \App\Document  $documents
      * @return \Illuminate\Http\Response
      */
-    public function edit(AgentProposal $agentProposal)
+    public function edit(Document $documents)
     {
         //
     }
@@ -79,11 +63,11 @@ class AgentProposalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\AgentProposal $agentProposal
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Document  $documents
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AgentProposal $agentProposal)
+    public function update(Request $request, Document $documents)
     {
         //
     }
@@ -91,10 +75,10 @@ class AgentProposalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\AgentProposal $agentProposal
+     * @param  \App\Document  $documents
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AgentProposal $agentProposal)
+    public function destroy(Document $documents)
     {
         //
     }

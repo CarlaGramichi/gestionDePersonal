@@ -45,11 +45,6 @@
                 serverSide: true,
                 ajax: {
                     url: '{!! route('agents.proposals.pending') !!}',
-                    data: function (d) {
-                        // d.year = year_selector.val();
-                        // d.table = true;
-                    }
-
                 },
                 columnDefs: [
                     {
@@ -60,8 +55,10 @@
                     },
                 ],
                 columns: [
-                    {data: 'year', name: 'year'},
-                    {data: 'name', name: 'name'},
+                    {data: 'agent_position_type.agent.name', name: 'agent_position_type.agent.name'},
+                    {data: 'agent_position_type.position_type.position.year', name: 'agent_position_type.position_type.position.year'},
+                    {data: 'agent_position_type.position_type.position.name', name: 'agent_position_type.position_type.position.name'},
+                    {data: 'agent_position_type.position_type.name', name: 'agent_position_type.position_type.name'},
                     {
                         data: '', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {

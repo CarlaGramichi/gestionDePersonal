@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Agent;
 use App\AgentPositionType;
+use App\AgentPositionTypeTransaction;
 use App\AgentSubject;
 use App\AgentSubjectSchedule;
 use App\Career;
@@ -62,6 +63,10 @@ class AgentAssignController extends Controller
             'position_type_id' => $positionType->id
         ]);
 
+        AgentPositionTypeTransaction::create([
+            'agent_position_type_id' => $agentPositionType->id
+        ]);
+
         return redirect()->route('agents.proposals.pending')->with('success', "Propuesta asignada con éxito. Id de la operación <strong>{$agentPositionType->id}</strong>");
     }
 
@@ -106,9 +111,13 @@ class AgentAssignController extends Controller
      */
     public function store(Position $position, PositionType $positionType, Agent $agent, Subject $subject, Request $request)
     {
-        AgentPositionType::create([
+        $agentPositionType = AgentPositionType::create([
             'agent_id'         => $agent->id,
             'position_type_id' => $positionType->id
+        ]);
+
+        AgentPositionTypeTransaction::create([
+            'agent_position_type_id' => $agentPositionType->id
         ]);
 
         $agentSubject = AgentSubject::create([
@@ -117,13 +126,14 @@ class AgentAssignController extends Controller
         ]);
 
         foreach ($request->day as $index => $day) {
-                AgentSubjectSchedule::create([
-                    'agent_subject_id' => $agentSubject->id,
-                    'day'              => $day,
-                    'start_time'       => $request->start_time[$index],
-                    'end_time'         => $request->end_time[$index],
-                ]);
-            }
+            AgentSubjectSchedule::create([
+                'agent_subject_id' => $agentSubject->id,
+                'day'              => $day,
+                'start_time'       => $request->start_time[$index],
+                'end_time'         => $request->end_time[$index],
+            ]);
+        }
+
 
         return redirect()->route('agents.proposals.pending')->with('success', "Propuesta asignada con éxito. Id de la operación <strong>{$agentSubject->id}</strong>");
     }

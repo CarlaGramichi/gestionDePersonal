@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Documents;
+use App\AgentPositionTypeTransactionDocument;
 use Illuminate\Http\Request;
 
-class DocumentsController extends Controller
+class AgentPositionTypeTransactionDocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class DocumentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Documents  $documents
+     * @param  \App\AgentPositionTypeTransactionDocument  $agentPositionTypeTransactionDocument
      * @return \Illuminate\Http\Response
      */
-    public function show(Documents $documents)
+    public function show(AgentPositionTypeTransactionDocument $agentPositionTypeTransactionDocument)
     {
         //
     }
@@ -52,10 +52,10 @@ class DocumentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Documents  $documents
+     * @param  \App\AgentPositionTypeTransactionDocument  $agentPositionTypeTransactionDocument
      * @return \Illuminate\Http\Response
      */
-    public function edit(Documents $documents)
+    public function edit(AgentPositionTypeTransactionDocument $agentPositionTypeTransactionDocument)
     {
         //
     }
@@ -64,10 +64,10 @@ class DocumentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Documents  $documents
+     * @param  \App\AgentPositionTypeTransactionDocument  $agentPositionTypeTransactionDocument
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Documents $documents)
+    public function update(Request $request, AgentPositionTypeTransactionDocument $agentPositionTypeTransactionDocument)
     {
         //
     }
@@ -75,10 +75,10 @@ class DocumentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Documents  $documents
+     * @param  \App\AgentPositionTypeTransactionDocument  $agentPositionTypeTransactionDocument
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Documents $documents)
+    public function destroy(AgentPositionTypeTransactionDocument $agentPositionTypeTransactionDocument)
     {
         //
     }

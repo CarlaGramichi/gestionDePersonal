@@ -16,13 +16,11 @@ class CreateAgentPositionTypeTransactionsTable extends Migration
         Schema::create('agent_position_type_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('agent_position_type_id');
-            $table->unsignedBigInteger('transaction_status_id');
-            $table->string('file',120);
+            $table->string('file',120)->nullable();
             $table->string('procedure_number',120);
             $table->timestamps();
 
             $table->foreign('agent_position_type_id')->references('id')->on('agent_position_types');
-            $table->foreign('transaction_status_id')->references('id')->on('transaction_statuses');
         });
     }
 
