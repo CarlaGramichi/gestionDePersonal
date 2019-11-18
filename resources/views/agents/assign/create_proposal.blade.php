@@ -28,7 +28,6 @@
 
             <div class="row">
 
-
                 <div class="form-group col-sm-3">
                     {!! Form::label('year', 'Año') !!}
 

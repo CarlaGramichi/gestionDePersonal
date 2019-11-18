@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Agent;
 use App\AgentPositionType;
 use App\AgentPositionTypeTransaction;
+use App\AgentPositionTypeTransactionStatuses;
 use App\AgentSubject;
 use App\AgentSubjectSchedule;
 use App\Career;
@@ -63,8 +64,12 @@ class AgentAssignController extends Controller
             'position_type_id' => $positionType->id
         ]);
 
-        AgentPositionTypeTransaction::create([
+        $agentPositionTypeTransaction = AgentPositionTypeTransaction::create([
             'agent_position_type_id' => $agentPositionType->id
+        ]);
+
+        AgentPositionTypeTransactionStatuses::create([
+            'agent_position_type_transaction_id' => $agentPositionTypeTransaction->id
         ]);
 
         return redirect()->route('agents.proposals.pending')->with('success', "Propuesta asignada con éxito. Id de la operación <strong>{$agentPositionType->id}</strong>");
@@ -116,8 +121,12 @@ class AgentAssignController extends Controller
             'position_type_id' => $positionType->id
         ]);
 
-        AgentPositionTypeTransaction::create([
+        $agentPositionTypeTransaction = AgentPositionTypeTransaction::create([
             'agent_position_type_id' => $agentPositionType->id
+        ]);
+
+        AgentPositionTypeTransactionStatuses::create([
+            'agent_position_type_transaction_id' => $agentPositionTypeTransaction->id
         ]);
 
         $agentSubject = AgentSubject::create([

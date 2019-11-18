@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\AgentPositionType;
 use App\AgentPositionTypeTransaction;
+use App\AgentPositionTypeTransactionStatuses;
 use App\AgentProposal;
+use App\PositionDocument;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -13,14 +15,20 @@ class AgentProposalController extends Controller
 
     public function pending(Request $request)
     {
-        return AgentPositionTypeTransaction::with('status', 'agentPositionType')->get();
         if ($request->ajax()) {
             return Datatables::of(
-                AgentPositionTypeTransaction::with('agentPositionType')->get()
+                AgentPositionTypeTransaction::with('agentPositionType', 'statuses')->orderByDesc('created_at')->get()
             )->make(true);
         }
 
         return view('agents.proposals.pending');
+    }
+
+    public function documents(AgentPositionTypeTransaction $agentPositionTypeTransaction)
+    {
+        $documents = PositionDocument::where('position_id', $agentPositionTypeTransaction->agentPositionType->positionType->position->id)->with('document')->get();
+
+        return view('agents.proposals.documents', compact('documents', 'agentPositionTypeTransaction'));
     }
 
     /**
