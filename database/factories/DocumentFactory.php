@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Document::class, function (Faker $faker) {
     return [
         'name'          => $faker->sentence(4),
-        'auto_generate' => $faker->randomElement(['1', '0'])
+        'auto_generate' => $faker->randomElement(['1'])
     ];
 });

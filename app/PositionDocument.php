@@ -11,4 +11,8 @@ class PositionDocument extends Model
     public function document(){
         return $this->belongsTo(Document::class);
     }
+
+    public function uploadedDocument(){
+        return $this->belongsTo(AgentPositionTypeTransactionDocument::class,'document_id','document_id');
+    }
 }

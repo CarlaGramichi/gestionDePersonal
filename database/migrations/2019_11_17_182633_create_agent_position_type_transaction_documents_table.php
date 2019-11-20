@@ -17,6 +17,7 @@ class CreateAgentPositionTypeTransactionDocumentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('agent_position_type_transaction_id');
             $table->unsignedBigInteger('document_id');
+            $table->string('file',120);
             $table->timestamps();
 
             $table->foreign('agent_position_type_transaction_id','apttd_id')->references('id')->on('agent_position_type_transactions');

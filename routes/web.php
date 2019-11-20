@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('proposals', 'AgentProposalController@index')->name('proposals.index');
         Route::get('proposals/pending', 'AgentProposalController@pending')->name('proposals.pending');
         Route::get('proposals/{agent_position_type_transaction}/documents', 'AgentProposalController@documents')->name('proposals.{agent_position_type_transaction}.documents');
+        Route::post('proposals/{agent_position_type_transaction}/documents/upload', 'AgentProposalController@documentUpload')->name('proposals.{agent_position_type_transaction}.documents.upload');
 
         Route::resource('assign', AgentAssignController::class)->parameters([
             'assign' => 'agent'

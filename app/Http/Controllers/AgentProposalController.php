@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\AgentPositionType;
 use App\AgentPositionTypeTransaction;
+use App\AgentPositionTypeTransactionDocument;
 use App\AgentPositionTypeTransactionStatuses;
 use App\AgentProposal;
 use App\PositionDocument;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
 class AgentProposalController extends Controller
@@ -26,9 +29,32 @@ class AgentProposalController extends Controller
 
     public function documents(AgentPositionTypeTransaction $agentPositionTypeTransaction)
     {
-        $documents = PositionDocument::where('position_id', $agentPositionTypeTransaction->agentPositionType->positionType->position->id)->with('document')->get();
+        $documents = PositionDocument::with('document')
+            ->where('position_id', $agentPositionTypeTransaction->agentPositionType->positionType->position->id)
+            ->with([
+                'uploadedDocument' => function ($q) use ($agentPositionTypeTransaction) {
+                    $q->where('agent_position_type_transaction_id', $agentPositionTypeTransaction->id);
+                }])
+            ->get();
 
         return view('agents.proposals.documents', compact('documents', 'agentPositionTypeTransaction'));
+    }
+
+    public function documentUpload(AgentPositionTypeTransaction $agentPositionTypeTransaction, Request $request)
+    {
+        $request->validate([
+            'tmp_file' => 'required'
+        ]);
+
+        $path = Storage::disk('public_uploads')->put('agents/proposals/documents', $request->file('tmp_file'));
+
+        $request->request->add(['file' => $path]);
+        $request->request->add(['agent_position_type_transaction_id' => $agentPositionTypeTransaction->id]);
+
+        $agentPositionTypeTransactionDocument = AgentPositionTypeTransactionDocument::create($request->except(['tmp_file']));
+
+        return redirect()->back()->with('success', "Documento cargado correctamente. Id de la operación: <strong>{$agentPositionTypeTransactionDocument->id}</strong>");
+
     }
 
     /**
