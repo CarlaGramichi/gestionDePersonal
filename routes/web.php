@@ -89,14 +89,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('institutions', InstitutionController::class);
     /* ./POF */
 
+    /* Documents */
+
+    Route::resource('documents', DocumentController::class);
+
+    /* /.Documents */
+
     Route::get('/home', 'HomeController@index')->name('home');
 
     /* Licencias */
     Route::resource('license_codes', LicenseCodeController::class);
     Route::resource('license_codes_types', LicenseTypeController::class);
-
-
-
 
 
 });

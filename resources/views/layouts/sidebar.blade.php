@@ -204,6 +204,12 @@
 
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('documents.index') }}">
+                            <i class="nav-icon fa fa-file-archive"></i> Documentos
+                        </a>
+                    </li>
+
                     @role('superuser')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">
