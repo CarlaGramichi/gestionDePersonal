@@ -29,10 +29,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('assign/positions/{position}/types/{positionType}/agents/proposal', 'AgentAssignController@createProposal')->name('assign.positions.{position}.types.{positionType}.agents.proposal');
         Route::get('assign/positions/{position}/types/{positionType}/agents/{agent}/proposal/subject_schedule', 'AgentAssignController@setSubjectSchedule')->name('assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule');
         Route::post('assign/positions/{position}/types/{positionType}/agents/{agent}/proposal/subject_schedule/{subject}', 'AgentAssignController@store')->name('assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule.{subject}.store');
-        Route::get('proposals', 'AgentProposalController@index')->name('proposals.index');
-        Route::get('proposals/pending', 'AgentProposalController@pending')->name('proposals.pending');
-        Route::get('proposals/{agent_position_type_transaction}/documents', 'AgentProposalController@documents')->name('proposals.{agent_position_type_transaction}.documents');
-        Route::post('proposals/{agent_position_type_transaction}/documents/upload', 'AgentProposalController@documentUpload')->name('proposals.{agent_position_type_transaction}.documents.upload');
+//        Route::get('proposals', 'AgentProposalController@index')->name('proposals.index');
+        Route::get('proposals/pending', 'AgentProposalController@index')->name('proposals.pending');
+        Route::get('proposals/{agent_position_type_transaction}/documents', 'AgentProposalDocumentController@index')->name('proposals.{agent_position_type_transaction}.documents');
+        Route::post('proposals/{agent_position_type_transaction}/documents/upload', 'AgentProposalDocumentController@store')->name('proposals.{agent_position_type_transaction}.documents.upload');
+        Route::delete('proposals/{agent_position_type_transaction}/documents/{document}/destroy', 'AgentProposalDocumentController@destroy')->name('proposals.{agent_position_type_transaction}.documents.{document}.destroy');
+        Route::get('proposals/{agent_position_type_transaction}/documents/downloadAll', 'AgentProposalDocumentController@downloadAll')->name('proposals.{agent_position_type_transaction}.documents.downloadAll');
+        Route::put('proposals/{agent_position_type_transaction}/documents/finish', 'AgentProposalDocumentController@update')->name('proposals.{agent_position_type_transaction}.documents.finish');
+        Route::post('proposals/{agent_position_type_transaction}/file', 'AgentProposalController@storeFile')->name('proposals.{agent_position_type_transaction}.file');
+        Route::post('proposals/{agent_position_type_transaction}/procedureNumber', 'AgentProposalController@setProcedureNumber')->name('proposals.{agent_position_type_transaction}.procedureNumber');
 
         Route::resource('assign', AgentAssignController::class)->parameters([
             'assign' => 'agent'

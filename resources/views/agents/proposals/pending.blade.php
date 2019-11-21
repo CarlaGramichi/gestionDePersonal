@@ -27,6 +27,9 @@
         </thead>
     </table>
 
+    @include('agents.proposals.partials.proposal_file_modal')
+    @include('agents.proposals.partials.proposal_procedure_number_modal')
+
 @endsection
 
 @section('scripts')
@@ -36,6 +39,8 @@
         // let year_selector = $('select#year');
         let dataTable;
         let row;
+        let fileUploadModal = $('#file-upload-modal');
+        let procedureNumberModal = $('#procedure-number-modal');
 
         $(document).ready(function () {
 
@@ -81,6 +86,7 @@
 
                                 case 'pending':
                                     $(nTd).append(renderButton('Cargar expediente&emsp;<span class="fa fa-upload"></span>', 'file', 'warning'));
+                                    $(nTd).append(renderButton('Descargar todos los documentos&emsp;<span class="fa fa-download"></span>', 'downloadAllDocuments', 'info mt-1'));
                                     break;
 
                                 case 'sended':
@@ -101,6 +107,25 @@
                     let row = dataTable.row($(this).parents('tr')).data();
 
                     httpRedirect(`${baseUri}/agents/proposals/${row.id}/documents`);
+                })
+                .on('click', '.file', function () {
+                    let row = dataTable.row($(this).parents('tr')).data();
+
+                    fileUploadModal.find('form').attr('action', `${baseUri}/agents/proposals/${row.id}/file`);
+
+                    fileUploadModal.modal('show');
+                })
+                .on('click', '.procedure_number', function () {
+                    let row = dataTable.row($(this).parents('tr')).data();
+
+                    procedureNumberModal.find('form').attr('action', `${baseUri}/agents/proposals/${row.id}/procedureNumber`);
+
+                    procedureNumberModal.modal('show');
+                })
+                .on('click', '.downloadAllDocuments', function () {
+                    let row = dataTable.row($(this).parents('tr')).data();
+
+                    httpRedirect(`${baseUri}/agents/proposals/${row.id}/documents/downloadAll`);
                 })
         })
     </script>

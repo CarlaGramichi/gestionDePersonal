@@ -23,7 +23,7 @@ class AgentPositionTypeTransaction extends Model
 
     public function statuses()
     {
-        return $this->hasMany(AgentPositionTypeTransactionStatuses::class, 'agent_position_type_transaction_id')->with('status')->orderByDesc('created_at');
+        return $this->hasMany(AgentPositionTypeTransactionStatus::class, 'agent_position_type_transaction_id')->with('status')->orderByDesc('created_at');
     }
 
 }

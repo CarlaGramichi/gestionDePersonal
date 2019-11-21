@@ -21,15 +21,19 @@
         <li class="nav-item px-3">
             <a class="nav-link" href="{{ route('agents.assign.positions') }}">Asignar propuestas</a>
         </li>
+
+        <li class="nav-item px-3">
+            <a class="nav-link" href="{{ route('agents.proposals.pending') }}">Propuestas pendientes <span class="text-danger">({{ $pendingProposals }})</span></a>
+        </li>
     </ul>
 
     <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
-            <a class="nav-link" href="#">
-                <i class="icon-bell"></i>
-                <span class="badge badge-pill badge-danger">5</span>
-            </a>
-        </li>
+{{--        <li class="nav-item d-md-down-none">--}}
+{{--            <a class="nav-link" href="#">--}}
+{{--                <i class="icon-bell"></i>--}}
+{{--                <span class="badge badge-pill badge-danger">5</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
 
         <li class="nav-item dropdown">
 

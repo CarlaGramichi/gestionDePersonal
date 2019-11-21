@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Agent;
 use App\AgentPositionType;
 use App\AgentPositionTypeTransaction;
-use App\AgentPositionTypeTransactionStatuses;
+use App\AgentPositionTypeTransactionStatus;
 use App\AgentSubject;
 use App\AgentSubjectSchedule;
 use App\Career;
@@ -68,7 +68,7 @@ class AgentAssignController extends Controller
             'agent_position_type_id' => $agentPositionType->id
         ]);
 
-        AgentPositionTypeTransactionStatuses::create([
+        AgentPositionTypeTransactionStatus::create([
             'agent_position_type_transaction_id' => $agentPositionTypeTransaction->id
         ]);
 
@@ -125,7 +125,7 @@ class AgentAssignController extends Controller
             'agent_position_type_id' => $agentPositionType->id
         ]);
 
-        AgentPositionTypeTransactionStatuses::create([
+        AgentPositionTypeTransactionStatus::create([
             'agent_position_type_transaction_id' => $agentPositionTypeTransaction->id
         ]);
 

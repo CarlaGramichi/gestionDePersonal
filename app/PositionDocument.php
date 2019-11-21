@@ -9,7 +9,7 @@ class PositionDocument extends Model
     protected $guarded = [];
 
     public function document(){
-        return $this->belongsTo(Document::class);
+        return $this->belongsTo(Document::class)->distinct();
     }
 
     public function uploadedDocument(){

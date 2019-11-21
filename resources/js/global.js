@@ -172,3 +172,35 @@ function arrayRemove(array, element) {
     const index = array.indexOf(element);
     array.splice(index, 1);
 }
+
+function swalLoading(title, message) {
+    title = title || 'Procesando';
+    message = message || 'Por favor espere un momento...';
+
+    Swal.fire({
+        title: `${title}`,
+        html: `${message}`,
+        timer: 2000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+
+        },
+        onClose: () => {
+            // clearInterval(timerInterval)
+        }
+    }).then((result) => {
+
+    });
+}
+
+function swalAlert(title, message,type) {
+    title = title || 'Alerta';
+    message = message || 'Mensaje...';
+    type = type || 'success';
+    Swal.fire(
+        title,
+        message,
+        type
+    )
+}
