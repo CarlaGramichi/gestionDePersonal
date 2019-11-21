@@ -71,6 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::group(['prefix' => 'positions/{position}', 'as' => 'positions.{position}.'], function () {
             Route::resource('types', PositionTypeController::class);
+
+            Route::resource('documents', PositionDocumentController::class);
         });
     });
 
