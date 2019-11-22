@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use File;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Zip;
+//use Zip;
+use ZanySoft\Zip\Zip;
 
 class AgentProposalDocumentController extends Controller
 {
