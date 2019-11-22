@@ -65,7 +65,12 @@
                 ],
                 columns: [
                     {data: 'created_at', name: 'created_at'},
-                    {data: 'agent_position_type.agent.name', name: 'agent_position_type.agent.name'},
+                    {
+                        data: 'agent_position_type.agent.name', name: 'agent_position_type.agent.name',
+                        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html(`${oData.agent_position_type.agent.surname}, ${oData.agent_position_type.agent.name}`);
+                        }
+                    },
                     {
                         data: 'agent_position_type.position_type.position.year',
                         name: 'agent_position_type.position_type.position.year'
@@ -78,7 +83,7 @@
                     {
                         data: 'statuses.0.status.description', name: 'statuses.0.status.description',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html(`<strong>${oData.statuses[0].status.description} ${oData.procedure_number ? "- Nº de expediente:" + oData.procedure_number : ''}</strong>`);
+                            $(nTd).html(`<strong>${oData.statuses[0].status.description} ${oData.procedure_number ? "<br>Nº de expediente:" + oData.procedure_number : ''}</strong>`);
                         }
                     },
                     {
