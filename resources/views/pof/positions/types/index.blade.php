@@ -44,6 +44,7 @@
                 <th>Subcargo</th>
                 <th>Cantidad</th>
                 <th>Puntos</th>
+                <th>Tot. puntos</th>
                 <th class="text-center">Acciones</th>
             </tr>
             </thead>
@@ -79,6 +80,12 @@
                     {data: 'name', name: 'name'},
                     {data: 'quota', name: 'quota'},
                     {data: 'points', name: 'points'},
+                    {
+                        data: 'points', name: 'points',
+                        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                            $(nTd).html(oData.quota * oData.points);
+                        }
+                    },
                     {
                         data: '', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
