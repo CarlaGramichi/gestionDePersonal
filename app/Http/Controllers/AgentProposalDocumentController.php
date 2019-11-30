@@ -7,6 +7,7 @@ use App\AgentPositionTypeTransactionDocument;
 use App\AgentPositionTypeTransactionStatus;
 use App\PositionDocument;
 use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,7 @@ class AgentProposalDocumentController extends Controller
      * Display a listing of the resource.
      *
      * @param AgentPositionTypeTransaction $agentPositionTypeTransaction
-     * @return Response
+     * @return Factory|\Illuminate\View\View
      */
     public function index(AgentPositionTypeTransaction $agentPositionTypeTransaction)
     {

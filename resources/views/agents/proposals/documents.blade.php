@@ -40,40 +40,44 @@
 
                 <tbody>
                 @foreach($documents as $document)
-                    <tr>
-                        <td>{{ $document->document->name }}</td>
-                        <td>{{ $document->uploadedDocument ?  $document->uploadedDocument->created_at->format('d/m/Y H:i') : '-'}}</td>
-                        <td class="text-center">{!! $document->uploadedDocument ?  "<a href='".asset("uploads/{$document->uploadedDocument->file}")."' target='_blank' download class='btn btn-sm btn-info'>Descargar&emsp;<span class='fa fa-download'></span></a>" : '-' !!}</td>
-                        <td>
-                            @if($document->document->auto_generate)
-                                <button type="button" class="btn btn-warning btn-sm btn-block"
-                                        data-document_id="{{ $document->document->id }}">
-                                    Descargar copia&emsp;<span class="fa fa-download"></span>
-                                </button>
-                            @elseif($document->uploadedDocument)
-                                {{--                                <button type="button" class="btn btn-warning btn-sm btn-block" data-toggle="modal"--}}
-                                {{--                                        data-target="#document-upload-modal"--}}
-                                {{--                                        data-document_id="{{ $document->document->id }}">--}}
-                                {{--                                    Actualizar documento&emsp;<span class="fa fa-upload"></span>--}}
-                                {{--                                </button>--}}
-
-                                <form action="{{ route('agents.proposals.{agent_position_type_transaction}.documents.{document}.destroy',['agent_position_type_transaction'=>$agentPositionTypeTransaction->id,'document'=>$document->uploadedDocument->id]) }}"
-                                      method="POST">
-                                    {{ method_field('DELETE') }}
-                                    @csrf
-                                    <button type="button" class="btn btn-danger btn-sm btn-block destroy-document mt-1">
-                                        Eliminar documento&emsp;<span class="fa fa-trash"></span>
+                    @if($document->document)
+                        <tr>
+                            <td>{{ $document->document->name }}</td>
+                            <td>{{ $document->uploadedDocument ?  $document->uploadedDocument->created_at->format('d/m/Y H:i') : '-'}}</td>
+                            <td class="text-center">{!! $document->uploadedDocument ?  "<a href='".asset("uploads/{$document->uploadedDocument->file}")."' target='_blank' download class='btn btn-sm btn-info'>Descargar&emsp;<span class='fa fa-download'></span></a>" : '-' !!}</td>
+                            <td>
+                                @if($document->document->auto_generate)
+                                    <button type="button" class="btn btn-warning btn-sm btn-block"
+                                            data-document_id="{{ $document->document->id }}">
+                                        Descargar copia&emsp;<span class="fa fa-download"></span>
                                     </button>
-                                </form>
-                            @else
-                                <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
-                                        data-target="#document-upload-modal"
-                                        data-document_id="{{ $document->document->id }}">
-                                    Cargar documento&emsp;<span class="fa fa-upload"></span>
-                                </button>
-                            @endif
-                        </td>
-                    </tr>
+                                @elseif($document->uploadedDocument)
+                                    {{--                                <button type="button" class="btn btn-warning btn-sm btn-block" data-toggle="modal"--}}
+                                    {{--                                        data-target="#document-upload-modal"--}}
+                                    {{--                                        data-document_id="{{ $document->document->id }}">--}}
+                                    {{--                                    Actualizar documento&emsp;<span class="fa fa-upload"></span>--}}
+                                    {{--                                </button>--}}
+
+                                    <form
+                                        action="{{ route('agents.proposals.{agent_position_type_transaction}.documents.{document}.destroy',['agent_position_type_transaction'=>$agentPositionTypeTransaction->id,'document'=>$document->uploadedDocument->id]) }}"
+                                        method="POST">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button type="button"
+                                                class="btn btn-danger btn-sm btn-block destroy-document mt-1">
+                                            Eliminar documento&emsp;<span class="fa fa-trash"></span>
+                                        </button>
+                                    </form>
+                                @else
+                                    <button type="button" class="btn btn-primary btn-sm btn-block" data-toggle="modal"
+                                            data-target="#document-upload-modal"
+                                            data-document_id="{{ $document->document->id }}">
+                                        Cargar documento&emsp;<span class="fa fa-upload"></span>
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -91,10 +95,12 @@
         @endif
 
         <a href="{{ route('agents.proposals.pending')  }}" class="btn btn-dark float-left"><span
-                    class="fa fa-arrow-left"></span>&emsp;Volver</a>
+                class="fa fa-arrow-left"></span>&emsp;Volver</a>
 
         @if($uploaded_documents == count($documents))
-            <form action="{{ route('agents.proposals.{agent_position_type_transaction}.documents.finish',['agent_position_type_transaction'=>$agentPositionTypeTransaction->id]) }}" method="post">
+            <form
+                action="{{ route('agents.proposals.{agent_position_type_transaction}.documents.finish',['agent_position_type_transaction'=>$agentPositionTypeTransaction->id]) }}"
+                method="post">
                 @csrf
                 {{ method_field('PUT') }}
                 <button type="button" class="btn btn-primary float-right finish-upload">
