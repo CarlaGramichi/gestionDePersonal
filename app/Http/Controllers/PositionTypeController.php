@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\AgentPositionType;
 use App\Position;
 use App\PositionType;
 use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 
 class PositionTypeController extends Controller
@@ -16,7 +21,7 @@ class PositionTypeController extends Controller
      *
      * @param Position $position
      * @param Request $request
-     * @return Response
+     * @return Factory|View
      * @throws Exception
      */
     public function index(Position $position, Request $request)
@@ -33,7 +38,7 @@ class PositionTypeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create(Position $position)
     {
@@ -43,8 +48,9 @@ class PositionTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Position $position
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Position $position, Request $request)
     {
@@ -62,11 +68,31 @@ class PositionTypeController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param Position $position
+     * @param PositionType $type
+     * @return array
+     */
+    public function show(Position $position, PositionType $type, Request $request)
+    {
+        if ($request->ajax()) {
+            $used = AgentPositionType::where('position_type_id', $type->id)->count();
+            return [
+                'position_type' => $type->makeHidden(['id', 'created_at', 'is_deleted', 'updated_at']),
+                'used'          => $used,
+                'available'     => $type->quota - $used
+            ];
+        }
+
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param Position $position
      * @param PositionType $type
-     * @return Response
+     * @return Factory|View
      */
     public function edit(Position $position, PositionType $type)
     {
@@ -79,7 +105,7 @@ class PositionTypeController extends Controller
      * @param Position $position
      * @param PositionType $type
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function update(Position $position, PositionType $type, Request $request)
     {
@@ -101,7 +127,7 @@ class PositionTypeController extends Controller
      *
      * @param Position $position
      * @param PositionType $type
-     * @return Response
+     * @return JsonResponse
      */
     public function destroy(Position $position, PositionType $type)
     {
