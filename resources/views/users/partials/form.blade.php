@@ -124,7 +124,7 @@
 
                         $.each(response.agent, function (field, value) {
                             user_data_container.find('.user-data').append(`
-                                <div class="col-sm-6"><p><span>${field}: </span><strong>${value}</strong></p></div>
+                                <div class="col-sm-6"><p><span>${agentFields[field]}: </span><strong>${value}</strong></p></div>
                             `);
                         })
                     }

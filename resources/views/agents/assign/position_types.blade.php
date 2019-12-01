@@ -65,7 +65,9 @@
 
         $(document).ready(function () {
             positionType.change(function () {
-                findPositionType($(this).val());
+                if ($(this).find(':selected').text().toLowerCase() !== 'docente') {
+                    findPositionType($(this).val());
+                }
             });
         });
 
@@ -79,19 +81,20 @@
                 beforeSend: function () {
                     positionTypeDataContainer.addClass('d-none');
                     positionTypeDataContainer.find('.position-type-data').empty();
+                    form.find('[type=submit]').prop('disabled', false);
                 },
                 success: function (response) {
                     if (response.position_type) {
                         positionTypeDataContainer.removeClass('d-none');
 
-                        if(response.available == 0){
+                        if (response.available == 0) {
                             positionTypeDataContainer.find('.position-type-data').prepend(`<div class="col-sm-12">
                                         <div class="alert alert-danger">
                                             <p><span class="fa fa-info-circle"></span>&emsp;No quedan cupos disponibles para el subcargo seleccionado.</p>
                                         </div>
                                     </div>`);
 
-                            form.find('')
+                            form.find('[type=submit]').prop('disabled', true);
                         }
 
                         positionTypeDataContainer.find('.position-type-data').append(`
