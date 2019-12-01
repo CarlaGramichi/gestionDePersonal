@@ -10,7 +10,20 @@ let week_days = {
     6: 'Sábado',
     7: 'Domingo',
 };
-
+let agentFields = {
+    'name': 'Nombre',
+    'surname': 'Apellido',
+    'dni': 'D.N.I.',
+    'cuil': 'CUIL',
+    'born_date': 'Fecha de nacimiento',
+    'email': 'E-mail',
+    'phone': 'Teléfono',
+    'cellphone': 'Celular',
+    'address': 'Dirección',
+    'city': 'Ciudad',
+    'state': 'Provincia',
+    'country': 'País',
+};
 
 $(document).ready(function () {
 
@@ -194,7 +207,7 @@ function swalLoading(title, message) {
     });
 }
 
-function swalAlert(title, message,type) {
+function swalAlert(title, message, type) {
     title = title || 'Alerta';
     message = message || 'Mensaje...';
     type = type || 'success';
@@ -205,15 +218,15 @@ function swalAlert(title, message,type) {
     )
 }
 
-$(".allow-numeric-with-decimal").on("keypress keyup blur",function (event) {
+$(".allow-numeric-with-decimal").on("keypress keyup blur", function (event) {
     //this.value = this.value.replace(/[^0-9\.]/g,'');
-    $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+    $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
     if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
         event.preventDefault();
     }
 });
 
-$(".allow-numeric-without-decimal").on("keypress keyup blur",function (event) {
+$(".allow-numeric-without-decimal").on("keypress keyup blur", function (event) {
     $(this).val($(this).val().replace(/[^\d].+/, ""));
     if ((event.which < 48 || event.which > 57)) {
         event.preventDefault();

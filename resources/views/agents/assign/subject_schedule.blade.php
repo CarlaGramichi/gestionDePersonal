@@ -16,8 +16,6 @@
 
 @section('content')
 
-
-
     @include('agents.assign.partials.positions')
 
     @include('agents.assign.partials.agent')

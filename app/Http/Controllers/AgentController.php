@@ -9,6 +9,7 @@ use App\Relationship;
 use App\Status;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -83,10 +84,14 @@ class AgentController extends Controller
 
         return view('agents.register.index', compact('agent'));
 
-
     }
 
 
+    /**
+     * @param Agent $agent
+     * @param Request $request
+     * @return Agent|JsonResponse
+     */
     public function show(Agent $agent, Request $request)
     {
         if ($request->ajax()) {
