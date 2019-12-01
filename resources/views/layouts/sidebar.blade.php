@@ -196,7 +196,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('license_codes.index') }}">
+                                <a class="nav-link" href="{{ route('license_officer.index') }}">
                                     • Funcionarios
                                 </a>
                             </li>

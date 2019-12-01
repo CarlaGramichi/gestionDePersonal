@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\LicenseOfficer;
+use App\LicenseType;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LicenseOfficerController extends Controller
 {
@@ -12,9 +14,15 @@ class LicenseOfficerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            return Datatables::of(
+                LicenseOfficer::where('is_deleted', '0')->get()
+            )->make(true);
+        }
+        return view('license_codes.officers.index');
+
     }
 
     /**
@@ -24,7 +32,8 @@ class LicenseOfficerController extends Controller
      */
     public function create()
     {
-        //
+        return view('license_codes.officers.create');
+
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\LicenseType;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LicenseTypeController extends Controller
 {
@@ -12,8 +14,13 @@ class LicenseTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            return Datatables::of(
+                LicenseType::where('is_deleted', '0')->get()
+            )->make(true);
+        }
         return view('license_codes.types.index');
     }
 

@@ -6,8 +6,8 @@
 
 @section('breadcrumbs')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Licencias</li>
-        <li class="breadcrumb-item">Tipos</li>
+        <li class="breadcrumb-item">Códigos de Licencias</li>
+        <li class="breadcrumb-item">Funcionarios</li>
     </ol>
 @endsection
 
@@ -20,7 +20,7 @@
         <div class="form-group col-sm-4 float-right text-right">
             <label>&nbsp;</label>
             <div class="clearfix"></div>
-            <a href="{{ route('license_codes_types.create') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('license_officer.create') }}" class="btn btn-success btn-lg">
                 Nuevo&emsp;<span class="fa fa-plus"></span>
             </a>
         </div>
@@ -31,7 +31,7 @@
         <table class="table table-bordered table-striped" id="table">
             <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th class="text-center" width="250">Acciones</th>
             </tr>
@@ -52,7 +52,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!! route('license_codes_types.index') !!}'
+                    url: '{!! route('license_codes.index') !!}'
 
                 },
                 columnDefs: [
@@ -65,7 +65,7 @@
                 ],
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
+                    {data: 'license_type.name', name: 'license_type_id'},
                     {
                         data: '', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
@@ -79,17 +79,17 @@
                 .on('click', '.edit', function () {
                     let row = dataTable.row($(this).parents('tr')).data();
 
-                    httpRedirect(`license_codes_types/${row.id}/edit`);
+                    httpRedirect(`license_officer/${row.id}/edit`);
                 })
                 .on('click', '.remove', function () {
                     let row = dataTable.row($(this).parents('tr')).data();
 
                     tableRemove(
-                        `license_codes_types/${row.id}`,
+                        `license_officer/${row.id}`,
                         {},
                         '{{csrf_token()}}',
-                        `Eliminar código ${row.code}`,
-                        `Está por eliminar el código de licencia ${row.code}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
+                        `Eliminar funcionario ${row.id}`,
+                        `Está por eliminar el funcionario ${row.id}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
                         dataTable,
                     );
                 });
