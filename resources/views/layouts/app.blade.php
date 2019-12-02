@@ -13,7 +13,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
     @yield('stylesheets')
 </head>
@@ -58,6 +58,7 @@
 
 <!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
+<link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 @yield('scripts')
 <script src="{{ mix('js/global.js') }}"></script>
