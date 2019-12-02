@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\LicenseOfficer;
 use App\LicenseType;
+use App\Position;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -32,7 +33,7 @@ class LicenseOfficerController extends Controller
      */
     public function create()
     {
-        return view('license_codes.officers.create');
+        return view('license_codes.officers.create  ');
 
     }
 
@@ -44,7 +45,13 @@ class LicenseOfficerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $license_officer = LicenseOfficer::create($request->all());
+
+        return redirect()->route('license_officer.index')->with("success", "Tipo de Funcionario fue creado correctamente. Id de la operación: <strong>{$license_officer->id}</strong>");
     }
 
     /**

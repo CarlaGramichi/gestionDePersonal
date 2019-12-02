@@ -15,7 +15,7 @@
 @section('content')
     @include('partials.alerts')
 
-    {!! Form::open(['route' => 'license_codes.store']) !!}
+    {!! Form::open(['route' => 'license_codes_types.store']) !!}
 
     <div class="card">
 
@@ -28,7 +28,7 @@
                 @include('license_codes.types.partials.form')
             </div>
 
-            <a href="{{ route('license_codes.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span class="fa fa-times"></span></a>
+            <a href="{{ route('license_codes_types.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span class="fa fa-times"></span></a>
             <button type="submit" class="btn btn-primary float-right ">
                 Guardar <span class="fa fa-save"></span>
             </button>

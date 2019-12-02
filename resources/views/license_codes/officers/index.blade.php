@@ -52,7 +52,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{!! route('license_codes.index') !!}'
+                    url: '{!! route('license_officer.index') !!}'
 
                 },
                 columnDefs: [
@@ -65,7 +65,7 @@
                 ],
                 columns: [
                     {data: 'id', name: 'id'},
-                    {data: 'license_type.name', name: 'license_type_id'},
+                    {data: 'name', name: 'name'},
                     {
                         data: '', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
