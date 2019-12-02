@@ -2,6 +2,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.css">
 @endsection
 
 @section('breadcrumbs')
@@ -95,17 +96,34 @@
         </div>
 
         <div class="card-body table-responsive">
+
+            <div class="alert alert-warning">
+                <p>
+                    <span class="fa fa-info-circle"></span>&emsp;
+                    La suma de horas totales debe ser igual a la cantidad de horas cátedra de la asignatura para poder
+                    continuar.
+                </p>
+            </div>
             <table class="table table-striped table-bordered table-hover table-sm schedules-table">
                 <thead class="thead-dark">
                 <tr>
                     <th>Día</th>
                     <th>Horario de inicio</th>
                     <th>Horario de fin</th>
+                    <th>Horas</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 </tbody>
+
+                <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Horas totales</strong></td>
+                    <td class="text-center total-hours"></td>
+                    <td></td>
+                </tr>
+                </tfoot>
             </table>
         </div>
     </div>
@@ -114,7 +132,7 @@
 
         <a href="{{ url()->previous()  }}" class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
 
-        <button type="submit" class="btn btn-primary float-right">
+        <button type="submit" class="btn btn-primary float-right" disabled>
             Continuar&emsp;<span class="fa fa-arrow-right"></span>
         </button>
 
@@ -129,10 +147,14 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/inputmask/inputmask.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.js"></script>
     <script>
         let schedulesForm = $('.schedules-form');
         let addSchedulesForm = $('.add-schedules-form');
         let schedulesTable = $('.schedules-table');
+        let hours = '{{ $subject->hours }}';
+        let matchingHours = false;
+
         let schedules = [];
 
         $(document).ready(function () {
@@ -144,13 +166,21 @@
                 timePickerIncrement: 1,
                 timePickerSeconds: false,
                 locale: {
-                    format: 'HH:mm'
+                    format: 'HH:mm',
+                    applyLabel: "Seleccionar",
+                    cancelLabel: "Cancelar",
                 }
             }).on('show.daterangepicker', function (ev, picker) {
                 picker.container.find(".calendar-table").hide();
             });
 
             schedulesForm.submit(function () {
+                if(!matchingHours){
+                    swalAlert('¡Error!','La sumatoria de horas totales debe ser igual al total de horas cátedra de la asignatura selecionada.','error');
+
+                    return false;
+                }
+
                 $.each(schedules, function (index, schedule) {
                     $.each(schedule, function (name, value) {
                         schedulesForm.append(`<input type="hidden" name="${name}[]" value="${value}">`);
@@ -162,25 +192,58 @@
                 e.preventDefault();
 
                 let schedule = $(this).serializeObject();
-
                 let lastIndex = schedules.push(schedule) - 1;
 
                 schedulesTable.find('tbody').append(`
                     <tr>
                         <td>${week_days[schedule.day]}</td>
-                        <td>${schedule.start_time}</td>
-                        <td>${schedule.end_time}</td>
+                        <td class="text-center">${schedule.start_time}</td>
+                        <td class="text-center">${schedule.end_time}</td>
+                        <td  class="text-center">${dateDifference(schedule.start_time, schedule.end_time)}</td>
                         <td class="text-center"><button type="button" class="btn btn-danger btn-sm remove-schedule" title="Eliminar horario" data-index="${lastIndex}"><span class="fa fa-trash"></span></button></td>
                     </tr>
                 `);
+
+                addSchedulesForm.find('[name=day]').val('');
+                addSchedulesForm.find('[name=start_time]').val('08:00');
+                addSchedulesForm.find('[name=end_time]').val('12:00');
+
+                calculateTotalHours();
             });
 
             schedulesTable.on('click', '.remove-schedule', function () {
                 delete schedules[$(this).data('index')];
 
                 $(this).parents('tr').remove();
+
+                calculateTotalHours();
             });
 
         });
+
+        function calculateTotalHours() {
+            let maxHours = moment.utc(hours, "HH:mm");
+            let addedHours = moment.utc('00:00', "HH:mm");
+            let dateDiff = dateDifference('00:00', '00:00');
+            matchingHours = false;
+
+            schedulesForm.find('button[type=submit]').prop('disabled', true);
+
+            $.each(schedules, function (index, schedule) {
+                if (schedule) {
+                    dateDiff = dateDifference(schedule.start_time, schedule.end_time);
+
+                    addedHours = addedHours.add(moment.duration(dateDiff)._milliseconds, 'ms');
+                }
+            });
+
+            schedulesTable.find('tfoot .total-hours').text(addedHours.format('HH:mm'));
+
+            if (addedHours.format('HH:mm') === maxHours.format('HH:mm')) {
+                schedulesForm.find('button[type=submit]').prop('disabled', false);
+
+                matchingHours = true;
+            }
+        }
     </script>
 @endsection

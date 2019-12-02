@@ -35,7 +35,8 @@ $(document).ready(function () {
 $.extend($.fn.dataTable.defaults, {
     language: {
         url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-    }
+    },
+    bAutoWidth: false
 });
 
 function httpRedirect(url) {
@@ -232,3 +233,12 @@ $(".allow-numeric-without-decimal").on("keypress keyup blur", function (event) {
         event.preventDefault();
     }
 });
+
+function dateDifference(startTime, endTime) {
+    let start = moment.utc(startTime, "HH:mm");
+    let end = moment.utc(endTime, "HH:mm");
+
+    let difference = moment.duration(end.diff(start));
+
+    return moment.utc(+difference).format('H:mm');
+}
