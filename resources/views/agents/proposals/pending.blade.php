@@ -16,7 +16,8 @@
     <table class="table table-bordered table-striped" id="table">
         <thead class="thead-dark">
         <tr>
-            <th>Fecha</th>
+            <th>Fecha de incio</th>
+            <th>Fecha de alta</th>
             <th>Agente</th>
             <th>Año</th>
             <th>Cargo</th>
@@ -65,6 +66,7 @@
                 ],
                 columns: [
                     {data: 'created_at', name: 'created_at'},
+                    {data: 'agent_position_type.start_date', name: 'agent_position_type.start_date'},
                     {
                         data: 'agent_position_type.agent.name', name: 'agent_position_type.agent.name',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {

@@ -98,7 +98,7 @@ class AgentController extends Controller
             return response()->json(['agent' => $agent->setHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id'])]);
         }
 
-        return $agent->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);
+        return $agent->orderBy('surname','name')->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);
     }
 
 

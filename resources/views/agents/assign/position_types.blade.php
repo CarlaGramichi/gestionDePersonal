@@ -87,7 +87,7 @@
                     if (response.position_type) {
                         positionTypeDataContainer.removeClass('d-none');
 
-                        if (response.available == 0) {
+                        if (response.available <= 0) {
                             positionTypeDataContainer.find('.position-type-data').prepend(`<div class="col-sm-12">
                                         <div class="alert alert-danger">
                                             <p><span class="fa fa-info-circle"></span>&emsp;No quedan cupos disponibles para el subcargo seleccionado.</p>

@@ -44,7 +44,7 @@ class AgentAssignController extends Controller
     {
         $positionType = PositionType::where([['is_deleted', '0'], ['id', $request->position_type_id]])->first();
 
-        $agents = Agent::where('is_deleted', '0')->get();
+        $agents = Agent::where('is_deleted', '0')->orderBy('surname')->orderBy('name')->get();
 
         return view('agents.assign.agent', compact('position', 'positionType', 'agents'));
     }
@@ -61,7 +61,8 @@ class AgentAssignController extends Controller
 
         $agentPositionType = AgentPositionType::create([
             'agent_id'         => $request->agent_id,
-            'position_type_id' => $positionType->id
+            'position_type_id' => $positionType->id,
+            'start_date'       => $request->start_date,
         ]);
 
         $agentPositionTypeTransaction = AgentPositionTypeTransaction::create([
@@ -118,7 +119,8 @@ class AgentAssignController extends Controller
     {
         $agentPositionType = AgentPositionType::create([
             'agent_id'         => $agent->id,
-            'position_type_id' => $positionType->id
+            'position_type_id' => $positionType->id,
+            'start_date' => $request->start_date
         ]);
 
         $agentPositionTypeTransaction = AgentPositionTypeTransaction::create([

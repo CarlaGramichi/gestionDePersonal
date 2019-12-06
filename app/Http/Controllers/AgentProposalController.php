@@ -9,11 +9,13 @@ use App\AgentPositionTypeTransactionStatus;
 use App\AgentProposal;
 use App\PositionDocument;
 use Exception;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Yajra\DataTables\DataTables;
 use Zip;
 use File;
@@ -26,7 +28,7 @@ class AgentProposalController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return Response
+     * @return Factory|View
      * @throws Exception
      */
     public function index(Request $request)
@@ -61,13 +63,14 @@ class AgentProposalController extends Controller
         return redirect()->back()->with('success', 'Expediente cargado con éxito.');
     }
 
-    public function setProcedureNumber(AgentPositionTypeTransaction $agentPositionTypeTransaction, Request $request){
+    public function setProcedureNumber(AgentPositionTypeTransaction $agentPositionTypeTransaction, Request $request)
+    {
         $request->validate([
             'procedure_number' => 'required'
         ]);
 
         $agentPositionTypeTransaction->update([
-            'procedure_number'=>$request->procedure_number,
+            'procedure_number' => $request->procedure_number,
         ]);
 
         AgentPositionTypeTransactionStatus::create([

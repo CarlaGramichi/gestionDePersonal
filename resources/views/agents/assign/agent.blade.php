@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
+@endsection
+
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Agentes</li>
@@ -37,7 +42,7 @@
 
                 <div class="form-group col-sm-4">
                     {!! Form::label('agent_id', 'Agente') !!}
-                    <select name="agent_id" id="agent_id" class="form-control" required>
+                    <select name="agent_id" id="agent_id" class="form-control select2" required>
                         <option value="">Seleccionar</option>
 
                         @foreach($agents as $a)
@@ -55,13 +60,37 @@
 
     @include('agents.assign.partials.agent')
 
+    @if(strtolower($positionType->name) != 'docente')
+        <div class="card">
+
+            <div class="card-header">
+                <strong>Seleccionar fecha de alta</strong>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="form-group col-sm-4 float-right">
+                        {!! Form::label('date', 'Fecha de alta') !!}
+
+                        {!! Form::text('date', null, ['class' => 'form-control date-range-picker date-mask', 'data-field'=>'start_date', 'required']) !!}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    @endif
+
     <div class="mb-5 mt-5 overflow-hidden">
 
         <a href="{{ route('agents.assign.positions.types',['position_id'=>$position->id])  }}"
            class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
 
         <button type="submit" class="btn btn-primary float-right">Continuar&emsp;<span
-                    class="fa fa-arrow-right"></span></button>
+                class="fa fa-arrow-right"></span></button>
 
     </div>
 
@@ -70,11 +99,17 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/inputmask/inputmask.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script>
         let agent_id = $('select#agent_id');
         let user_data_container = $('div.user-data-container');
 
         $(document).ready(function () {
+            $('.select2').select2();
+
             agent_id.change(function () {
                 user_data_container.addClass('d-none');
                 if ($(this).val()) {

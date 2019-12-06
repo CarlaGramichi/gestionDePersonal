@@ -234,7 +234,7 @@
                     subject_data_container.find('.subject-data').empty();
                 },
                 success: function (response) {
-                    if(response){
+                    if (response) {
                         subject_data_container.removeClass('d-none');
                         subject_data_container.find('.subject-data').html(`
                             <div class="col-sm-4"><p><span>Nombre: </span><strong>${response.name}</strong></p></div>

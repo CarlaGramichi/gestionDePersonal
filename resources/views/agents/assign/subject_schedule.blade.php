@@ -128,6 +128,28 @@
         </div>
     </div>
 
+    <div class="card">
+
+        <div class="card-header">
+            <strong>Seleccionar fecha de alta</strong>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="form-group col-sm-4 float-right">
+                    {!! Form::label('date', 'Fecha de alta') !!}
+
+                    {!! Form::text('date', null, ['class' => 'form-control date-range-picker date-mask', 'data-field'=>'start_date', 'required']) !!}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     <div class="mb-5 mt-5 overflow-hidden">
 
         <a href="{{ url()->previous()  }}" class="btn btn-danger float-left"><span class="fa fa-arrow-left"></span>&emsp;Volver</a>
