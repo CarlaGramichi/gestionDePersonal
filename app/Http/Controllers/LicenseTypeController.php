@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\LicenseType;
+use App\Position;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class LicenseTypeController extends Controller
 {
@@ -12,8 +15,13 @@ class LicenseTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            return Datatables::of(
+                LicenseType::where('is_deleted', '0')->get()
+            )->make(true);
+        }
         return view('license_codes.types.index');
     }
 
@@ -35,7 +43,13 @@ class LicenseTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $type= LicenseType::create($request->all());
+
+        return redirect()->route('license_codes_types.index')->with("success", "Cargo cargado correctamente. Id de la operación: <strong>{$type->id}</strong>");
     }
 
     /**
@@ -69,7 +83,7 @@ class LicenseTypeController extends Controller
      */
     public function update(Request $request, LicenseType $licenceType)
     {
-        //
+
     }
 
     /**

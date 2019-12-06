@@ -7,7 +7,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Códigos de Licencia</li>
-        <li class="breadcrumb-item">Dar de alta un código</li>
+        <li class="breadcrumb-item">Dar de alta un có digo</li>
     </ol>
 @endsection
 

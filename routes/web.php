@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
     /* Licencias */
     Route::resource('license_codes', LicenseCodeController::class);
     Route::resource('license_codes_types', LicenseTypeController::class);
+    Route::resource('license_officer', LicenseOfficerController::class);
 
 
 });

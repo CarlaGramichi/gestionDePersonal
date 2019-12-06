@@ -7,7 +7,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Códigos de Licencias</li>
-        <li class="breadcrumb-item">Editar un tipo de licencia</li>
+        <li class="breadcrumb-item">Editar un funcionario</li>
     </ol>
 @endsection
 
@@ -15,7 +15,7 @@
 
     @include('partials.alerts')
 
-    {!! Form::model($licenseCode,['route' => ['license_codes_types.update', $licenseCode->id], 'method' => 'PUT']) !!}
+    {!! Form::model($licenseCode,['route' => ['license_codes.update', $licenseCode->id], 'method' => 'PUT']) !!}
     <div class="card">
 
         <div class="card-header">
@@ -25,11 +25,11 @@
         <div class="card-body">
             <div class="row">
 
-                @include('license_codes.types.partials.form')
+                @include('license_codes.partials.form')
 
             </div>
 
-            <a href="{{ route('license_codes_types.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span
+            <a href="{{ route('license_codes.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span
                         class="fa fa-times"></span></a>
 
             <button type="submit" class="btn btn-primary float-right">Actualizar&emsp;<span class="fa fa-save"></span>
