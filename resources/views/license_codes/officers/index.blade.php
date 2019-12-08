@@ -88,8 +88,8 @@
                         `license_officer/${row.id}`,
                         {},
                         '{{csrf_token()}}',
-                        `Eliminar funcionario ${row.id}`,
-                        `Está por eliminar el funcionario ${row.id}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
+                        `Eliminar funcionario ${row.name}`,
+                        `Está por eliminar el funcionario ${row.name}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
                         dataTable,
                     );
                 });

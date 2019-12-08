@@ -15,21 +15,21 @@
 
     @include('partials.alerts')
 
-    {!! Form::model($licenseCode,['route' => ['license_codes.update', $licenseCode->id], 'method' => 'PUT']) !!}
+    {!! Form::model($licenseOfficer,['route' => ['license_officer.update', $licenseOfficer->id], 'method' => 'PUT']) !!}
     <div class="card">
 
         <div class="card-header">
-            <strong>Actualizar los datos del código</strong>
+            <strong>Actualizar los datos del funcionario</strong>
         </div>
 
         <div class="card-body">
             <div class="row">
 
-                @include('license_codes.partials.form')
+                @include('license_codes.officers.partials.form')
 
             </div>
 
-            <a href="{{ route('license_codes.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span
+            <a href="{{ route('license_officer.index') }}" class="btn btn-danger float-left">Cancelar&emsp;<span
                         class="fa fa-times"></span></a>
 
             <button type="submit" class="btn btn-primary float-right">Actualizar&emsp;<span class="fa fa-save"></span>
