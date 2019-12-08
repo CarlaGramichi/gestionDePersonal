@@ -15,7 +15,9 @@
 
     @include('partials.alerts')
 
-    {!! Form::model($licenseCode,['route' => ['license_codes_types.update', $licenseCode->id], 'method' => 'PUT']) !!}
+
+    {!! Form::model($licenseCodesType,['route' => ['license_codes_types.update', $licenseCodesType->id], 'method' => 'PUT']) !!}
+
     <div class="card">
 
         <div class="card-header">

@@ -88,8 +88,8 @@
                         `license_codes_types/${row.id}`,
                         {},
                         '{{csrf_token()}}',
-                        `Eliminar código ${row.code}`,
-                        `Está por eliminar el código de licencia ${row.code}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
+                        `Eliminar tipo de licencia ${row.name}`,
+                        `Está por eliminar el tipo de licencia ${row.name}<br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
                         dataTable,
                     );
                 });
