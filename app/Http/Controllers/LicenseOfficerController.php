@@ -71,9 +71,11 @@ class LicenseOfficerController extends Controller
      * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenseOfficer $licenceOfficer)
+    public function edit(LicenseOfficer $licenseOfficer)
+
     {
-        //
+        //return($licenseOfficer);
+        return view('license_codes.officers.edit', compact('licenseOfficer'));
     }
 
     /**
@@ -83,9 +85,14 @@ class LicenseOfficerController extends Controller
      * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenseOfficer $licenceOfficer)
+    public function update(Request $request, LicenseOfficer $licenseOfficer)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $licenseOfficer->update($request->all());
+        return redirect()->route('license_officer.index')->with("success", "El funcionario <strong>{$licenseOfficer->name}</strong> fue actualizado correctamente.");
     }
 
     /**
@@ -94,8 +101,10 @@ class LicenseOfficerController extends Controller
      * @param  \App\LicenseOfficer  $licenceOfficer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenseOfficer $licenceOfficer)
+    public function destroy(LicenseOfficer $licenseOfficer)
     {
-        //
+        $licenseOfficer->update(['is_deleted' => '1']);
+
+        return response()->json(['response' => true, 'message' => 'Funcionario eliminado con éxito.']);
     }
 }

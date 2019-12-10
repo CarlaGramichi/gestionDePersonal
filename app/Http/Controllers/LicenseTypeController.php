@@ -60,7 +60,6 @@ class LicenseTypeController extends Controller
      */
     public function show(LicenseType $licenceType)
     {
-        //
     }
 
     /**
@@ -69,9 +68,13 @@ class LicenseTypeController extends Controller
      * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function edit(LicenseType $licenceType)
+    public function edit(LicenseType $licenseCodesType)//el nombre de la variable lo saco de las rutas//
     {
-        //
+
+        //return($licenseCodesType);
+
+        return view('license_codes.types.edit', compact('licenseCodesType'));
+
     }
 
     /**
@@ -81,8 +84,14 @@ class LicenseTypeController extends Controller
      * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LicenseType $licenceType)
+    public function update(Request $request, LicenseType $licenseCodesType)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $licenseCodesType->update($request->all());
+        return redirect()->route('license_codes_types.index')->with("success", "El tipo de licencia <strong>{$licenseCodesType->name}</strong> fue actualizado correctamente.");
 
     }
 
@@ -92,8 +101,10 @@ class LicenseTypeController extends Controller
      * @param  \App\LicenseType  $licenceType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LicenseType $licenceType)
+    public function destroy(LicenseType $licenseCodesType)
     {
-        //
+        $licenseCodesType->update(['is_deleted' => '1']);
+
+        return response()->json(['response' => true, 'message' => 'Tipo de Licencia eliminado con éxito.']);
     }
 }
