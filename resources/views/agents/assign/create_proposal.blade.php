@@ -4,7 +4,8 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Agentes</li>
         <li class="breadcrumb-item">Asignar propuesta a un agente</li>
-        <li class="breadcrumb-item">Cargo <strong>{{ $position->name }}</strong></li>
+        <li class="breadcrumb-item">Cargo <strong>{{ $position->name }}</strong> - <strong>{{ $status->name }}</strong>
+        </li>
         <li class="breadcrumb-item"><strong>{{ $agent->name }}</strong></li>
         <li class="breadcrumb-item">Cargar datos de la propuesta</li>
     </ol>
@@ -17,6 +18,8 @@
     @include('agents.assign.partials.agent')
 
     {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule','position'=>$position->id,'positionType'=>$positionType->id,'agent'=>$agent->id],'method'=>'GET']) !!}
+
+    <input type="hidden" name="status_id" value="{{ $status->id }}">
 
     <div class="card">
 

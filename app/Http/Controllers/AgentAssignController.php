@@ -11,6 +11,7 @@ use App\AgentSubjectSchedule;
 use App\Career;
 use App\Position;
 use App\PositionType;
+use App\Status;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -37,7 +38,9 @@ class AgentAssignController extends Controller
             ->get()
             ->pluck('name', 'id');
 
-        return view('agents.assign.position_types', compact('position', 'positionTypes'));
+        $statuses = Status::all()->pluck('name', 'id');
+
+        return view('agents.assign.position_types', compact('position', 'positionTypes', 'statuses'));
     }
 
     public function selectAgent(Position $position, Request $request)
@@ -46,7 +49,9 @@ class AgentAssignController extends Controller
 
         $agents = Agent::where('is_deleted', '0')->orderBy('surname')->orderBy('name')->get();
 
-        return view('agents.assign.agent', compact('position', 'positionType', 'agents'));
+        $status = Status::where('id', $request->status_id)->first();
+
+        return view('agents.assign.agent', compact('position', 'positionType', 'agents', 'status'));
     }
 
     public function createProposal(Position $position, PositionType $positionType, Request $request)
@@ -56,12 +61,15 @@ class AgentAssignController extends Controller
 
             $years = Career::select('year')->where('is_deleted', '0')->groupBy('year')->get()->pluck('year', 'year');
 
-            return view('agents.assign.create_proposal', compact('position', 'positionType', 'agent', 'years'));
+            $status = Status::where('id', $request->status_id)->first();
+
+            return view('agents.assign.create_proposal', compact('position', 'positionType', 'agent', 'years', 'status'));
         }
 
         $agentPositionType = AgentPositionType::create([
             'agent_id'         => $request->agent_id,
             'position_type_id' => $positionType->id,
+            'status_id'        => $request->status_id,
             'start_date'       => $request->start_date,
         ]);
 
@@ -80,9 +88,11 @@ class AgentAssignController extends Controller
     {
         $subject = Subject::where([['is_deleted', '0'], ['id', $request->subject_id]])->with('regimen', 'course', 'division')->first();
 
+        $status = Status::where('id', $request->status_id)->first();
+
         $agent = $agent->makeHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id']);
 
-        return view('agents.assign.subject_schedule', compact('position', 'positionType', 'agent', 'subject'));
+        return view('agents.assign.subject_schedule', compact('position', 'positionType', 'agent', 'subject', 'status'));
     }
 
     /**
@@ -120,7 +130,8 @@ class AgentAssignController extends Controller
         $agentPositionType = AgentPositionType::create([
             'agent_id'         => $agent->id,
             'position_type_id' => $positionType->id,
-            'start_date' => $request->start_date
+            'status_id'        => $request->status_id,
+            'start_date'       => $request->start_date
         ]);
 
         $agentPositionTypeTransaction = AgentPositionTypeTransaction::create([

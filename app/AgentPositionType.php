@@ -8,7 +8,7 @@ class AgentPositionType extends Model
 {
     protected $guarded = [];
     protected $casts = [
-        'start_date'  => 'date:d/m/Y',
+        'start_date' => 'date:d/m/Y',
     ];
 
     public function agent()
@@ -19,5 +19,10 @@ class AgentPositionType extends Model
     public function positionType()
     {
         return $this->belongsTo(PositionType::class)->with('position');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

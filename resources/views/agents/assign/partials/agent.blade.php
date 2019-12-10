@@ -8,7 +8,7 @@
 
         @if(isset($agent))
             @foreach($agent->attributesToArray() as $field => $value)
-                <div class="col-sm-6"><p><span>{{ $field }}: </span><strong>{{ $value }}</strong></p>
+                <div class="col-sm-6"><p><span>{{ config('global.agent_fields')[$field] }}: </span><strong>{{ $value }}</strong></p>
                 </div>
             @endforeach
         @endif

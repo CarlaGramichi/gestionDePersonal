@@ -10,6 +10,21 @@ return [
         6 => 'Sábado',
         7 => 'Domingo'
     ],
+
+    'agent_fields' => [
+        'name'      => 'Nombre',
+        'surname'   => 'Apellido',
+        'dni'       => 'D.N.I.',
+        'cuil'      => 'CUIL',
+        'born_date' => 'Fecha de nacimiento',
+        'email'     => 'E-mail',
+        'phone'     => 'Teléfono',
+        'cellphone' => 'Celular',
+        'address'   => 'Dirección',
+        'city'      => 'Ciudad',
+        'state'     => 'Provincia',
+        'country'   => 'País',
+    ]
 ]
 
 ?>

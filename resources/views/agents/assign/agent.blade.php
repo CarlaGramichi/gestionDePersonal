@@ -10,13 +10,16 @@
         <li class="breadcrumb-item">Agentes</li>
         <li class="breadcrumb-item">Asignar propuesta a un agente</li>
         <li class="breadcrumb-item">{{ $position->name }}</li>
-        <li class="breadcrumb-item">Seleccionar subcargo</li>
+        <li class="breadcrumb-item">{{ $positionType->name }} - {{ $status->name }}</li>
+        <li class="breadcrumb-item">Seleccionar Agente</li>
     </ol>
 @endsection
 
 @section('content')
 
     {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.proposal', 'position'=>$position->id, 'positionType'=>$positionType->id],'method'=>'GET']) !!}
+
+    <input type="hidden" name="status_id" value="{{ $status->id }}">
 
     <div class="card">
 
@@ -28,16 +31,22 @@
 
             <div class="row">
 
-                <div class="form-group col-sm-4">
-                    {!! Form::label(null, 'Cargo') !!}
+                <div class="form-group col-sm-3">
+                    <label>Cargo</label>
 
                     <p><strong>{{ $position->name }}</strong></p>
                 </div>
 
-                <div class="form-group col-sm-4">
-                    {!! Form::label(null, 'Subcargo') !!}
+                <div class="form-group col-sm-3">
+                    <label>Subcargo</label>
 
                     <p><strong>{{ $positionType->name }}</strong></p>
+                </div>
+
+                <div class="form-group col-sm-2">
+                    <label>Situación de revista</label>
+
+                    <p><strong>{{ $status->name }}</strong></p>
                 </div>
 
                 <div class="form-group col-sm-4">
@@ -115,7 +124,9 @@
                 if ($(this).val()) {
                     findAgent($(this).val());
                 }
-            })
+            });
+
+            $('#date').change();
         });
 
         function findAgent(agent_id) {

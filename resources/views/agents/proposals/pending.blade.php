@@ -16,12 +16,13 @@
     <table class="table table-bordered table-striped" id="table">
         <thead class="thead-dark">
         <tr>
-            <th>Fecha de incio</th>
-            <th>Fecha de alta</th>
+            <th>F. de incio</th>
+            <th>F. de alta</th>
             <th>Agente</th>
             <th>Año</th>
             <th>Cargo</th>
             <th>Subcargo</th>
+            <th>S. de revista</th>
             <th>Estado</th>
             <th class="text-center">Acciones</th>
         </tr>
@@ -82,16 +83,17 @@
                         name: 'agent_position_type.position_type.position.name'
                     },
                     {data: 'agent_position_type.position_type.name', name: 'agent_position_type.position_type.name',},
+                    {data: 'agent_position_type.status.name', name: 'agent_position_type.status.name',},
                     {
-                        data: 'statuses.0.status.description', name: 'statuses.0.status.description',
+                        data: 'position_type_transaction_statuses.0.transaction_status.description', name: 'position_type_transaction_statuses.0.transaction_status.description',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html(`<strong>${oData.statuses[0].status.description} ${oData.procedure_number ? "<br>Nº de expediente:" + oData.procedure_number : ''}</strong>`);
+                            $(nTd).html(`<strong>${oData.position_type_transaction_statuses[0].transaction_status.description} ${oData.procedure_number ? "<br>Nº de expediente:" + oData.procedure_number : ''}</strong>`);
                         }
                     },
                     {
                         data: '', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                            switch (oData.statuses[0].status.name) {
+                            switch (oData.position_type_transaction_statuses[0].transaction_status.name) {
                                 case 'started':
                                     $(nTd).append(renderButton('Documentos&emsp;<span class="fa fa-file-pdf"></span>', 'documents', 'danger'));
                                     break;

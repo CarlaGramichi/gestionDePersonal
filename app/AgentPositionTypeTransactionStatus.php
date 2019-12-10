@@ -8,7 +8,7 @@ class AgentPositionTypeTransactionStatus extends Model
 {
     protected $guarded = [];
 
-    public function status()
+    public function transactionStatus()
     {
         return $this->belongsTo(TransactionStatus::class, 'transaction_status_id');
     }

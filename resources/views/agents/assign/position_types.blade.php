@@ -35,6 +35,12 @@
                     {!! Form::select('position_type_id',$positionTypes, null, ['class' => 'form-control','placeholder'=>'Seleccionar', 'required']) !!}
                 </div>
 
+                <div class="form-group col-sm-4">
+                    {!! Form::label('status_id', 'Situación de revista') !!}
+
+                    {!! Form::select('status_id',$statuses, null, ['class' => 'form-control','placeholder'=>'Seleccionar', 'required']) !!}
+                </div>
+
             </div>
 
         </div>

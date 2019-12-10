@@ -8,12 +8,12 @@ class AgentPositionTypeTransaction extends Model
 {
     protected $guarded = [];
     protected $casts = [
-        'created_at'  => 'date:d/m/Y',
+        'created_at' => 'date:d/m/Y',
     ];
 
     public function agentPositionType()
     {
-        return $this->belongsTo(AgentPositionType::class, 'agent_position_type_id')->with('agent', 'positionType');
+        return $this->belongsTo(AgentPositionType::class, 'agent_position_type_id')->with('agent', 'positionType', 'status');
     }
 
     public function documents()
@@ -21,9 +21,10 @@ class AgentPositionTypeTransaction extends Model
         return $this->hasMany(AgentPositionTypeTransactionDocument::class);
     }
 
-    public function statuses()
+    public function positionTypeTransactionStatuses()
     {
-        return $this->hasMany(AgentPositionTypeTransactionStatus::class, 'agent_position_type_transaction_id')->with('status')->orderByDesc('created_at');
+        return $this->hasMany(AgentPositionTypeTransactionStatus::class, 'agent_position_type_transaction_id')->with('transactionStatus')->orderByDesc('created_at');
     }
+
 
 }

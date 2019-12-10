@@ -31,6 +31,7 @@
         </div>
 
         <form class="add-schedules-form">
+
             <div class="card-body">
 
                 <div class="row">
@@ -89,6 +90,8 @@
             'class'=>'schedules-form'
         ])
     !!}
+
+    <input type="hidden" name="status_id" value="{{ $status->id }}">
 
     <div class="card">
         <div class="card-header">
@@ -196,9 +199,11 @@
                 picker.container.find(".calendar-table").hide();
             });
 
+            $('#date').change();
+
             schedulesForm.submit(function () {
-                if(!matchingHours){
-                    swalAlert('¡Error!','La sumatoria de horas totales debe ser igual al total de horas cátedra de la asignatura selecionada.','error');
+                if (!matchingHours) {
+                    swalAlert('¡Error!', 'La sumatoria de horas totales debe ser igual al total de horas cátedra de la asignatura selecionada.', 'error');
 
                     return false;
                 }

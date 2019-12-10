@@ -11,6 +11,6 @@ $factory->define(Subject::class, function (Faker $faker) {
         'career_course_division_id' => $faker->numberBetween(1, 500),
         'regimen_id'                => $faker->numberBetween(1, 3),
         'name'                      => $faker->sentence(3),
-        'hours'                     => $faker->numberBetween(15, 70),
+        'hours'                     => $faker->numberBetween(2, 20),
     ];
 });

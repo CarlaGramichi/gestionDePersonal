@@ -35,7 +35,7 @@ class AgentProposalController extends Controller
     {
         if ($request->ajax()) {
             return Datatables::of(
-                AgentPositionTypeTransaction::with('agentPositionType', 'statuses')->orderByDesc('created_at')->get()
+                AgentPositionTypeTransaction::with('agentPositionType', 'positionTypeTransactionStatuses')->orderByDesc('created_at')->get()
             )->make(true);
         }
 
