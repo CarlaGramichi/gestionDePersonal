@@ -22,6 +22,12 @@
                 <div class="modal-body">
 
                     <div class="form-group">
+                        <label for="resolution_number">Número de resolución</label>
+
+                        <input type="text" id="resolution_number" name="resolution_number" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="tmp_file">Documento (imágen o pdf)</label>
 
                         <input type="file" id="tmp_file" name="tmp_file" required>

@@ -33,6 +33,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Fecha de presentación</th>
+                    <th>Nº de resolución</th>
                     <th>Archivo</th>
                     <th class="text-center"></th>
                 </tr>
@@ -44,6 +45,7 @@
                         <tr>
                             <td>{{ $document->document->name }}</td>
                             <td>{{ $document->uploadedDocument ?  $document->uploadedDocument->created_at->format('d/m/Y H:i') : '-'}}</td>
+                            <td>{!! $document->uploadedDocument ?  $document->uploadedDocument->resolution_number : '-' !!}</td>
                             <td class="text-center">{!! $document->uploadedDocument ?  "<a href='".asset("uploads/{$document->uploadedDocument->file}")."' target='_blank' download class='btn btn-sm btn-info'>Descargar&emsp;<span class='fa fa-download'></span></a>" : '-' !!}</td>
                             <td>
                                 @if($document->document->auto_generate)

@@ -65,7 +65,8 @@ class AgentProposalDocumentController extends Controller
     public function store(AgentPositionTypeTransaction $agentPositionTypeTransaction, Request $request)
     {
         $request->validate([
-            'tmp_file' => 'required'
+            'tmp_file' => 'required',
+            'resolution_number' => 'required',
         ]);
 
         $path = Storage::disk('public_uploads')->put('agents/proposals/documents', $request->file('tmp_file'));
