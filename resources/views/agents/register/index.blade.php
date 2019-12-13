@@ -59,7 +59,6 @@
             <tr>
                 <th>DNI</th>
                 <th>Nombre</th>
-                <th>Propuesta</th>
                 <th colspan="2" class="text-center">Acciones</th>
             </tr>
             </thead>
@@ -68,17 +67,16 @@
                 <tr>
                     <td>{{$agent->dni}}</td>
                     <td>{{$agent->surname}}, {{$agent->name}}</td>
-                    <td></td>
                     <td class="text-center">
                         <a class="btn btn-info" href="{{ url("agents/{$agent->id}/edit") }}">Editar&emsp;<span
-                                    class="fa fa-edit"></span></a>
+                                class="fa fa-edit"></span></a>
                     </td>
                     <td class="text-center">
                         <form action="{{ url("agents/{$agent->id}") }}" method="post">
                             {{ method_field('delete') }}
                             {{ @csrf_field() }}
                             <button type="submit" class="btn btn-danger">Borrar&emsp;<span
-                                        class="fa fa-trash"></span></button>
+                                    class="fa fa-trash"></span></button>
                         </form>
                     </td>
                 </tr>
@@ -122,9 +120,9 @@
             });
 
             search.typeahead({
-                minLength: 3,
+                // minLength: 1,
                 autoSelect: false,
-                matcher: function (item) {
+                matcher: function (item) {//Prevent not showing results on exact comparison.
                     return true;
                 },
                 source: function (term, process) {
@@ -148,6 +146,11 @@
                             new_agent_button.addClass('disabled');
                             new_agent_alert.addClass('d-none');
 
+                            $.each(data,function (index,item) {
+                                data[index].fullName = `${item.surname}, ${item.name}`;
+                                data[index].name = `${item.dni} - ${item.surname}, ${item.name}`;
+                            });
+
                             process(data);
 
                             if (!data.length) {
@@ -164,17 +167,16 @@
                     $('.agent-table').find('tbody').html(`
                     <tr>
                         <td>${item.dni}</td>
-                        <td>${item.surname}, ${item.name}</td>
-                        <td></td>
+                        <td>${item.fullName}</td>
                         <td class="text-center"><a class="btn btn-info" href="agents/${item.id}/edit">Editar&emsp;<span class="fa fa-edit"></span></a></td>
                         <td class="text-center">
                             <form action="agents/${item.id}" method="post">
                                 {{ method_field('delete') }}
                                 {{ @csrf_field() }}
-                            <button type="submit" class="btn btn-danger">Borrar&emsp;<span class="fa fa-trash"></span></button>
-                        </form>
-        </td>
-    </tr>
+                                <button type="submit" class="btn btn-danger">Borrar&emsp;<span class="fa fa-trash"></span></button>
+                            </form>
+                        </td>
+                    </tr>
 `);
                 }
             })
