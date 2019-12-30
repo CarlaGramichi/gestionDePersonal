@@ -22,6 +22,8 @@
 
 <div id="app">
 
+    @include('layouts.loader')
+    
     @include('layouts.header')
 
     <div class="app-body">

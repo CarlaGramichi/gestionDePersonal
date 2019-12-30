@@ -99,4 +99,10 @@ class PositionController extends Controller
 
         return response()->json(['response' => true, 'message' => 'Cargo eliminado con éxito.']);
     }
+
+    public function availability(Position $position)
+    {
+
+
+    }
 }

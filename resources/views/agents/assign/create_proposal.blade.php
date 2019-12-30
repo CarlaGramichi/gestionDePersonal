@@ -15,7 +15,7 @@
 
     @include('agents.assign.partials.positions')
 
-    @include('agents.assign.partials.agent')
+    <v-agent-information :agent-data="{{ $agent }}"></v-agent-information>
 
     {!! Form::open(['route' => ['agents.assign.positions.{position}.types.{positionType}.agents.{agent}.proposal.subject_schedule','position'=>$position->id,'positionType'=>$positionType->id,'agent'=>$agent->id],'method'=>'GET']) !!}
 
@@ -249,5 +249,15 @@
                 }
             });
         }
+
+    </script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                options: [],
+            },
+        })
     </script>
 @endsection

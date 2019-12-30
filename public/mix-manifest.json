@@ -1,11 +1,10 @@
 {
-    "/js/app.js": "/js/app.js?id=158a7f8dca6ef7147823",
-    "/css/app.css": "/css/app.css?id=216a5d1a277df4f82ceb",
-    "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js": "/js/plugins/devbridge-autocomplete/jquery.autocomplete.min.js?id=d426be835b700974b48c",
+    "/js/app.js": "/js/app.js?id=396330e3cd5a2a3286c4",
+    "/css/app.css": "/css/app.css?id=9b3817542eb0d43b3c0a",
     "/css/plugins/typeaheadjs.css": "/css/plugins/typeaheadjs.css?id=726b02281b96b2c4afb7",
     "/js/plugins/typeahead/typeahead.min.js": "/js/plugins/typeahead/typeahead.min.js?id=e99093ab7bafcd649a62",
     "/js/plugins/inputmask/inputmask.min.js": "/js/plugins/inputmask/inputmask.min.js?id=db51d0348c2551fbe1d7",
-    "/js/plugins/chartjs/chart.min.js": "/js/plugins/chartjs/chart.min.js?id=5423897f58abad24d4ae",
+    "/js/plugins/chartjs/chart.min.js": "/js/plugins/chartjs/chart.min.js?id=b5c2301eb15826bf38c9",
     "/css/plugins/chartjs/chart.min.css": "/css/plugins/chartjs/chart.min.css?id=7d8693e997109f2aeac0",
-    "/js/global.js": "/js/global.js?id=11140cc8313999f88019"
+    "/js/global.js": "/js/global.js?id=1581e12f9e64da67646a"
 }

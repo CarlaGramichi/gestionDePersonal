@@ -9,6 +9,9 @@ class Agent extends Model
 
     protected $guarded = [];
     protected $dates = ['born_date'];
+    protected $casts = [
+        'born_date' => 'date:d/m/Y',
+    ];
 
     public function contact()
     {

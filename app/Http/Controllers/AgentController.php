@@ -18,7 +18,7 @@ class AgentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -29,8 +29,7 @@ class AgentController extends Controller
                 ->orWhere('surname', 'like', "%{$request->search}%")
                 ->orWhere('dni', 'like', "%{$request->search}%")
                 ->limit(10)
-                ->get()
-                ->toArray();
+                ->get();
 
             return $agents;
         }
@@ -98,7 +97,7 @@ class AgentController extends Controller
             return response()->json(['agent' => $agent->setHidden(['id', 'created_at', 'updated_at', 'is_deleted', 'status_id'])]);
         }
 
-        return $agent->orderBy('surname','name')->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);
+        return $agent->orderBy('surname', 'name')->load(['status'])->setHidden(['id', 'created_at', 'updated_at', 'is_deleted']);
     }
 
 

@@ -11719,3 +11719,15 @@ a.text-dark:focus {
   background: #007bff;
 }
 
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background-color: rgba(255, 255, 255, 0.81);
+  position: fixed;
+}
+
+.loader-container .spinner {
+  margin-top: 50vh;
+}
+

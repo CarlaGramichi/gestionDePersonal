@@ -19,7 +19,7 @@
 
     @include('agents.assign.partials.positions')
 
-    @include('agents.assign.partials.agent')
+    <v-agent-information :agent-data="{{ $agent }}"></v-agent-information>
 
     @include('agents.assign.partials.subject')
 

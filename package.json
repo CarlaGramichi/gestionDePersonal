@@ -20,7 +20,7 @@
         "less": "^3.10.3",
         "less-loader": "^5.0.0",
         "lodash": "^4.17.13",
-        "npm": "^6.13.1",
+        "npm": "^6.13.4",
         "popper.js": "^1.16.0",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.23.7",
@@ -35,6 +35,8 @@
         "chart.js": "^2.9.3",
         "devbridge-autocomplete": "^1.4.10",
         "perfect-scrollbar": "^1.4.0",
-        "simple-line-icons": "^2.4.1"
+        "simple-line-icons": "^2.4.1",
+        "vue-select": "^3.4.0",
+        "vuejs-datepicker": "^1.6.2"
     }
 }

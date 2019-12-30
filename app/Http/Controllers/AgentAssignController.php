@@ -21,9 +21,11 @@ class AgentAssignController extends Controller
 
     public function selectPosition()
     {
-        $positions = Position::where('is_deleted', '0')->get()->pluck('name', 'id');
+        $years = Position::select('year')->where('is_deleted', '0')->groupBy('year')->get()->pluck('year', 'year');
 
-        return view('agents.assign.positions', compact('positions'));
+        $positions = Position::where([['is_deleted', '0'], ['year', now()->year]])->get()->pluck('name', 'id');
+
+        return view('agents.assign.positions', compact('positions', 'years'));
     }
 
     public function selectPositionTypes(Request $request)
@@ -47,7 +49,7 @@ class AgentAssignController extends Controller
     {
         $positionType = PositionType::where([['is_deleted', '0'], ['id', $request->position_type_id]])->first();
 
-        $agents = Agent::where('is_deleted', '0')->orderBy('surname')->orderBy('name')->get();
+        $agents = Agent::where('is_deleted', '0')->selectRaw('*, CONCAT(dni, " - ", surname, ", ", name) as label')->orderBy('surname')->orderBy('name')->get();
 
         $status = Status::where('id', $request->status_id)->first();
 

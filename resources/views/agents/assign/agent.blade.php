@@ -2,7 +2,6 @@
 
 @section('stylesheets')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
 @endsection
 
 @section('breadcrumbs')
@@ -50,15 +49,26 @@
                 </div>
 
                 <div class="form-group col-sm-4">
-                    {!! Form::label('agent_id', 'Agente') !!}
-                    <select name="agent_id" id="agent_id" class="form-control select2" required>
-                        <option value="">Seleccionar</option>
+                    <label for="agent_id">Agente</label>
+                    <input type="hidden" name="agent_id" :value="selectedAgent.id">
+                    <v-select :options="{{ $agents }}" id="agent_id" :required="!selectedAgent" v-model="selectedAgent">
 
-                        @foreach($agents as $a)
-                            <option value="{{ $a->id }}">{{ $a->dni }} - {{ $a->surname }}, {{ $a->name }}</option>
-                        @endforeach
+                        <template #search="{attributes, events}">
+                            <input
+                                class="vs__search"
+                                :required="!selectedAgent"
+                                v-bind="attributes"
+                                v-on="events"
+                            />
+                        </template>
 
-                    </select>
+                        <template slot="selected-option" slot-scope="option">
+                            <div class="selected d-center">
+                                <strong>@{{ option.label }}</strong>
+                            </div>
+                        </template>
+
+                    </v-select>
                 </div>
 
             </div>
@@ -66,6 +76,8 @@
         </div>
 
     </div>
+
+    <v-agent-information v-if="selectedAgent" :agent-data="selectedAgent"></v-agent-information>
 
     @include('agents.assign.partials.agent')
 
@@ -84,6 +96,7 @@
                         {!! Form::label('date', 'Fecha de alta') !!}
 
                         {!! Form::text('date', null, ['class' => 'form-control date-range-picker date-mask', 'data-field'=>'start_date', 'required']) !!}
+                        <input type="hidden" name="start_date" value="{{ now()->toDateString() }}">
                     </div>
 
                 </div>
@@ -108,50 +121,24 @@
 @endsection
 
 @section('scripts')
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/plugins/inputmask/inputmask.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script>
-        let agent_id = $('select#agent_id');
-        let user_data_container = $('div.user-data-container');
-
         $(document).ready(function () {
-            $('.select2').select2();
-
-            agent_id.change(function () {
-                user_data_container.addClass('d-none');
-                if ($(this).val()) {
-                    findAgent($(this).val());
-                }
-            });
-
             $('#date').change();
         });
-
-        function findAgent(agent_id) {
-            $.ajax({
-                async: true,
-                url: `${baseUri}/agents/${agent_id}`,
-                type: 'GET',
-                data: {},
-                dataType: 'json',
-                beforeSend: function () {
-                    user_data_container.addClass('d-none');
-                    user_data_container.find('.user-data').empty();
-                },
-                success: function (response) {
-                    if (response.agent) {
-                        user_data_container.removeClass('d-none');
-
-                        $.each(response.agent, function (field, value) {
-                            user_data_container.find('.user-data').append(`
-                                <div class="col-sm-6"><p><span>${agentFields[field]}: </span><strong>${value}</strong></p></div>
-                            `);
-                        })
-                    }
-                }
-            });
-        }
     </script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                options: [],
+                selectedAgent: '',
+            },
+        })
+    </script>
+
 @endsection

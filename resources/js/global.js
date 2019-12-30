@@ -10,25 +10,27 @@ let week_days = {
     6: 'Sábado',
     7: 'Domingo',
 };
-let agentFields = {
-    'name': 'Nombre',
-    'surname': 'Apellido',
-    'dni': 'D.N.I.',
-    'cuil': 'CUIL',
-    'born_date': 'Fecha de nacimiento',
-    'email': 'E-mail',
-    'phone': 'Teléfono',
-    'cellphone': 'Celular',
-    'address': 'Dirección',
-    'city': 'Ciudad',
-    'state': 'Provincia',
-    'country': 'País',
-};
+// let agentFields = {
+//     'name': 'Nombre',
+//     'surname': 'Apellido',
+//     'dni': 'D.N.I.',
+//     'cuil': 'CUIL',
+//     'born_date': 'Fecha de nacimiento',
+//     'email': 'E-mail',
+//     'phone': 'Teléfono',
+//     'cellphone': 'Celular',
+//     'address': 'Dirección',
+//     'city': 'Ciudad',
+//     'state': 'Provincia',
+//     'country': 'País',
+// };
 
 $(document).ready(function () {
 
+    $('.loader-container').hide();
     setDateRangePicker();
     setMasks();
+    checkAjaxCalls();
 
 });
 
@@ -198,7 +200,6 @@ function swalLoading(title, message) {
         timerProgressBar: true,
         onBeforeOpen: () => {
             Swal.showLoading();
-
         },
         onClose: () => {
             // clearInterval(timerInterval)
@@ -241,4 +242,14 @@ function dateDifference(startTime, endTime) {
     let difference = moment.duration(end.diff(start));
 
     return moment.utc(+difference).format('H:mm');
+}
+
+function checkAjaxCalls() {
+    $(document).ajaxStart(function () {
+        $('.loader-container').show();
+    });
+
+    $(document).ajaxStop(function () {
+        $('.loader-container').hide();
+    });
 }
