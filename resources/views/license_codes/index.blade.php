@@ -6,8 +6,8 @@
 
 @section('breadcrumbs')
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Códigos de Licencias</li>
-        <li class="breadcrumb-item">Listado</li>
+        <li class="breadcrumb-item">Licencias</li>
+        <li class="breadcrumb-item">Códigos</li>
     </ol>
 @endsection
 

@@ -25,10 +25,10 @@
                         </a>
                     </li>
 
+                    <a class="nav-link" href="{{ route('agents.proposals.pending') }}">
+                        • Propuestas pendientes
+                    </a>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('agents.proposals.pending') }}">
-                            • Propuestas pendientes
-                        </a>
                     </li>
 
                     <li class="nav-item">
@@ -50,7 +50,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="">
                             • Dar de baja
                         </a>
                     </li>
@@ -70,7 +70,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="#">
+                        <a class="nav-link " href="{{ route('agent_licenses.index') }}">
                             • Entrada de licencias
                         </a>
                     </li>
