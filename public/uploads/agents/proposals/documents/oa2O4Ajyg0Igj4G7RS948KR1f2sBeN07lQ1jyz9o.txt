@@ -1,0 +1,185 @@
+CREATE TABLE `users` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `agent_id` int,
+  `role_id` int,
+  `username` varchar(255),
+  `password` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `agents` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `surname` varchar(255),
+  `dni` bigint,
+  `born_date` date,
+  `cuil` bigint,
+  `email` varchar(255),
+  `phone` varchar(255),
+  `cellphone` varchar(255),
+  `adress` varchar(255),
+  `city` varchar(255),
+  `state` varchar(255),
+  `country` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `agent_contact` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `agent_id` int,
+  `relationship_id` int,
+  `name` varchar(255),
+  `surname` varchar(255),
+  `dni` bigint,
+  `born_date` date,
+  `email` varchar(255),
+  `phone` varchar(255),
+  `cellphone` varchar(255),
+  `adress` varchar(255),
+  `city` varchar(255),
+  `state` varchar(255),
+  `country` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `relationship` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255)
+);
+
+CREATE TABLE `positions` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `position_type` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `positions_id` int,
+  `quota` smallint,
+  `points` smallint,
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `levels` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `shifts` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `start_time` time,
+  `end_time` time,
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `pof` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `year_id` int,
+  `level_id` int,
+  `shift_id` int,
+  `cue` varchar(255),
+  `institution` varchar(255),
+  `total_approved_teaching_positions` smallint,
+  `total_approved_non_teaching_positions` smallint,
+  `total_teaching_approved_hours` smallint,
+  `file` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `year` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `year` smallint,
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `career` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `year_id` int,
+  `name` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `carrer_courses` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `carrer_id` int,
+  `name` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `carrer_course_divisions` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `carrer_course_id` int,
+  `name` varchar(255),
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `subjects` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `carrer_course_id` int,
+  `carrer_course_division_id` int,
+  `hours` smallint,
+  `regimen_id` int,
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `regimen` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255),
+  `start_date` date,
+  `end_date` date,
+  `is_active` boolean,
+  `is_deleted` boolean
+);
+
+CREATE TABLE `agent_position` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `agent_id` intt,
+  `position_type_id` intt
+);
+
+ALTER TABLE `users` ADD FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`);
+
+ALTER TABLE `agent_contact` ADD FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`);
+
+ALTER TABLE `agent_contact` ADD FOREIGN KEY (`relationship_id`) REFERENCES `relationship` (`id`);
+
+ALTER TABLE `position_type` ADD FOREIGN KEY (`positions_id`) REFERENCES `positions` (`id`);
+
+ALTER TABLE `pof` ADD FOREIGN KEY (`year_id`) REFERENCES `year` (`id`);
+
+ALTER TABLE `pof` ADD FOREIGN KEY (`level_id`) REFERENCES `levels` (`id`);
+
+ALTER TABLE `pof` ADD FOREIGN KEY (`shift_id`) REFERENCES `shifts` (`id`);
+
+ALTER TABLE `career` ADD FOREIGN KEY (`year_id`) REFERENCES `year` (`id`);
+
+ALTER TABLE `carrer_courses` ADD FOREIGN KEY (`carrer_id`) REFERENCES `career` (`id`);
+
+ALTER TABLE `carrer_course_divisions` ADD FOREIGN KEY (`carrer_course_id`) REFERENCES `carrer_courses` (`id`);
+
+ALTER TABLE `subjects` ADD FOREIGN KEY (`carrer_course_id`) REFERENCES `carrer_courses` (`id`);
+
+ALTER TABLE `subjects` ADD FOREIGN KEY (`carrer_course_division_id`) REFERENCES `carrer_course_divisions` (`id`);
+
+ALTER TABLE `subjects` ADD FOREIGN KEY (`regimen_id`) REFERENCES `regimen` (`id`);
+
+ALTER TABLE `agent_position` ADD FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`);
+
+ALTER TABLE `agent_position` ADD FOREIGN KEY (`position_type_id`) REFERENCES `position_type` (`id`);
