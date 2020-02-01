@@ -28,7 +28,8 @@ Vue.component('v-agent-selection', AgentSelection);
 // Vue.component('v-datepicker', Datepicker);
 // const app = new Vue({
 //     el: '#app',
-//     components: {
+// components: {
+//     Select2
 //         vSelect,
 //         AgentInformation,
 //         AgentSelector,

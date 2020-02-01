@@ -10,6 +10,11 @@ class Position extends Model
 
     public function documents()
     {
-        return $this->hasMany(PositionDocument::class)->with('document','position')->where('is_deleted', '0');
+        return $this->hasMany(PositionDocument::class)->with('document', 'position')->where('is_deleted', '0');
+    }
+
+    public function types()
+    {
+        return $this->hasMany(PositionType::class);
     }
 }

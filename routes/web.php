@@ -99,10 +99,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    /* Licencias */
+    /* Licences */
     Route::resource('license_codes', LicenseCodeController::class);
     Route::resource('license_codes_types', LicenseTypeController::class);
     Route::resource('license_officer', LicenseOfficerController::class);
 
+    /* Position types hours - Position types nomenclator */
+    Route::resource('position_type_hours', PositionTypeHourController::class);
 
 });
