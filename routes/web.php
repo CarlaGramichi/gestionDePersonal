@@ -104,6 +104,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('license_codes_types', LicenseTypeController::class);
     Route::resource('license_officer', LicenseOfficerController::class);
 
+    Route::resource('agent_licenses' , AgentLicenseController::class);
+
     /* Position types hours - Position types nomenclator */
     Route::resource('position_type_hours', PositionTypeHourController::class);
 

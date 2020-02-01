@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Agent;
 use App\AgentLicense;
+use App\Position;
+use App\PositionType;
+use App\Status;
 use Illuminate\Http\Request;
 
 class AgentLicenseController extends Controller
@@ -11,10 +15,26 @@ class AgentLicenseController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *
      */
-    public function index()
+
+
+    public function index(Request $request)
     {
-        //
+
+        if ($request->ajax()) {
+
+            $agents = Agent::where('name', 'like', "%{$request->search}%")
+                ->orWhere('surname', 'like', "%{$request->search}%")
+                ->orWhere('dni', 'like', "%{$request->search}%")
+                ->limit(10)
+                ->get();
+
+            return $agents;
+        }
+
+        return view('agent_licenses.index', compact('agents'));
     }
 
     /**

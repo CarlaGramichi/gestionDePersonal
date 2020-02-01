@@ -1,2 +1,3 @@
-<?php
+@extends('layouts.app')
+
 
