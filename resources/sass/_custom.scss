@@ -1,65 +1,71 @@
 .autocomplete-suggestions {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  border: 1px solid #999;
-  background: #FFF;
-  cursor: default;
-  overflow: auto;
-  -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
-  -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
-  box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    background: #FFF;
+    cursor: default;
+    overflow: auto;
+    -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+    -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+    box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
 }
 
 .autocomplete-suggestion {
-  padding: 2px 5px;
-  white-space: nowrap;
-  overflow: hidden;
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .autocomplete-no-suggestion {
-  padding: 2px 5px;
+    padding: 2px 5px;
 }
 
 .autocomplete-selected {
-  background: #F0F0F0;
+    background: #F0F0F0;
 }
 
 .autocomplete-suggestions strong {
-  font-weight: bold;
-  color: #000;
+    font-weight: bold;
+    color: #000;
 }
 
 .autocomplete-group {
-  padding: 2px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #000;
-  display: block;
-  border-bottom: 1px solid #000;
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+    display: block;
+    border-bottom: 1px solid #000;
 }
 
 .sidebar .nav-dropdown.open > .nav-dropdown-items {
-  background-color: #e9ecef;
+    background-color: #e9ecef;
 
-  .nav-link {
-    color: #000 !important;
-  }
+    .nav-link {
+        color: #000 !important;
+    }
 
-  .nav-link.active {
-    color: #fff !important;
-    background: #007bff;
-  }
+    .nav-link.active {
+        color: #fff !important;
+        background: #007bff;
+    }
 }
 
-.loader-container{
+.loader-container {
     width: 100vw;
     height: 100vh;
     z-index: 999999;
     background-color: rgba(255, 255, 255, 0.81);
     position: fixed;
 
-    .spinner{
+    .spinner {
         margin-top: 50vh;
     }
+}
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid #ced4da !important;
+    width: 100% !important;
+    height: 37px !important;
 }

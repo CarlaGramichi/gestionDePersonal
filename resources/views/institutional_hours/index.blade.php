@@ -20,7 +20,7 @@
         <div class="form-group col-sm-4 float-right text-right">
             <label>&nbsp;</label>
             <div class="clearfix"></div>
-            <a href="{{ route('position_type_hours.create') }}" class="btn btn-success btn-lg">
+            <a href="{{ route('institutional_hours.create') }}" class="btn btn-success btn-lg">
                 Nuevo&emsp;<span class="fa fa-plus"></span>
             </a>
         </div>
@@ -31,9 +31,8 @@
         <table class="table table-bordered table-striped" id="table">
             <thead>
             <tr>
+                <th>Nombre</th>
                 <th>Año</th>
-                <th>Cargo</th>
-                <th>Subcargo</th>
                 <th>Horas</th>
                 <th>Documento</th>
                 <th class="text-center" width="250">Acciones</th>
@@ -54,8 +53,9 @@
             dataTable = table.DataTable({
                 processing: true,
                 serverSide: true,
+                order: [1, 'DESC'],
                 ajax: {
-                    url: '{!! route('position_type_hours.index') !!}'
+                    url: '{!! route('institutional_hours.index') !!}'
 
                 },
                 columnDefs: [
@@ -67,14 +67,17 @@
                     },
                 ],
                 columns: [
-                    {data: 'position_type.position.year', name: 'position_type.position.year'},
-                    {data: 'position_type.position.name', name: 'position_type.position.name'},
-                    {data: 'position_type.name', name: 'position_type.name'},
+                    {data: 'name', name: 'name'},
+                    {data: 'year', name: 'year'},
                     {data: 'hours', name: 'hours'},
                     {
                         data: 'file', name: 'file', class: 'text-center',
                         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                            $(nTd).html(`<a href="{{ asset('uploads/${oData.file}') }}" class="btn btn-danger" target="_blank" download>Descargar <span class="fa fa-download"></span></a>`);
+                            $(nTd).html('-');
+
+                            if (oData.file) {
+                                $(nTd).html(`<a href="{{ asset('uploads/${oData.file}') }}" class="btn btn-danger" target="_blank" download>Descargar <span class="fa fa-download"></span></a>`);
+                            }
                         }
                     },
                     {
@@ -90,17 +93,17 @@
                 .on('click', '.edit', function () {
                     let row = dataTable.row($(this).parents('tr')).data();
 
-                    httpRedirect(`position_type_hours/${row.id}/edit`);
+                    httpRedirect(`institutional_hours/${row.id}/edit`);
                 })
                 .on('click', '.remove', function () {
                     let row = dataTable.row($(this).parents('tr')).data();
 
                     tableRemove(
-                        `position_type_hours/${row.id}`,
+                        `institutional_hours/${row.id}`,
                         {},
                         '{{csrf_token()}}',
-                        `Eliminar horas`,
-                        `Está por eliminar las horas del cargo <strong>${row.position_type.position.name} - ${row.position_type.name}</stong><br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
+                        `Eliminar horas institucionales`,
+                        `Está por eliminar las horas institionales del proyecto <strong>${row.name}</stong><br><strong class="text-danger">Ésta operación no se puede deshacer</strong>.<br>¿Desea continuar?`,
                         dataTable,
                     );
                 });

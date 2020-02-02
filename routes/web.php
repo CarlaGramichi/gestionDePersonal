@@ -109,4 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     /* Position types hours - Position types nomenclator */
     Route::resource('position_type_hours', PositionTypeHourController::class);
 
+    /* Institutional hours */
+    Route::resource('institutional_hours', InstitutionalHourController::class);
+
 });

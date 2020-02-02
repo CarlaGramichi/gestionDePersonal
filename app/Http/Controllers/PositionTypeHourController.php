@@ -27,11 +27,9 @@ class PositionTypeHourController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            if ($request->ajax()) {
-                return Datatables::of(
-                    PositionTypeHour::where('is_deleted', '0')->with('position_type')->get()
-                )->make(true);
-            }
+            return Datatables::of(
+                PositionTypeHour::where('is_deleted', '0')->with('position_type')->get()
+            )->make(true);
         }
 
         return view("position_type_hours.index");
@@ -48,11 +46,11 @@ class PositionTypeHourController extends Controller
 
         if (in_array(now()->year, $years->toArray())) {
             $year = now()->year;
-        }else{
+        } else {
             $year = array_values($years->toArray())[0];
         }
 
-        $positions = Position::where([['is_deleted', '0'], ['year',$year]])->get()->pluck('name', 'id')->prepend('Seleccionar', '');
+        $positions = Position::where([['is_deleted', '0'], ['year', $year]])->get()->pluck('name', 'id')->prepend('Seleccionar', '');
 
         return view('position_type_hours.create', compact('years', 'positions'));
     }
@@ -66,7 +64,6 @@ class PositionTypeHourController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tmp_file'         => 'required',
             'position_type_id' => 'required|exists:position_types,id',
             'hours'            => 'required|numeric',
         ]);
@@ -105,11 +102,11 @@ class PositionTypeHourController extends Controller
 
         if (in_array(now()->year, $years->toArray())) {
             $year = now()->year;
-        }else{
+        } else {
             $year = array_values($years->toArray())[0];
         }
 
-        $positions = Position::where([['is_deleted', '0'], ['year',$year]])->get()->pluck('name', 'id')->prepend('Seleccionar', '');
+        $positions = Position::where([['is_deleted', '0'], ['year', $year]])->get()->pluck('name', 'id')->prepend('Seleccionar', '');
 
         $position_types = PositionType::where('position_id', $positionTypeHour->position_type->position->id)->get()->pluck('name', 'id');
 

@@ -211,6 +211,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('institutional_hours.index') }}">
+                            <i class="nav-icon fa fa-file-archive"></i> Horas institucionales
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('documents.index') }}">
                             <i class="nav-icon fa fa-file-archive"></i> Documentos
                         </a>
