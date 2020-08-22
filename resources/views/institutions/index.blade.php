@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('stylesheets')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.css">
-@endsection
-
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Ajustes</li>

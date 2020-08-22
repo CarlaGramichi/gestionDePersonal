@@ -23,7 +23,7 @@
 <div id="app">
 
     @include('layouts.loader')
-    
+
     @include('layouts.header')
 
     <div class="app-body">
@@ -33,6 +33,8 @@
         <main class="main">
 
             @yield('breadcrumbs')
+
+            @include('partials.breadcrumbs')
 
             <div class="container-fluid">
 
@@ -58,11 +60,24 @@
 
 </div>
 
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}"></script>
+{{-- App --}}
+<script src="{{ asset(mix('js/app.js')) }}"></script>
+
+{{-- DataTables --}}
 <link href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+
+{{-- Sweetalert --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.7/dist/sweetalert2.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/inputmask/inputmask.min.js') }}"></script>
+
 @yield('scripts')
+
 <script src="{{ mix('js/global.js') }}"></script>
+
 </body>
 </html>

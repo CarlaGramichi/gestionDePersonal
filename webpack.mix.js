@@ -21,5 +21,6 @@ mix.copy('node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js', 'publ
 mix.copy('node_modules/chart.js/dist/Chart.min.js', 'public/js/plugins/chartjs/chart.min.js');
 mix.copy('node_modules/chart.js/dist/Chart.min.css', 'public/css/plugins/chartjs/chart.min.css');
 mix.scripts('resources/js/global.js', 'public/js/global.js').version();
+mix.scripts('resources/js/career_selectors.js', 'public/js/career_selectors.js').version();
 
 mix.sass('resources/sass/app.scss', 'public/css').version();

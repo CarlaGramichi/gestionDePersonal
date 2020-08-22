@@ -7,7 +7,46 @@
                     <i class="nav-icon icon-speedometer"></i> Inicio
                 </a>
             </li>
+
             @role('superuser|supervisor|administrative')
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-chalkboard-teacher"></i>
+                    &emsp;Alumnos
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('students.index') }}">
+                            • Listar alumnos
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('students.create') }}">
+                            • Cargar alumno
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-chalkboard-teacher"></i>&emsp;Calificaciones
+                </a>
+
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('agents.index') }}">
+                            • Dar de alta
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#">
                     <i class="nav-icon fa fa-chalkboard-teacher"></i>&emsp;Agentes
@@ -238,7 +277,7 @@
                 <form method="post" action="{{ route('logout') }}">
                     @csrf
                     <a class="nav-link" href="#" onclick="$(this).parent('form').submit()">
-                        <i class="fa fa-arrow-left"></i>&emsp;{{__('Salir')}}
+                        <i class="fa fa-arrow-left"></i>&emsp;{{ __('Salir') }}
                     </a>
                 </form>
             </li>

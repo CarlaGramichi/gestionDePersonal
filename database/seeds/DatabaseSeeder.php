@@ -44,6 +44,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentsTableSeeder::class);
         $this->call(PositionsDocumentsTableSeeder::class);
 
+        $this->call(StudentsTableSeeder::class);
+
         Model::reguard();
     }
 }

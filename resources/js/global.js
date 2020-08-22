@@ -97,6 +97,8 @@ function setDateRangePicker() {
         if (moment) {
             moment.locale('es');
         }
+        let field = dateRangePicker.data('field');
+
         dateRangePicker.daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -106,10 +108,12 @@ function setDateRangePicker() {
             if (dateRangePicker.parent().find(`[name=${dateRangePicker.data('field')}]`).length) {
                 dateRangePicker.parent().find(`[name=${dateRangePicker.data('field')}]`).val(start.format('Y-MM-DD'));
             } else {
-                dateRangePicker.parent().append(`<input type="hidden" name="${dateRangePicker.data('field')}" value="${start.format('Y-MM-DD')}">`)
+                dateRangePicker.parent().append(`<input type="hidden" name="${field}" value="${start.format('Y-MM-DD')}">`)
             }
         });
-        dateRangePicker.val('');
+        if(!$(`[name = ${field}]`).val()){
+            dateRangePicker.val('')
+        }
     }
 }
 
