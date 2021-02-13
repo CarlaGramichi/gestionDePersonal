@@ -15,7 +15,7 @@
         "cross-env": "^5.1",
         "inputmask": "^4.0.9",
         "install": "^0.13.0",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "laravel-mix": "^4.0.7",
         "less": "^3.10.3",
         "less-loader": "^5.0.0",
